@@ -81,50 +81,133 @@ function highlightNavLink() {
 window.addEventListener('scroll', highlightNavLink);
 
 // ========== COUNTER ANIMATION ==========
-const counters = document.querySelectorAll('.stat-number');
-let counterAnimated = false;
-
-function animateCounters() {
-    if (counterAnimated) return;
+// Universal counter animation for all stat numbers across all pages
+function initCounterAnimations() {
+    // All counter selectors used across the site
+    const counterSelectors = [
+        '.stat-number',
+        '.stat-number-story',
+        '.stat-number-motto',
+        '.stat-number-intro',
+        '.why-stat-number'
+    ];
     
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
-        let current = 0;
+    // Find all counters
+    const allCounters = [];
+    counterSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(counter => {
+            allCounters.push(counter);
+        });
+    });
+    
+    if (allCounters.length === 0) return;
+    
+    // Track which counters have been animated
+    const animatedCounters = new Set();
+    
+    // Animation function for a single counter
+    function animateCounter(counter) {
+        if (animatedCounters.has(counter)) return;
+        animatedCounters.add(counter);
         
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                counter.textContent = Math.floor(current) + '+';
+        const text = counter.textContent.trim();
+        let target, suffix = '', prefix = '';
+        
+        // Parse the counter value and format
+        if (text.includes('%')) {
+            target = parseFloat(text.replace('%', ''));
+            suffix = '%';
+        } else if (text.includes('+')) {
+            target = parseFloat(text.replace('+', ''));
+            suffix = '+';
+        } else if (text.includes(':')) {
+            // Handle ratio format like "1:15"
+            const parts = text.split(':');
+            if (parts.length === 2) {
+                // Animate the second number
+                target = parseFloat(parts[1]);
+                prefix = parts[0] + ':';
+            } else {
+                target = parseFloat(text);
+            }
+        } else {
+            target = parseFloat(text);
+        }
+        
+        // Skip if not a valid number
+        if (isNaN(target)) return;
+        
+        // Animation settings
+        const duration = 2000; // 2 seconds
+        const fps = 60;
+        const totalFrames = (duration / 1000) * fps;
+        const increment = target / totalFrames;
+        let current = 0;
+        let frame = 0;
+        
+        // Easing function for smooth animation
+        function easeOutQuart(x) {
+            return 1 - Math.pow(1 - x, 4);
+        }
+        
+        // Update counter
+        function updateCounter() {
+            frame++;
+            const progress = frame / totalFrames;
+            current = target * easeOutQuart(progress);
+            
+            if (frame < totalFrames) {
+                // Format based on whether it's a decimal or integer
+                let displayValue;
+                if (target % 1 !== 0) {
+                    displayValue = current.toFixed(1);
+                } else {
+                    displayValue = Math.floor(current);
+                }
+                counter.textContent = prefix + displayValue + suffix;
                 requestAnimationFrame(updateCounter);
             } else {
-                counter.textContent = target + '+';
+                // Final value
+                let finalValue;
+                if (target % 1 !== 0) {
+                    finalValue = target.toFixed(1);
+                } else {
+                    finalValue = target;
+                }
+                counter.textContent = prefix + finalValue + suffix;
             }
-        };
+        }
         
-        updateCounter();
-    });
+        // Start animation
+        counter.textContent = prefix + '0' + suffix;
+        requestAnimationFrame(updateCounter);
+    }
     
-    counterAnimated = true;
+    // Create intersection observer for each counter
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all counters
+    allCounters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
 }
 
-// Trigger counter animation when stats section is in view
-const statsSection = document.querySelector('.stats-section');
-const observerOptions = {
-    threshold: 0.5
-};
-
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounters();
-        }
-    });
-}, observerOptions);
-
-if (statsSection) {
-    statsObserver.observe(statsSection);
+// Initialize counters when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounterAnimations);
+} else {
+    initCounterAnimations();
 }
 
 // ========== BACK TO TOP BUTTON ==========
