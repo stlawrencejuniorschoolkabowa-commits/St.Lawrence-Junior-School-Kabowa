@@ -203,11 +203,19 @@ function initCounterAnimations() {
     });
 }
 
-// Initialize counters when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCounterAnimations);
-} else {
+// Initialize counters AFTER page loader finishes
+// Listen for custom event dispatched by page-loader.js
+window.addEventListener('loaderHidden', function() {
     initCounterAnimations();
+});
+
+// Fallback: If no loader exists on page, initialize after DOM ready
+if (!document.getElementById('pageLoader')) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCounterAnimations);
+    } else {
+        initCounterAnimations();
+    }
 }
 
 // ========== BACK TO TOP BUTTON ==========
