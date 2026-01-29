@@ -7039,12 +7039,18 @@
             }
         }
         
-        // System Settings - UI Customization
+        // System Settings - Enhanced UI Customization
         function openSystemSettings() {
-            // Get current CSS variables
+            // Get current settings from localStorage or defaults
+            const savedSettings = JSON.parse(localStorage.getItem('dashboardSettings') || '{}');
             const root = document.documentElement;
-            const currentPrimaryColor = getComputedStyle(root).getPropertyValue('--primary-blue').trim() || '#0066cc';
-            const currentAccentColor = getComputedStyle(root).getPropertyValue('--accent-red').trim() || '#dc3545';
+            const currentPrimaryColor = savedSettings.primaryColor || getComputedStyle(root).getPropertyValue('--primary-blue').trim() || '#0066cc';
+            const currentAccentColor = savedSettings.accentColor || getComputedStyle(root).getPropertyValue('--accent-red').trim() || '#dc3545';
+            const currentFontSize = savedSettings.fontSize || '14px';
+            const currentThemeMode = savedSettings.themeMode || 'dark';
+            const currentSidebarWidth = savedSettings.sidebarWidth || '260px';
+            const currentBorderRadius = savedSettings.borderRadius || '15px';
+            const currentAnimationSpeed = savedSettings.animationSpeed || 'normal';
             
             Swal.fire({
                 title: 'Dashboard Settings',
@@ -7744,5 +7750,9 @@
         // Load roles on page load
         loadRoles();
     </script>
+    
+    <!-- Enhanced Dashboard Settings Module -->
+    <script src="js/dashboard-settings.js"></script>
 </body>
 </html>
+
