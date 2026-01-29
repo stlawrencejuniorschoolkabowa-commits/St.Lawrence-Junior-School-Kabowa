@@ -4,7 +4,7 @@
 ### Complete School Management System with AI Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://cultoonmovic4-stack.github.io/st-lawrence-school/)
-[![Version](https://img.shields.io/badge/Version-1.1.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
+[![Version](https://img.shields.io/badge/Version-1.2.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
 **[🌐 Live Website](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)** | **[📧 Contact Us](mailto:stlawrencejuniorschoolkabowa@gmail.com)** | **[📞 Call Us](tel:+256701420506)**
@@ -53,6 +53,7 @@ St. Lawrence Junior School - Kabowa is a **premier mixed day and boarding primar
 - ✅ Modern, responsive design
 - ✅ Smooth scroll animations (AOS)
 - ✅ **10 unique page loaders** (3-4.5s each)
+- ✅ **Animated counters** (count-up effect)
 - ✅ Mobile-optimized navigation
 - ✅ Video backgrounds with overlays
 - ✅ Glassmorphism effects
@@ -636,6 +637,39 @@ Response:
 
 <div align="center">
 
+### 📅 January 29, 2026 - Version 1.2.0
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+#### ✨ New Features
+- ✅ **Animated Counters** - All stat numbers now count up from 0
+- ✅ Smooth easing animation (2 seconds)
+- ✅ Supports multiple formats (100+, 85%, 1:15)
+- ✅ Triggers on scroll into view
+- ✅ Works across all pages
+
+</td>
+<td width="50%">
+
+#### 📊 Counter Locations
+- ✅ Homepage: Why Choose stats (150, 25, 5+, 16)
+- ✅ About: Story stats (100+, 85%, 15+, 14+)
+- ✅ About: Motto stats (100%, 14+)
+- ✅ Academics: Multiple stat sections
+- ✅ Teachers: Staff stats (40+, 100%)
+
+</td>
+</tr>
+</table>
+
+---
+
+<div align="center">
+
 ### 📅 January 23, 2026 - Version 1.1.0
 
 </div>
@@ -806,7 +840,7 @@ This project is **proprietary software** developed for St. Lawrence Junior Schoo
 
 ### 🌟 Made with ❤️ for St. Lawrence Junior School - Kabowa
 
-**Last Updated:** January 23, 2026 | **Version:** 1.1.0 | **Status:** ✅ Production Ready
+**Last Updated:** January 29, 2026 | **Version:** 1.2.0 | **Status:** ✅ Production Ready
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![Website](https://img.shields.io/badge/Website-Live-success?style=for-the-badge&logo=google-chrome)](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)
