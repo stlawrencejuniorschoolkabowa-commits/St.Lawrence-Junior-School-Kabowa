@@ -20,23 +20,17 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- jQuery Validation Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=3.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Defer heavy scripts to improve page load speed -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     
@@ -907,23 +901,164 @@
         </div>
     </section>
 
-    <!-- Contact CTA Section -->
-    <section class="admission-cta-section">
+    <!-- Contact CTA Section - Enhanced -->
+    <section class="admission-cta-section-enhanced">
+        <div class="cta-background-pattern"></div>
         <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <div class="cta-text">
-                    <h2>Need Help with Your Application?</h2>
-                    <p>Our admissions team is here to assist you every step of the way</p>
+            <div class="cta-enhanced-grid" data-aos="fade-up">
+                <!-- Left Side - Main CTA -->
+                <div class="cta-main-content">
+                    <div class="cta-badge">
+                        <i class="fas fa-headset"></i>
+                        <span>We're Here to Help</span>
+                    </div>
+                    <h2>Need Assistance with Your Application?</h2>
+                    <p>Our dedicated admissions team is ready to guide you through every step of the enrollment process. Get personalized support and answers to all your questions.</p>
+                    
+                    <div class="cta-features-list">
+                        <div class="cta-feature-item">
+                            <div class="feature-icon-cta">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="feature-text-cta">
+                                <h4>Quick Response</h4>
+                                <p>Get answers within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="cta-feature-item">
+                            <div class="feature-icon-cta">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="feature-text-cta">
+                                <h4>Personal Guidance</h4>
+                                <p>One-on-one support available</p>
+                            </div>
+                        </div>
+                        <div class="cta-feature-item">
+                            <div class="feature-icon-cta">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="feature-text-cta">
+                                <h4>Schedule a Visit</h4>
+                                <p>Tour our campus anytime</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="cta-actions">
-                    <a href="Contact-redesign.html" class="btn-cta">
-                        <i class="fas fa-phone-alt"></i>
-                        Contact Us
-                    </a>
-                    <a href="tel:+256772420506" class="btn-cta-outline">
-                        <i class="fas fa-phone"></i>
-                        Call: +256 772 420 506
-                    </a>
+                
+                <!-- Right Side - Contact Options -->
+                <div class="cta-contact-cards">
+                    <!-- Phone Card -->
+                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="100">
+                        <div class="contact-card-icon phone">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Call Us Now</h3>
+                            <p>Speak directly with our team</p>
+                            <div class="contact-card-actions">
+                                <a href="tel:+256701420506" class="contact-link">
+                                    <i class="fas fa-phone"></i>
+                                    +256 701 420 506
+                                </a>
+                                <a href="tel:+256772420506" class="contact-link">
+                                    <i class="fas fa-phone"></i>
+                                    +256 772 420 506
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Card -->
+                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="200">
+                        <div class="contact-card-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Email Us</h3>
+                            <p>Send us your questions</p>
+                            <div class="contact-card-actions">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">
+                                    <i class="fas fa-envelope"></i>
+                                    Send Email
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Visit Card -->
+                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="300">
+                        <div class="contact-card-icon visit">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Visit Our Campus</h3>
+                            <p>See our facilities firsthand</p>
+                            <div class="contact-card-actions">
+                                <a href="Contact-redesign.html" class="contact-link primary">
+                                    <i class="fas fa-arrow-right"></i>
+                                    Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Card -->
+                    <div class="cta-contact-card whatsapp" data-aos="fade-left" data-aos-delay="400">
+                        <div class="contact-card-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>WhatsApp Chat</h3>
+                            <p>Quick and convenient messaging</p>
+                            <div class="contact-card-actions">
+                                <a href="https://wa.me/256701420506?text=Hello%2C%20I%20need%20help%20with%20admission" target="_blank" class="contact-link whatsapp-link">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Start Chat
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Stats Bar -->
+            <div class="cta-stats-bar" data-aos="fade-up" data-aos-delay="500">
+                <div class="cta-stat-item">
+                    <div class="stat-icon-cta">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content-cta">
+                        <span class="stat-number-cta">500+</span>
+                        <span class="stat-label-cta">Happy Families</span>
+                    </div>
+                </div>
+                <div class="cta-stat-item">
+                    <div class="stat-icon-cta">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content-cta">
+                        <span class="stat-number-cta">4.9/5</span>
+                        <span class="stat-label-cta">Parent Rating</span>
+                    </div>
+                </div>
+                <div class="cta-stat-item">
+                    <div class="stat-icon-cta">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content-cta">
+                        <span class="stat-number-cta">24hrs</span>
+                        <span class="stat-label-cta">Response Time</span>
+                    </div>
+                </div>
+                <div class="cta-stat-item">
+                    <div class="stat-icon-cta">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-content-cta">
+                        <span class="stat-number-cta">14+</span>
+                        <span class="stat-label-cta">Years Experience</span>
+                    </div>
                 </div>
             </div>
         </div>
