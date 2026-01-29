@@ -48,6 +48,37 @@ function applyThemeMode(mode) {
     }
 }
 
+// Apply background color with gradient
+function applyBackgroundColor(color, gradientType) {
+    const mainContent = document.querySelector('.main-content');
+    if (!mainContent) return;
+    
+    const gradients = {
+        none: color,
+        gradient1: `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, -10)} 100%)`,
+        gradient2: `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, 20)} 100%)`,
+        gradient3: `linear-gradient(135deg, ${adjustColor(color, -20)} 0%, ${color} 50%, ${adjustColor(color, 20)} 100%)`,
+        gradient4: `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, 30)} 50%, ${adjustColor(color, -20)} 100%)`
+    };
+    
+    mainContent.style.background = gradients[gradientType] || color;
+}
+
+// Apply card shadow
+function applyCardShadow(intensity) {
+    const shadows = {
+        none: 'none',
+        light: '0 2px 8px rgba(0, 0, 0, 0.05)',
+        medium: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        heavy: '0 8px 24px rgba(0, 0, 0, 0.15)'
+    };
+    
+    const shadow = shadows[intensity] || shadows.medium;
+    document.querySelectorAll('.action-card, .quick-actions, .welcome-section, .stat-card').forEach(el => {
+        el.style.boxShadow = shadow;
+    });
+}
+
 // Apply color preset
 function applyPreset(preset) {
     const presets = {
@@ -125,6 +156,11 @@ function loadDashboardSettings() {
                 document.body.style.fontSize = settings.fontSize;
             }
             
+            // Apply font family
+            if (settings.fontFamily) {
+                document.body.style.fontFamily = `'${settings.fontFamily}', sans-serif`;
+            }
+            
             // Apply theme mode
             if (settings.themeMode) {
                 applyThemeMode(settings.themeMode);
@@ -151,6 +187,31 @@ function loadDashboardSettings() {
                 const speeds = { fast: '0.2s', normal: '0.3s', slow: '0.5s' };
                 document.documentElement.style.setProperty('--transition-speed', speeds[settings.animationSpeed]);
             }
+            
+            // Apply background color and gradient
+            if (settings.bgColor && settings.bgGradient) {
+                applyBackgroundColor(settings.bgColor, settings.bgGradient);
+            }
+            
+            // Apply sidebar background
+            if (settings.sidebarBg) {
+                const sidebar = document.querySelector('.sidebar');
+                const topBar = document.querySelector('.top-bar');
+                if (sidebar) sidebar.style.background = settings.sidebarBg;
+                if (topBar) topBar.style.background = settings.sidebarBg;
+            }
+            
+            // Apply card background
+            if (settings.cardBg) {
+                document.querySelectorAll('.action-card, .quick-actions, .welcome-section').forEach(el => {
+                    el.style.background = settings.cardBg;
+                });
+            }
+            
+            // Apply card shadow
+            if (settings.cardShadow) {
+                applyCardShadow(settings.cardShadow);
+            }
         } catch (error) {
             console.error('Error loading dashboard settings:', error);
         }
@@ -169,6 +230,12 @@ function openSystemSettings() {
     const currentSidebarWidth = savedSettings.sidebarWidth || '260px';
     const currentBorderRadius = savedSettings.borderRadius || '15px';
     const currentAnimationSpeed = savedSettings.animationSpeed || 'normal';
+    const currentBgColor = savedSettings.bgColor || '#f0f4f8';
+    const currentBgGradient = savedSettings.bgGradient || 'gradient1';
+    const currentSidebarBg = savedSettings.sidebarBg || '#151824';
+    const currentCardBg = savedSettings.cardBg || '#ffffff';
+    const currentCardShadow = savedSettings.cardShadow || 'medium';
+    const currentFontFamily = savedSettings.fontFamily || 'Inter';
     
     Swal.fire({
         title: '<i class="fas fa-cog"></i> Dashboard Settings',
@@ -511,6 +578,78 @@ function openSystemSettings() {
                     </div>
                 </div>
                 
+                <!-- Background Settings -->
+                <div class="settings-section">
+                    <div class="settings-section-title">
+                        <i class="fas fa-image"></i> Background Settings
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Main Dashboard Background</label>
+                        <div class="color-input-group">
+                            <input type="color" id="bgColor" value="${currentBgColor}" class="color-picker">
+                            <input type="text" id="bgColorText" value="${currentBgColor}" class="color-text-input">
+                        </div>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Background Gradient Style</label>
+                        <select id="bgGradient" class="settings-select">
+                            <option value="none" ${currentBgGradient === 'none' ? 'selected' : ''}>Solid Color (No Gradient)</option>
+                            <option value="gradient1" ${currentBgGradient === 'gradient1' ? 'selected' : ''}>Subtle Gradient</option>
+                            <option value="gradient2" ${currentBgGradient === 'gradient2' ? 'selected' : ''}>Warm Gradient</option>
+                            <option value="gradient3" ${currentBgGradient === 'gradient3' ? 'selected' : ''}>Cool Gradient</option>
+                            <option value="gradient4" ${currentBgGradient === 'gradient4' ? 'selected' : ''}>Vibrant Gradient</option>
+                        </select>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Sidebar Background</label>
+                        <div class="color-input-group">
+                            <input type="color" id="sidebarBg" value="${currentSidebarBg}" class="color-picker">
+                            <input type="text" id="sidebarBgText" value="${currentSidebarBg}" class="color-text-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card Styling -->
+                <div class="settings-section">
+                    <div class="settings-section-title">
+                        <i class="fas fa-th-large"></i> Card Styling
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Card Background Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="cardBg" value="${currentCardBg}" class="color-picker">
+                            <input type="text" id="cardBgText" value="${currentCardBg}" class="color-text-input">
+                        </div>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Card Shadow Intensity</label>
+                        <select id="cardShadow" class="settings-select">
+                            <option value="none" ${currentCardShadow === 'none' ? 'selected' : ''}>No Shadow</option>
+                            <option value="light" ${currentCardShadow === 'light' ? 'selected' : ''}>Light Shadow</option>
+                            <option value="medium" ${currentCardShadow === 'medium' ? 'selected' : ''}>Medium Shadow</option>
+                            <option value="heavy" ${currentCardShadow === 'heavy' ? 'selected' : ''}>Heavy Shadow</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Typography Advanced -->
+                <div class="settings-section">
+                    <div class="settings-section-title">
+                        <i class="fas fa-font"></i> Advanced Typography
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Font Family</label>
+                        <select id="fontFamily" class="settings-select">
+                            <option value="Inter" ${currentFontFamily === 'Inter' ? 'selected' : ''}>Inter (Default)</option>
+                            <option value="Poppins" ${currentFontFamily === 'Poppins' ? 'selected' : ''}>Poppins</option>
+                            <option value="Roboto" ${currentFontFamily === 'Roboto' ? 'selected' : ''}>Roboto</option>
+                            <option value="Open Sans" ${currentFontFamily === 'Open Sans' ? 'selected' : ''}>Open Sans</option>
+                            <option value="Lato" ${currentFontFamily === 'Lato' ? 'selected' : ''}>Lato</option>
+                            <option value="Montserrat" ${currentFontFamily === 'Montserrat' ? 'selected' : ''}>Montserrat</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <!-- Quick Presets Section -->
                 <div class="settings-section">
                     <div class="settings-section-title">
@@ -629,6 +768,79 @@ function openSystemSettings() {
                     applyThemeMode(e.target.value);
                 });
             });
+            
+            // Background color updates
+            const bgColorInput = document.getElementById('bgColor');
+            const bgColorText = document.getElementById('bgColorText');
+            bgColorInput.addEventListener('input', (e) => {
+                const color = e.target.value;
+                bgColorText.value = color;
+                applyBackgroundColor(color, document.getElementById('bgGradient').value);
+            });
+            bgColorText.addEventListener('input', (e) => {
+                const color = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    bgColorInput.value = color;
+                    applyBackgroundColor(color, document.getElementById('bgGradient').value);
+                }
+            });
+            
+            // Background gradient updates
+            document.getElementById('bgGradient').addEventListener('change', (e) => {
+                applyBackgroundColor(document.getElementById('bgColor').value, e.target.value);
+            });
+            
+            // Sidebar background updates
+            const sidebarBgInput = document.getElementById('sidebarBg');
+            const sidebarBgText = document.getElementById('sidebarBgText');
+            sidebarBgInput.addEventListener('input', (e) => {
+                const color = e.target.value;
+                sidebarBgText.value = color;
+                const sidebar = document.querySelector('.sidebar');
+                const topBar = document.querySelector('.top-bar');
+                if (sidebar) sidebar.style.background = color;
+                if (topBar) topBar.style.background = color;
+            });
+            sidebarBgText.addEventListener('input', (e) => {
+                const color = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    sidebarBgInput.value = color;
+                    const sidebar = document.querySelector('.sidebar');
+                    const topBar = document.querySelector('.top-bar');
+                    if (sidebar) sidebar.style.background = color;
+                    if (topBar) topBar.style.background = color;
+                }
+            });
+            
+            // Card background updates
+            const cardBgInput = document.getElementById('cardBg');
+            const cardBgText = document.getElementById('cardBgText');
+            cardBgInput.addEventListener('input', (e) => {
+                const color = e.target.value;
+                cardBgText.value = color;
+                document.querySelectorAll('.action-card, .quick-actions, .welcome-section').forEach(el => {
+                    el.style.background = color;
+                });
+            });
+            cardBgText.addEventListener('input', (e) => {
+                const color = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    cardBgInput.value = color;
+                    document.querySelectorAll('.action-card, .quick-actions, .welcome-section').forEach(el => {
+                        el.style.background = color;
+                    });
+                }
+            });
+            
+            // Card shadow updates
+            document.getElementById('cardShadow').addEventListener('change', (e) => {
+                applyCardShadow(e.target.value);
+            });
+            
+            // Font family updates
+            document.getElementById('fontFamily').addEventListener('change', (e) => {
+                document.body.style.fontFamily = `'${e.target.value}', sans-serif`;
+            });
         },
         preConfirm: () => {
             return {
@@ -638,7 +850,13 @@ function openSystemSettings() {
                 themeMode: document.querySelector('input[name="themeMode"]:checked').value,
                 sidebarWidth: document.getElementById('sidebarWidth').value + 'px',
                 borderRadius: document.getElementById('borderRadius').value + 'px',
-                animationSpeed: document.getElementById('animationSpeed').value
+                animationSpeed: document.getElementById('animationSpeed').value,
+                bgColor: document.getElementById('bgColor').value,
+                bgGradient: document.getElementById('bgGradient').value,
+                sidebarBg: document.getElementById('sidebarBg').value,
+                cardBg: document.getElementById('cardBg').value,
+                cardShadow: document.getElementById('cardShadow').value,
+                fontFamily: document.getElementById('fontFamily').value
             };
         }
     }).then((result) => {
