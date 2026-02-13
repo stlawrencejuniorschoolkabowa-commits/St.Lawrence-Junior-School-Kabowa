@@ -1,0 +1,9 @@
+Options +Indexes +FollowSymLinks
+DirectoryIndex index.html index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>
+
+# Allow access to all files
+Require all granted

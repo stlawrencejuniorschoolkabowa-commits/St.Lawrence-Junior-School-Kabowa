@@ -4,7 +4,7 @@
 ### Complete School Management System with AI Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://cultoonmovic4-stack.github.io/st-lawrence-school/)
-[![Version](https://img.shields.io/badge/Version-1.2.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
+[![Version](https://img.shields.io/badge/Version-1.4.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
 **[🌐 Live Website](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)** | **[📧 Contact Us](mailto:stlawrencejuniorschoolkabowa@gmail.com)** | **[📞 Call Us](tel:+256701420506)**
@@ -637,6 +637,101 @@ Response:
 
 <div align="center">
 
+### 📅 January 30, 2026 - Version 1.4.0
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🎨 Custom Alert System
+- ✅ Replaced all default `alert()` and `confirm()` dialogs
+- ✅ Beautiful animated SweetAlert2 popups
+- ✅ Custom helper functions for consistency
+- ✅ Loading spinners for async operations
+- ✅ Smooth animations (bounce, shake, fade)
+- ✅ Color-coded alerts (success/error/warning)
+- ✅ Modern glassmorphism design
+
+**Helper Functions:**
+- `showSuccess()` - Success with bounce animation
+- `showError()` - Error with shake animation
+- `showWarning()` - Warning with head shake
+- `showLoading()` - Loading with spinner
+- `showConfirm()` - Confirmation dialog
+- `showDeleteConfirm()` - Delete with custom icon
+
+</td>
+<td width="50%">
+
+#### 🎭 Animation Effects
+- ✅ **Bounce In** - Success messages
+- ✅ **Shake X** - Error/Delete warnings
+- ✅ **Head Shake** - Warning messages
+- ✅ **Fade In/Out** - Loading states
+- ✅ **Slide Down/Up** - Confirmations
+- ✅ **Hover Effects** - Button lift on hover
+- ✅ **Smooth Transitions** - All interactions
+
+**Visual Features:**
+- Rounded corners (16px)
+- Box shadows for depth
+- Custom icons with colored backgrounds
+- Animated spinners
+- Gradient buttons
+- Professional typography
+
+</td>
+</tr>
+</table>
+
+---
+
+<div align="center">
+
+### 📅 January 30, 2026 - Version 1.3.0
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+#### 👨‍👩‍👧‍👦 Multiple Children Per Parent Email
+- ✅ Parents can use same email for multiple children
+- ✅ Real-time email checking on admission form
+- ✅ Shows existing applications when detected
+- ✅ Sibling badge on admin dashboard
+- ✅ "View Siblings" button to see all family applications
+- ✅ Beautiful siblings modal with all children
+
+</td>
+<td width="50%">
+
+#### 🔔 Real Notifications System
+- ✅ Loads real data from database
+- ✅ Modern popup with loading spinner
+- ✅ Color-coded notifications (Admissions/Messages)
+- ✅ Click notification to open details
+- ✅ "Mark all as read" functionality
+- ✅ Empty state: "All Caught Up!"
+- ✅ Smooth hover effects and animations
+
+</td>
+</tr>
+</table>
+
+**Files Modified:**
+- `frontend/Admission-redesign.html` - Email checking & notices
+- `backend/admin/dashboard.html` - Notifications & sibling features & custom alerts
+- `backend/api/admissions/check-email.php` - New API endpoint
+- `backend/api/dashboard/get_notifications.php` - Enhanced response
+
+---
+
+<div align="center">
+
 ### 📅 January 29, 2026 - Version 1.2.0
 
 </div>
@@ -840,7 +935,7 @@ This project is **proprietary software** developed for St. Lawrence Junior Schoo
 
 ### 🌟 Made with ❤️ for St. Lawrence Junior School - Kabowa
 
-**Last Updated:** January 29, 2026 | **Version:** 1.2.0 | **Status:** ✅ Production Ready
+**Last Updated:** January 30, 2026 | **Version:** 1.4.0 | **Status:** ✅ Production Ready
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![Website](https://img.shields.io/badge/Website-Live-success?style=for-the-badge&logo=google-chrome)](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)

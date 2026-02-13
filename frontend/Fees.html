@@ -98,16 +98,48 @@
         .uniform-includes ul li i { color: #28a745; font-size: 12px; }
         .hero-tagline { font-size: 18px; color: rgba(255, 255, 255, 0.95); font-weight: 500; margin-top: 10px; }
         
+        /* Mobile Fee Cards */
+        .mobile-fee-cards { display: none; }
+        .mobile-fee-card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 2px solid rgba(0, 102, 204, 0.1); position: relative; }
+        .mobile-fee-card.featured { border-color: #0066cc; background: rgba(0, 102, 204, 0.02); }
+        .mobile-card-number { position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; }
+        .mobile-card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .mobile-card-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; flex-shrink: 0; }
+        .mobile-card-title h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 4px 0; }
+        .mobile-card-subtitle { font-size: 13px; color: #666; margin: 0; }
+        .mobile-popular-badge { display: inline-block; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
+        .mobile-card-prices { display: flex; flex-direction: column; gap: 15px; }
+        .mobile-price-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(0, 102, 204, 0.05); border-radius: 10px; border-left: 3px solid #0066cc; }
+        .mobile-price-label { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #1a1a1a; }
+        .mobile-price-label i { font-size: 16px; color: #0066cc; }
+        .mobile-price-value { display: flex; align-items: baseline; gap: 5px; }
+        .mobile-price-value .currency { font-size: 11px; font-weight: 600; color: #666; }
+        .mobile-price-value .amount { font-size: 20px; font-weight: 800; color: #0066cc; font-family: 'Poppins', sans-serif; }
+        .mobile-payment-info { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 102, 204, 0.1); text-align: center; }
+        .mobile-payment-badge { display: inline-block; background: rgba(0, 102, 204, 0.1); color: #0066cc; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+        
         /* Responsive */
         @media (max-width: 1024px) {
             .uniform-pricing-grid-2x2 { grid-template-columns: 1fr; gap: 25px; }
         }
         @media (max-width: 768px) {
             .fee-toggle-wrapper { flex-direction: column; max-width: 300px; }
-            .fee-toggle-btn { width: 100%; }
-            .fees-table-container { overflow-x: scroll; }
-            .fees-table { min-width: 700px; }
+            .fee-toggle-btn { width: 100%; padding: 16px 28px; font-size: 15px; }
+            .fees-table-wrapper { display: none; }
+            .mobile-fee-cards { display: block; }
             .uniform-includes ul { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .fee-toggle-section { padding: 30px 0; }
+            .fee-toggle-btn { padding: 14px 24px; font-size: 14px; }
+            .mobile-fee-card { padding: 18px; margin-bottom: 15px; }
+            .mobile-card-header { gap: 12px; }
+            .mobile-card-icon { width: 45px; height: 45px; font-size: 20px; }
+            .mobile-card-title h3 { font-size: 16px; }
+            .mobile-card-subtitle { font-size: 12px; }
+            .mobile-price-row { padding: 12px; }
+            .mobile-price-label { font-size: 13px; }
+            .mobile-price-value .amount { font-size: 18px; }
         }
     </style>
 </head>
@@ -255,7 +287,7 @@
                 <p class="section-description">Quality education with clear, competitive fees - Payment per term</p>
             </div>
             
-            <!-- Fees Comparison Table -->
+            <!-- Fees Comparison Table (Desktop) -->
             <div class="fees-table-container" data-aos="fade-up" data-aos-delay="100">
                 <div class="fees-table-wrapper">
                     <table class="fees-table">
@@ -363,6 +395,127 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Mobile Fee Cards (Mobile Only) -->
+            <div class="mobile-fee-cards" data-aos="fade-up" data-aos-delay="100">
+                <!-- Card 1: Nursery -->
+                <div class="mobile-fee-card">
+                    <div class="mobile-card-number">1</div>
+                    <div class="mobile-card-header">
+                        <div class="mobile-card-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="mobile-card-title">
+                            <h3>Nursery</h3>
+                            <p class="mobile-card-subtitle">Baby - Top Class</p>
+                        </div>
+                    </div>
+                    <div class="mobile-card-prices">
+                        <div class="mobile-price-row day-scholar-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-sun"></i>
+                                <span>Day Scholar</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">474,000</span>
+                            </div>
+                        </div>
+                        <div class="mobile-price-row boarding-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-bed"></i>
+                                <span>Boarding</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">894,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-payment-info">
+                        <span class="mobile-payment-badge">Per Term</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: P1-P5 (Featured) -->
+                <div class="mobile-fee-card featured">
+                    <div class="mobile-card-number">2</div>
+                    <div class="mobile-card-header">
+                        <div class="mobile-card-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="mobile-card-title">
+                            <h3>P1 - P5</h3>
+                            <p class="mobile-card-subtitle">Lower & Mid Primary</p>
+                        </div>
+                    </div>
+                    <span class="mobile-popular-badge">Most Popular</span>
+                    <div class="mobile-card-prices">
+                        <div class="mobile-price-row day-scholar-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-sun"></i>
+                                <span>Day Scholar</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">579,000</span>
+                            </div>
+                        </div>
+                        <div class="mobile-price-row boarding-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-bed"></i>
+                                <span>Boarding</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">1,019,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-payment-info">
+                        <span class="mobile-payment-badge">Per Term</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: P6-P7 -->
+                <div class="mobile-fee-card">
+                    <div class="mobile-card-number">3</div>
+                    <div class="mobile-card-header">
+                        <div class="mobile-card-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="mobile-card-title">
+                            <h3>P6 - P7</h3>
+                            <p class="mobile-card-subtitle">Upper Primary</p>
+                        </div>
+                    </div>
+                    <div class="mobile-card-prices">
+                        <div class="mobile-price-row day-scholar-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-sun"></i>
+                                <span>Day Scholar</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">629,000</span>
+                            </div>
+                        </div>
+                        <div class="mobile-price-row boarding-row">
+                            <div class="mobile-price-label">
+                                <i class="fas fa-bed"></i>
+                                <span>Boarding</span>
+                            </div>
+                            <div class="mobile-price-value">
+                                <span class="currency">UGX</span>
+                                <span class="amount">1,094,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-payment-info">
+                        <span class="mobile-payment-badge">Per Term</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -581,28 +734,6 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="admission-cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <div class="cta-text">
-                    <h2>Ready to Enroll Your Child?</h2>
-                    <p>Join our community of excellence and give your child the best education</p>
-                </div>
-                <div class="cta-actions">
-                    <a href="Admission-redesign.html" class="btn-cta">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Apply Now</span>
-                    </a>
-                    <a href="Contact-redesign.html" class="btn-cta-outline">
-                        <i class="fas fa-phone"></i>
-                        <span>Contact Us</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <!-- Video Background -->
@@ -796,6 +927,8 @@
         const toggleBtns = document.querySelectorAll('.fee-toggle-btn');
         const dayScholarCols = document.querySelectorAll('.day-scholar-col');
         const boardingCols = document.querySelectorAll('.boarding-col');
+        const dayScholarRows = document.querySelectorAll('.day-scholar-row');
+        const boardingRows = document.querySelectorAll('.boarding-row');
         
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -805,13 +938,22 @@
                 toggleBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Show/hide columns
+                // Show/hide table columns (desktop)
                 if (type === 'day') {
                     dayScholarCols.forEach(col => col.style.display = 'table-cell');
                     boardingCols.forEach(col => col.style.display = 'none');
                 } else {
                     dayScholarCols.forEach(col => col.style.display = 'none');
                     boardingCols.forEach(col => col.style.display = 'table-cell');
+                }
+                
+                // Show/hide mobile card rows
+                if (type === 'day') {
+                    dayScholarRows.forEach(row => row.style.display = 'flex');
+                    boardingRows.forEach(row => row.style.display = 'none');
+                } else {
+                    dayScholarRows.forEach(row => row.style.display = 'none');
+                    boardingRows.forEach(row => row.style.display = 'flex');
                 }
             });
         });

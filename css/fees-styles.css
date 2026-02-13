@@ -410,6 +410,154 @@
     margin-top: 10px;
 }
 
+/* Mobile Fee Cards - Card Layout for Small Screens */
+.mobile-fee-cards {
+    display: none;
+}
+
+.mobile-fee-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(0, 102, 204, 0.1);
+    position: relative;
+}
+
+.mobile-fee-card.featured {
+    border-color: #0066cc;
+    background: rgba(0, 102, 204, 0.02);
+}
+
+.mobile-card-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.mobile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mobile-card-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.mobile-card-title h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+}
+
+.mobile-card-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.mobile-popular-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.mobile-card-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(0, 102, 204, 0.05);
+    border-radius: 10px;
+    border-left: 3px solid #0066cc;
+}
+
+.mobile-price-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.mobile-price-label i {
+    font-size: 16px;
+    color: #0066cc;
+}
+
+.mobile-price-value {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.mobile-price-value .currency {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+}
+
+.mobile-price-value .amount {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0066cc;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-payment-info {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 102, 204, 0.1);
+    text-align: center;
+}
+
+.mobile-payment-badge {
+    display: inline-block;
+    background: rgba(0, 102, 204, 0.1);
+    color: #0066cc;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .uniform-pricing-grid-2x2 {
@@ -426,32 +574,17 @@
     
     .fee-toggle-btn {
         width: 100%;
+        padding: 16px 28px;
+        font-size: 15px;
     }
     
-    .fees-table-container {
-        overflow-x: scroll;
+    /* Hide table, show cards on mobile */
+    .fees-table-wrapper {
+        display: none;
     }
     
-    .fees-table {
-        min-width: 700px;
-    }
-    
-    .fees-table-header {
-        padding: 20px 15px;
-        font-size: 13px;
-    }
-    
-    .fees-table-cell {
-        padding: 20px 15px;
-        font-size: 14px;
-    }
-    
-    .class-info strong {
-        font-size: 16px;
-    }
-    
-    .price-tag .amount {
-        font-size: 20px;
+    .mobile-fee-cards {
+        display: block;
     }
     
     .uniform-pricing-grid-2x2 {
@@ -481,35 +614,38 @@
         font-size: 14px;
     }
     
-    .fees-table {
-        min-width: 600px;
+    .mobile-fee-card {
+        padding: 18px;
+        margin-bottom: 15px;
     }
     
-    .fees-table-header {
-        padding: 15px 10px;
+    .mobile-card-header {
+        gap: 12px;
+    }
+    
+    .mobile-card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .mobile-card-title h3 {
+        font-size: 16px;
+    }
+    
+    .mobile-card-subtitle {
         font-size: 12px;
     }
     
-    .fees-table-cell {
-        padding: 15px 10px;
+    .mobile-price-row {
+        padding: 12px;
+    }
+    
+    .mobile-price-label {
         font-size: 13px;
     }
     
-    .class-info {
-        gap: 10px;
-    }
-    
-    .class-info i {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-    
-    .class-info strong {
-        font-size: 15px;
-    }
-    
-    .price-tag .amount {
+    .mobile-price-value .amount {
         font-size: 18px;
     }
     

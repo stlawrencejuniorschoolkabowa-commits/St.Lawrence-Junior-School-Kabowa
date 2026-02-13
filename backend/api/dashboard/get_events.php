@@ -1,4 +1,11 @@
 <?php
+// Disable all error output to prevent HTML in JSON response
+error_reporting(0);
+ini_set('display_errors', 0);
+
+// Start output buffering to catch any errors
+ob_start();
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
@@ -6,14 +13,19 @@ header('Access-Control-Allow-Methods: GET');
 require_once '../config/Database.php';
 require_once '../middleware/auth_middleware.php';
 
+// Clear any output that might have been generated
+if (ob_get_length()) ob_clean();
+
 // Check authentication
 $auth = check_auth();
 if (!$auth['authenticated']) {
+    ob_clean();
     http_response_code(401);
     echo json_encode([
         'success' => false,
         'message' => 'Unauthorized'
     ]);
+    ob_end_flush();
     exit;
 }
 
@@ -63,15 +75,22 @@ try {
         ];
     }, $events);
     
+    // Clear any output buffer before sending JSON
+    if (ob_get_length()) ob_clean();
+    
     echo json_encode([
         'success' => true,
         'data' => $formattedEvents
     ]);
     
+    ob_end_flush();
+    
 } catch (PDOException $e) {
+    if (ob_get_length()) ob_clean();
     http_response_code(500);
     echo json_encode([
         'success' => false,
         'message' => 'Database error: ' . $e->getMessage()
     ]);
+    ob_end_flush();
 }
