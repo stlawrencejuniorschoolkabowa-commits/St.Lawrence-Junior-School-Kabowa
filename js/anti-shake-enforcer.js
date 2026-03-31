@@ -1,8 +1,8 @@
 /**
- * SMART Anti-Shake Enforcer
+ * HYBRID Anti-Shake Enforcer
  * St. Lawrence Junior School - Kabowa
  * 
- * Eliminates shaking while preserving navigation functionality
+ * Nuclear anti-shake with surgical navigation preservation
  */
 
 (function() {
@@ -11,15 +11,15 @@
     // Only run on mobile devices
     if (window.innerWidth > 768) return;
 
-    console.log('SMART Anti-Shake Enforcer: Initializing...');
+    console.log('HYBRID Anti-Shake Enforcer: Initializing nuclear + navigation...');
 
-    // ========== SMART FORCE ESSENTIAL ELEMENTS ========== 
-    function smartForceEssentialElements() {
-        // Chatbot - FORCE VISIBILITY
+    // ========== HYBRID FORCE ESSENTIAL ELEMENTS ========== 
+    function hybridForceEssentialElements() {
+        // Chatbot - ULTRA FORCE VISIBILITY
         const chatButtons = document.querySelectorAll('.chat-button, #chatButton');
         chatButtons.forEach(button => {
             if (button) {
-                // Only force essential properties, don't remove all styles
+                // Complete reconstruction for chatbot
                 button.style.setProperty('opacity', '1', 'important');
                 button.style.setProperty('visibility', 'visible', 'important');
                 button.style.setProperty('display', 'flex', 'important');
@@ -28,22 +28,44 @@
                 button.style.setProperty('z-index', '999999', 'important');
                 button.style.setProperty('right', '16px', 'important');
                 button.style.setProperty('bottom', '16px', 'important');
+                button.style.setProperty('width', '60px', 'important');
+                button.style.setProperty('height', '60px', 'important');
+                button.style.setProperty('background', '#0066cc', 'important');
+                button.style.setProperty('border-radius', '50%', 'important');
+                button.style.setProperty('color', 'white', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('align-items', 'center', 'important');
+                button.style.setProperty('justify-content', 'center', 'important');
+                button.style.setProperty('font-size', '24px', 'important');
+                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
+                button.style.setProperty('transform', 'translate3d(0, 0, 0)', 'important');
                 
-                console.log('Chatbot SMART FORCED visible');
+                console.log('Chatbot HYBRID FORCED visible');
             }
         });
 
-        // Back-to-top - FORCE FUNCTIONALITY
+        // Back-to-top - ULTRA FORCE FUNCTIONALITY
         const backToTopButtons = document.querySelectorAll('.back-to-top, #backToTop');
         backToTopButtons.forEach(button => {
             if (button) {
-                // Only force essential properties
+                // Complete reconstruction for back-to-top
                 button.style.setProperty('display', 'flex', 'important');
                 button.style.setProperty('pointer-events', 'auto', 'important');
                 button.style.setProperty('position', 'fixed', 'important');
                 button.style.setProperty('z-index', '999998', 'important');
                 button.style.setProperty('right', '16px', 'important');
                 button.style.setProperty('bottom', '90px', 'important');
+                button.style.setProperty('width', '50px', 'important');
+                button.style.setProperty('height', '50px', 'important');
+                button.style.setProperty('background', '#333', 'important');
+                button.style.setProperty('border-radius', '50%', 'important');
+                button.style.setProperty('color', 'white', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('align-items', 'center', 'important');
+                button.style.setProperty('justify-content', 'center', 'important');
+                button.style.setProperty('font-size', '20px', 'important');
+                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
+                button.style.setProperty('transform', 'translate3d(0, 0, 0)', 'important');
                 
                 // Show/hide based on scroll
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -55,7 +77,16 @@
                     button.style.setProperty('visibility', 'hidden', 'important');
                 }
                 
-                console.log('Back-to-top SMART FORCED functional');
+                console.log('Back-to-top HYBRID FORCED functional');
+            }
+        });
+
+        // Navigation elements - PRESERVE but ensure functionality
+        const navElements = document.querySelectorAll('.dropdown, .dropdown-menu, .mobile-submenu, .nav-dropdown, .submenu, .mobile-expandable, .nav-link, .nav-link-mobile, .dropdown-toggle, .nav-item a');
+        navElements.forEach(element => {
+            if (element) {
+                element.style.setProperty('pointer-events', 'auto', 'important');
+                element.style.setProperty('cursor', 'pointer', 'important');
             }
         });
 
@@ -65,24 +96,63 @@
             if (hamburger) {
                 hamburger.style.setProperty('pointer-events', 'auto', 'important');
                 hamburger.style.setProperty('cursor', 'pointer', 'important');
+                hamburger.style.setProperty('transform', 'translate3d(0, 0, 0)', 'important');
                 
-                console.log('Hamburger SMART PRESERVED functional');
+                console.log('Hamburger HYBRID PRESERVED functional');
             }
         });
     }
 
-    // ========== INJECT SMART CSS ========== 
-    function injectSmartCSS() {
-        // Remove any existing aggressive override styles
-        const existingStyles = document.querySelectorAll('#ultra-aggressive-override, #aggressive-anti-shake, #floating-elements-override, #aggressive-floating-elements-override');
+    // ========== INJECT HYBRID CSS ========== 
+    function injectHybridCSS() {
+        // Remove any existing override styles
+        const existingStyles = document.querySelectorAll('#ultra-aggressive-override, #aggressive-anti-shake, #floating-elements-override, #aggressive-floating-elements-override, #smart-override');
         existingStyles.forEach(style => style.remove());
         
         const style = document.createElement('style');
-        style.id = 'smart-override';
+        style.id = 'hybrid-override';
         style.textContent = `
-            /* SMART OVERRIDE - PRESERVES NAVIGATION */
+            /* HYBRID OVERRIDE - NUCLEAR + NAVIGATION */
             @media (max-width: 768px) {
-                /* Chatbot - HIGH PRIORITY */
+                /* NUCLEAR - Disable all animations */
+                *, *::before, *::after {
+                    animation: none !important;
+                    -webkit-animation: none !important;
+                    transition: none !important;
+                    -webkit-transition: none !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
+                }
+                
+                /* SURGICAL - Only navigation gets transitions */
+                .dropdown,
+                .dropdown-menu,
+                .mobile-submenu,
+                .nav-dropdown,
+                .submenu,
+                .mobile-expandable,
+                .nav-menu,
+                #navMenu {
+                    transition: all 0.3s ease !important;
+                    -webkit-transition: all 0.3s ease !important;
+                }
+                
+                .nav-link,
+                .nav-link-mobile,
+                .dropdown-toggle,
+                .nav-item a,
+                .hamburger,
+                #hamburger {
+                    transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease !important;
+                    -webkit-transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease !important;
+                }
+                
+                .hamburger span {
+                    transition: all 0.3s ease !important;
+                    -webkit-transition: all 0.3s ease !important;
+                }
+                
+                /* FORCE ESSENTIAL ELEMENTS */
                 .chat-button,
                 #chatButton {
                     opacity: 1 !important;
@@ -94,9 +164,21 @@
                     z-index: 999999 !important;
                     right: 16px !important;
                     bottom: 16px !important;
+                    width: 60px !important;
+                    height: 60px !important;
+                    background: #0066cc !important;
+                    border-radius: 50% !important;
+                    color: white !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 24px !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
+                    transition: opacity 0.3s ease, background-color 0.2s ease !important;
+                    -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
                 }
                 
-                /* Back-to-top - HIGH PRIORITY */
                 .back-to-top,
                 #backToTop {
                     display: flex !important;
@@ -106,69 +188,62 @@
                     z-index: 999998 !important;
                     right: 16px !important;
                     bottom: 90px !important;
+                    width: 50px !important;
+                    height: 50px !important;
+                    background: #333 !important;
+                    border-radius: 50% !important;
+                    color: white !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 20px !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
+                    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+                    -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
                 }
                 
-                /* Navigation elements - PRESERVE FUNCTIONALITY */
+                /* Ensure all interactive elements work */
                 .dropdown,
                 .dropdown-menu,
                 .mobile-submenu,
                 .nav-dropdown,
                 .submenu,
-                .mobile-expandable {
-                    pointer-events: auto !important;
-                    transition: all 0.3s ease !important;
-                    -webkit-transition: all 0.3s ease !important;
-                }
-                
+                .mobile-expandable,
                 .nav-link,
                 .nav-link-mobile,
                 .dropdown-toggle,
-                .nav-item a {
-                    pointer-events: auto !important;
-                    cursor: pointer !important;
-                    transition: color 0.2s ease, background-color 0.2s ease !important;
-                    -webkit-transition: color 0.2s ease, background-color 0.2s ease !important;
-                }
-                
-                /* Hamburger - PRESERVE FUNCTIONALITY */
+                .nav-item a,
                 .hamburger,
-                #hamburger {
+                #hamburger,
+                .btn,
+                button,
+                a,
+                input,
+                textarea,
+                select {
                     pointer-events: auto !important;
                     cursor: pointer !important;
-                    transition: opacity 0.3s ease, background-color 0.3s ease !important;
-                    -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
-                }
-                
-                .hamburger span {
-                    transition: all 0.3s ease !important;
-                    -webkit-transition: all 0.3s ease !important;
-                }
-                
-                .nav-menu,
-                #navMenu {
-                    pointer-events: auto !important;
-                    transition: transform 0.3s ease, opacity 0.3s ease !important;
-                    -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
                 }
             }
         `;
         
-        // Insert at the end of head
+        // Insert at the very end of head to override everything
         document.head.appendChild(style);
     }
 
-    // ========== DISABLE AOS ONLY ==========
+    // ========== DISABLE AOS COMPLETELY ==========
     function disableAOS() {
         // Override AOS if it exists
         if (window.AOS) {
             window.AOS.init = function() {
-                console.log('AOS disabled for mobile stability');
+                console.log('AOS completely disabled for stability');
             };
             window.AOS.refresh = function() {};
             window.AOS.refreshHard = function() {};
         }
 
-        // Remove AOS attributes and classes
+        // Remove all AOS attributes and classes
         document.querySelectorAll('[data-aos]').forEach(element => {
             element.removeAttribute('data-aos');
             element.removeAttribute('data-aos-delay');
@@ -197,12 +272,12 @@
         });
     }
 
-    // ========== SMART MONITORING ==========
-    function startSmartMonitoring() {
-        // Check elements every 2 seconds (less aggressive)
+    // ========== HYBRID MONITORING ==========
+    function startHybridMonitoring() {
+        // Force elements every 500ms (balanced)
         setInterval(() => {
-            smartForceEssentialElements();
-        }, 2000);
+            hybridForceEssentialElements();
+        }, 500);
         
         // Handle scroll for back-to-top
         let ticking = false;
@@ -219,30 +294,30 @@
 
     // ========== INITIALIZATION ==========
     function init() {
-        console.log('SMART Anti-Shake Enforcer: Starting balanced approach...');
+        console.log('HYBRID Anti-Shake Enforcer: Starting nuclear + navigation approach...');
         
-        // Apply smart fixes
-        injectSmartCSS();
+        // Apply hybrid fixes
+        injectHybridCSS();
         disableAOS();
         
         // Force essential elements after DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
-                    smartForceEssentialElements();
+                    hybridForceEssentialElements();
                     handleScroll();
-                    startSmartMonitoring();
+                    startHybridMonitoring();
                 }, 100);
             });
         } else {
             setTimeout(() => {
-                smartForceEssentialElements();
+                hybridForceEssentialElements();
                 handleScroll();
-                startSmartMonitoring();
+                startHybridMonitoring();
             }, 100);
         }
 
-        console.log('SMART Anti-Shake Enforcer: Balanced approach activated');
+        console.log('HYBRID Anti-Shake Enforcer: Nuclear + navigation approach activated');
     }
 
     // ========== AUTO-INITIALIZE ==========
@@ -251,8 +326,8 @@
     // Export for manual control
     window.AntiShakeEnforcer = {
         init: init,
-        smartForceEssentialElements: smartForceEssentialElements,
-        injectSmartCSS: injectSmartCSS,
+        hybridForceEssentialElements: hybridForceEssentialElements,
+        injectHybridCSS: injectHybridCSS,
         disableAOS: disableAOS,
         handleScroll: handleScroll
     };
