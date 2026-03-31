@@ -1,66 +1,60 @@
 /**
- * Floating Elements Fix
+ * Aggressive Floating Elements Fix
  * St. Lawrence Junior School - Kabowa
  * 
- * Ensures chatbot and back-to-top button work properly
+ * Forces chatbot and back-to-top button to work properly
  */
 
 (function() {
     'use strict';
 
-    // ========== ENSURE CHATBOT VISIBILITY ==========
-    function ensureChatbotVisibility() {
+    // ========== FORCE CHATBOT VISIBILITY ==========
+    function forceChatbotVisibility() {
         const chatButtons = document.querySelectorAll('.chat-button, #chatButton');
         
         chatButtons.forEach(button => {
             if (button) {
-                // Force visibility and functionality
-                button.style.opacity = '1';
-                button.style.visibility = 'visible';
-                button.style.display = 'flex';
-                button.style.pointerEvents = 'auto';
-                button.style.position = 'fixed';
-                button.style.zIndex = '100010';
+                // FORCE all properties with setProperty and important flag
+                button.style.setProperty('opacity', '1', 'important');
+                button.style.setProperty('visibility', 'visible', 'important');
+                button.style.setProperty('display', 'flex', 'important');
+                button.style.setProperty('pointer-events', 'auto', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('position', 'fixed', 'important');
+                button.style.setProperty('z-index', '100010', 'important');
+                button.style.setProperty('right', 'max(16px, env(safe-area-inset-right, 0px))', 'important');
+                button.style.setProperty('bottom', 'max(16px, env(safe-area-inset-bottom, 0px))', 'important');
+                button.style.setProperty('transition', 'opacity 0.3s ease, background-color 0.2s ease', 'important');
+                button.style.setProperty('-webkit-transition', 'opacity 0.3s ease, background-color 0.2s ease', 'important');
                 
-                // Ensure proper positioning
-                button.style.right = 'max(16px, env(safe-area-inset-right, 0px))';
-                button.style.bottom = 'max(16px, env(safe-area-inset-bottom, 0px))';
-                
-                // Allow essential transitions
-                button.style.transition = 'opacity 0.3s ease, background-color 0.2s ease';
-                button.style.webkitTransition = 'opacity 0.3s ease, background-color 0.2s ease';
-                
-                console.log('Chatbot visibility ensured');
+                console.log('Chatbot FORCED visible');
             }
         });
     }
 
-    // ========== ENSURE BACK-TO-TOP FUNCTIONALITY ==========
-    function ensureBackToTopFunctionality() {
+    // ========== FORCE BACK-TO-TOP FUNCTIONALITY ==========
+    function forceBackToTopFunctionality() {
         const backToTopButtons = document.querySelectorAll('.back-to-top, #backToTop');
         
         backToTopButtons.forEach(button => {
             if (button) {
-                // Allow normal show/hide behavior
-                button.style.position = 'fixed';
-                button.style.zIndex = '100005';
-                button.style.pointerEvents = 'auto';
-                button.style.display = 'flex';
+                // FORCE all properties
+                button.style.setProperty('display', 'flex', 'important');
+                button.style.setProperty('pointer-events', 'auto', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('position', 'fixed', 'important');
+                button.style.setProperty('z-index', '100005', 'important');
+                button.style.setProperty('right', 'max(16px, env(safe-area-inset-right, 0px))', 'important');
+                button.style.setProperty('bottom', 'max(80px, env(safe-area-inset-bottom, 0px) + 70px)', 'important');
+                button.style.setProperty('transition', 'opacity 0.3s ease, visibility 0.3s ease', 'important');
+                button.style.setProperty('-webkit-transition', 'opacity 0.3s ease, visibility 0.3s ease', 'important');
                 
-                // Proper positioning
-                button.style.right = 'max(16px, env(safe-area-inset-right, 0px))';
-                button.style.bottom = 'max(80px, env(safe-area-inset-bottom, 0px) + 70px)';
-                
-                // Allow transitions for show/hide
-                button.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
-                button.style.webkitTransition = 'opacity 0.3s ease, visibility 0.3s ease';
-                
-                console.log('Back-to-top functionality ensured');
+                console.log('Back-to-top FORCED functional');
             }
         });
     }
 
-    // ========== SCROLL HANDLER FOR BACK-TO-TOP ==========
+    // ========== HANDLE BACK-TO-TOP SCROLL ==========
     function handleBackToTopScroll() {
         const backToTopButtons = document.querySelectorAll('.back-to-top, #backToTop');
         
@@ -70,11 +64,11 @@
             backToTopButtons.forEach(button => {
                 if (button) {
                     if (scrollTop > 300) {
-                        button.style.opacity = '1';
-                        button.style.visibility = 'visible';
+                        button.style.setProperty('opacity', '1', 'important');
+                        button.style.setProperty('visibility', 'visible', 'important');
                     } else {
-                        button.style.opacity = '0';
-                        button.style.visibility = 'hidden';
+                        button.style.setProperty('opacity', '0', 'important');
+                        button.style.setProperty('visibility', 'hidden', 'important');
                     }
                 }
             });
@@ -96,90 +90,81 @@
         updateBackToTopVisibility();
     }
 
-    // ========== ENSURE HAMBURGER MENU WORKS ==========
-    function ensureHamburgerWorks() {
+    // ========== FORCE HAMBURGER FUNCTIONALITY ==========
+    function forceHamburgerFunctionality() {
         const hamburgers = document.querySelectorAll('.hamburger, #hamburger');
         
         hamburgers.forEach(hamburger => {
             if (hamburger) {
-                hamburger.style.pointerEvents = 'auto';
-                hamburger.style.cursor = 'pointer';
-                hamburger.style.zIndex = '100030';
-                hamburger.style.position = 'fixed';
+                hamburger.style.setProperty('pointer-events', 'auto', 'important');
+                hamburger.style.setProperty('cursor', 'pointer', 'important');
+                hamburger.style.setProperty('position', 'fixed', 'important');
+                hamburger.style.setProperty('z-index', '100030', 'important');
+                hamburger.style.setProperty('top', 'max(16px, env(safe-area-inset-top, 0px) + 10px)', 'important');
+                hamburger.style.setProperty('right', 'max(16px, env(safe-area-inset-right, 0px) + 10px)', 'important');
                 
-                console.log('Hamburger functionality ensured');
+                console.log('Hamburger FORCED functional');
             }
         });
     }
 
-    // ========== OVERRIDE ANTI-SHAKE FOR ESSENTIAL ELEMENTS ==========
-    function overrideAntiShakeForEssentials() {
+    // ========== INJECT AGGRESSIVE CSS OVERRIDE ==========
+    function injectAggressiveCSS() {
         const style = document.createElement('style');
-        style.id = 'floating-elements-override';
+        style.id = 'aggressive-floating-elements-override';
         style.textContent = `
-            /* Override anti-shake for essential floating elements */
-            .chat-button,
-            #chatButton {
-                opacity: 1 !important;
-                visibility: visible !important;
-                display: flex !important;
-                pointer-events: auto !important;
-                position: fixed !important;
-                z-index: 100010 !important;
-                transition: opacity 0.3s ease, background-color 0.2s ease !important;
-                -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
-            }
-            
-            .back-to-top,
-            #backToTop {
-                display: flex !important;
-                pointer-events: auto !important;
-                position: fixed !important;
-                z-index: 100005 !important;
-                transition: opacity 0.3s ease, visibility 0.3s ease !important;
-                -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
-            }
-            
-            .hamburger,
-            #hamburger {
-                pointer-events: auto !important;
-                cursor: pointer !important;
-                position: fixed !important;
-                z-index: 100030 !important;
-                transition: opacity 0.3s ease, background-color 0.3s ease !important;
-                -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
-            }
-            
-            .hamburger span {
-                transition: all 0.3s ease !important;
-                -webkit-transition: all 0.3s ease !important;
-            }
-            
-            .nav-menu,
-            #navMenu {
-                pointer-events: auto !important;
-                transition: transform 0.3s ease, opacity 0.3s ease !important;
-                -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
-            }
-            
-            /* Ensure proper positioning on mobile */
+            /* AGGRESSIVE OVERRIDE FOR FLOATING ELEMENTS */
             @media (max-width: 768px) {
                 .chat-button,
                 #chatButton {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    display: flex !important;
+                    pointer-events: auto !important;
+                    cursor: pointer !important;
+                    position: fixed !important;
+                    z-index: 100010 !important;
                     right: max(16px, env(safe-area-inset-right, 0px)) !important;
                     bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+                    transition: opacity 0.3s ease, background-color 0.2s ease !important;
+                    -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
                 }
                 
                 .back-to-top,
                 #backToTop {
+                    display: flex !important;
+                    pointer-events: auto !important;
+                    cursor: pointer !important;
+                    position: fixed !important;
+                    z-index: 100005 !important;
                     right: max(16px, env(safe-area-inset-right, 0px)) !important;
                     bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
+                    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+                    -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
                 }
                 
                 .hamburger,
                 #hamburger {
+                    pointer-events: auto !important;
+                    cursor: pointer !important;
+                    position: fixed !important;
+                    z-index: 100030 !important;
                     top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
                     right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+                    transition: opacity 0.3s ease, background-color 0.3s ease !important;
+                    -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+                }
+                
+                .hamburger span {
+                    transition: all 0.3s ease !important;
+                    -webkit-transition: all 0.3s ease !important;
+                }
+                
+                .nav-menu,
+                #navMenu {
+                    pointer-events: auto !important;
+                    transition: transform 0.3s ease, opacity 0.3s ease !important;
+                    -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
                 }
             }
         `;
@@ -187,40 +172,45 @@
         document.head.appendChild(style);
     }
 
+    // ========== AGGRESSIVE MONITORING ==========
+    function startAggressiveMonitoring() {
+        // Force elements every 200ms
+        setInterval(() => {
+            forceChatbotVisibility();
+            forceBackToTopFunctionality();
+            forceHamburgerFunctionality();
+        }, 200);
+    }
+
     // ========== INITIALIZATION ==========
     function init() {
-        console.log('Floating Elements Fix: Initializing...');
+        console.log('Aggressive Floating Elements Fix: Initializing...');
         
-        // Apply overrides immediately
-        overrideAntiShakeForEssentials();
+        // Apply aggressive CSS immediately
+        injectAggressiveCSS();
         
         // Wait for DOM and other scripts to load
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
-                    ensureChatbotVisibility();
-                    ensureBackToTopFunctionality();
-                    ensureHamburgerWorks();
+                    forceChatbotVisibility();
+                    forceBackToTopFunctionality();
+                    forceHamburgerFunctionality();
                     handleBackToTopScroll();
-                }, 200); // Wait for other scripts
+                    startAggressiveMonitoring();
+                }, 100);
             });
         } else {
             setTimeout(() => {
-                ensureChatbotVisibility();
-                ensureBackToTopFunctionality();
-                ensureHamburgerWorks();
+                forceChatbotVisibility();
+                forceBackToTopFunctionality();
+                forceHamburgerFunctionality();
                 handleBackToTopScroll();
-            }, 200);
+                startAggressiveMonitoring();
+            }, 100);
         }
 
-        // Re-check essential elements periodically
-        setInterval(() => {
-            ensureChatbotVisibility();
-            ensureBackToTopFunctionality();
-            ensureHamburgerWorks();
-        }, 3000); // Check every 3 seconds
-
-        console.log('Floating Elements Fix: Initialized');
+        console.log('Aggressive Floating Elements Fix: Nuclear approach activated');
     }
 
     // ========== AUTO-INITIALIZE ==========
@@ -229,9 +219,9 @@
     // Export for manual control
     window.FloatingElementsFix = {
         init: init,
-        ensureChatbotVisibility: ensureChatbotVisibility,
-        ensureBackToTopFunctionality: ensureBackToTopFunctionality,
-        ensureHamburgerWorks: ensureHamburgerWorks,
+        forceChatbotVisibility: forceChatbotVisibility,
+        forceBackToTopFunctionality: forceBackToTopFunctionality,
+        forceHamburgerFunctionality: forceHamburgerFunctionality,
         handleBackToTopScroll: handleBackToTopScroll
     };
 
