@@ -4,11 +4,22 @@
  */
 
 // ========== INITIALIZE AOS ANIMATION ==========
+// Mobile-optimized AOS settings
+const isMobile = window.innerWidth <= 768;
+
 AOS.init({
-    duration: 800,
+    duration: isMobile ? 300 : 800,
     easing: 'ease-in-out',
     once: true,
-    offset: 100
+    offset: isMobile ? 50 : 100,
+    disable: function() {
+        // Disable AOS on mobile devices for better performance
+        return window.innerWidth < 768;
+    },
+    // Reduce animations on mobile
+    useClassNames: isMobile,
+    initClassName: false,
+    animatedClassName: isMobile ? 'aos-animate-mobile' : 'aos-animate'
 });
 
 // ========== HEADER SCROLL EFFECT ==========

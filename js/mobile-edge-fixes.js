@@ -107,7 +107,107 @@
         window.visualViewport.addEventListener('resize', viewportHandler);
     }
 
-    // ========== FIX HORIZONTAL SCROLL ISSUES ==========
+    // ========== FIX SHAKING ANIMATIONS ==========
+    function fixShakingAnimations() {
+        // Disable problematic CSS animations on mobile
+        if (window.innerWidth <= 768) {
+            const style = document.createElement('style');
+            style.textContent = `
+                /* Disable shaking animations on mobile */
+                * {
+                    -webkit-backface-visibility: hidden !important;
+                    backface-visibility: hidden !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
+                    transform: translate3d(0, 0, 0) !important;
+                }
+                
+                /* Disable hover effects that cause shaking */
+                *:hover {
+                    transform: none !important;
+                    -webkit-transform: none !important;
+                }
+                
+                /* Stable floating elements */
+                .chat-button, .back-to-top, .hamburger {
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
+                    will-change: opacity !important;
+                }
+                
+                /* Disable AOS animations on mobile */
+                .aos-animate {
+                    transform: none !important;
+                    opacity: 1 !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // ========== STABILIZE FLOATING ELEMENTS ==========
+    function stabilizeFloatingElements() {
+        const chatButton = document.querySelector('.chat-button');
+        const backToTop = document.querySelector('.back-to-top');
+        const hamburger = document.querySelector('.hamburger');
+        
+        [chatButton, backToTop, hamburger].forEach(element => {
+            if (element) {
+                // Force hardware acceleration
+                element.style.transform = 'translate3d(0, 0, 0)';
+                element.style.webkitTransform = 'translate3d(0, 0, 0)';
+                element.style.backfaceVisibility = 'hidden';
+                element.style.webkitBackfaceVisibility = 'hidden';
+                element.style.willChange = 'opacity';
+                
+                // Remove any existing transforms that might cause shaking
+                element.style.transition = 'opacity 0.2s ease';
+            }
+        });
+    }
+
+    // ========== FIX IMAGE SHAKING ==========
+    function fixImageShaking() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            // Stabilize images
+            img.style.transform = 'translate3d(0, 0, 0)';
+            img.style.webkitTransform = 'translate3d(0, 0, 0)';
+            img.style.backfaceVisibility = 'hidden';
+            img.style.webkitBackfaceVisibility = 'hidden';
+            img.style.willChange = 'auto';
+            
+            // Remove problematic filters and transforms
+            img.style.filter = 'none';
+            img.style.webkitFilter = 'none';
+        });
+    }
+
+    // ========== DISABLE PROBLEMATIC ANIMATIONS ==========
+    function disableProblematicAnimations() {
+        // Disable CSS animations that cause shaking
+        const problematicSelectors = [
+            '.gallery-card:hover img',
+            '.subject-card:hover .subject-image img',
+            '.program-card:hover',
+            '.why-card:hover .why-icon',
+            '.value-card:hover .value-icon',
+            '.history-card:hover .history-icon',
+            '.play-button:hover'
+        ];
+        
+        problematicSelectors.forEach(selector => {
+            try {
+                const elements = document.querySelectorAll(selector.replace(':hover', ''));
+                elements.forEach(el => {
+                    el.style.transform = 'translate3d(0, 0, 0)';
+                    el.style.webkitTransform = 'translate3d(0, 0, 0)';
+                    el.style.transition = 'opacity 0.2s ease';
+                });
+            } catch (e) {
+                // Ignore selector errors
+            }
+        });
+    }
     function fixHorizontalScroll() {
         // Prevent horizontal scroll on body
         document.body.style.overflowX = 'hidden';
@@ -211,6 +311,7 @@
         // Run immediately
         setDynamicViewportHeight();
         detectSafeAreas();
+        fixShakingAnimations();
         fixHorizontalScroll();
         
         // Run after DOM is loaded
@@ -221,6 +322,9 @@
                 handleVirtualKeyboard();
                 handleOrientationChange();
                 improveScrollPerformance();
+                stabilizeFloatingElements();
+                fixImageShaking();
+                disableProblematicAnimations();
             });
         } else {
             preventZoomOnInput();
@@ -228,6 +332,9 @@
             handleVirtualKeyboard();
             handleOrientationChange();
             improveScrollPerformance();
+            stabilizeFloatingElements();
+            fixImageShaking();
+            disableProblematicAnimations();
         }
         
         // Update on window resize
@@ -235,6 +342,8 @@
             setDynamicViewportHeight();
             preventZoomOnInput();
             optimizeTouchTargets();
+            stabilizeFloatingElements();
+            fixImageShaking();
         }, { passive: true });
         
         // Update on visual viewport changes (for virtual keyboard)
@@ -253,7 +362,11 @@
         detectSafeAreas,
         preventZoomOnInput,
         optimizeTouchTargets,
-        fixHorizontalScroll
+        fixHorizontalScroll,
+        fixShakingAnimations,
+        stabilizeFloatingElements,
+        fixImageShaking,
+        disableProblematicAnimations
     };
 
 })();

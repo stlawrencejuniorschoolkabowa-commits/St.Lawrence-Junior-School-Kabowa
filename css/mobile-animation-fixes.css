@@ -1,0 +1,433 @@
+/* ========================================
+   MOBILE ANIMATION FIXES
+   St. Lawrence Junior School - Kabowa
+   
+   Fixes for:
+   - Shaking/jittery animations on mobile
+   - Smooth hardware acceleration
+   - Stable chatbot and floating elements
+   - Optimized image animations
+   - Icon stability improvements
+   ======================================== */
+
+/* ========== HARDWARE ACCELERATION & PERFORMANCE ========== */
+* {
+    /* Force hardware acceleration for smooth animations */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+/* Optimize specific elements for mobile */
+img,
+video,
+.chat-button,
+.back-to-top,
+.hamburger,
+.logo,
+.nav-menu,
+.hero-content,
+.card,
+.btn,
+.icon {
+    /* Stable hardware acceleration */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: auto;
+}
+
+/* ========== MOBILE-SPECIFIC ANIMATION FIXES ========== */
+@media (max-width: 768px) {
+    
+    /* ========== DISABLE PROBLEMATIC ANIMATIONS ========== */
+    * {
+        /* Reduce animation duration for stability */
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+        
+        /* Disable transform animations that cause shaking */
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+    
+    /* ========== DISABLE ALL HOVER TRANSFORMS ON MOBILE ========== */
+    .gallery-card:hover img,
+    .gallery-card:hover .category-tag,
+    .gallery-item:hover,
+    .indicator:hover,
+    .nav-btn:hover,
+    .calendar-date:hover,
+    .calendar-date.has-event:hover,
+    .subject-card:hover .subject-image img,
+    .program-card:hover,
+    .why-card:hover .why-icon,
+    .photo-container:hover .director-image,
+    .developer-link:hover,
+    .value-card:hover .value-icon,
+    .value-card-advanced:hover .value-icon-advanced,
+    .value-card-advanced:hover .value-decoration,
+    .history-card:hover .history-icon,
+    .history-image:hover img,
+    .apply-image-section:hover .apply-image-wrapper img,
+    .process-step-card:hover,
+    .process-step-card:hover .step-number-badge,
+    .process-step-card:hover .step-icon-advanced,
+    .info-card-advanced:hover .info-icon-advanced,
+    .history-item:hover .history-image img,
+    .video-thumbnail:hover img,
+    .play-button:hover,
+    .value-card-anthem:hover .value-icon-anthem,
+    .tour-feature-item:hover .feature-icon-tour,
+    .teacher-card:hover {
+        /* Disable all hover transforms on mobile */
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    /* ========== DISABLE HOVER SCALE EFFECTS ========== */
+    *:hover {
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    /* ========== CHATBOT STABILITY FIXES ========== */
+    .chat-button {
+        /* Stable positioning without transforms */
+        position: fixed !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+        transition: opacity 0.2s ease, box-shadow 0.2s ease !important;
+        will-change: opacity, box-shadow;
+        
+        /* Prevent shaking on scroll */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .chat-button:active {
+        /* Stable active state */
+        transform: scale(0.95) translate3d(0, 0, 0) !important;
+        -webkit-transform: scale(0.95) translate3d(0, 0, 0) !important;
+        transition: transform 0.1s ease !important;
+    }
+    
+    .chat-widget {
+        /* Stable chat widget */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+    }
+    
+    /* ========== FLOATING ELEMENTS STABILITY ========== */
+    .back-to-top {
+        /* Stable back-to-top button */
+        position: fixed !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+    }
+    
+    .back-to-top:active {
+        transform: scale(0.9) translate3d(0, 0, 0) !important;
+        -webkit-transform: scale(0.9) translate3d(0, 0, 0) !important;
+    }
+    
+    /* ========== NAVIGATION STABILITY ========== */
+    .hamburger {
+        /* Stable hamburger menu */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+    }
+    
+    .nav-menu {
+        /* Stable navigation menu */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease, visibility 0.2s ease !important;
+        will-change: opacity, visibility;
+    }
+    
+    .nav-menu.active {
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* ========== IMAGE STABILITY FIXES ========== */
+    img {
+        /* Prevent image shaking */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+        
+        /* Disable problematic image effects */
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+    
+    /* Gallery images */
+    .gallery-item img,
+    .gallery-masonry-item img {
+        transform: none !important;
+        -webkit-transform: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+    
+    /* Hero images */
+    .hero img,
+    .hero-image {
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* ========== ICON STABILITY FIXES ========== */
+    .icon,
+    i,
+    .fa,
+    .fas,
+    .far,
+    .fab {
+        /* Stable icons */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: color 0.2s ease !important;
+        will-change: color;
+        
+        /* Prevent icon shaking */
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    /* ========== CARD STABILITY FIXES ========== */
+    .card,
+    .program-card,
+    .subject-card,
+    .stat-card,
+    .feature-card,
+    .testimonial-card {
+        /* Stable cards */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: box-shadow 0.2s ease !important;
+        will-change: box-shadow;
+    }
+    
+    /* ========== BUTTON STABILITY FIXES ========== */
+    .btn,
+    button,
+    .button {
+        /* Stable buttons */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: background-color 0.2s ease, color 0.2s ease !important;
+        will-change: background-color, color;
+    }
+    
+    .btn:active,
+    button:active {
+        transform: scale(0.98) translate3d(0, 0, 0) !important;
+        -webkit-transform: scale(0.98) translate3d(0, 0, 0) !important;
+    }
+    
+    /* ========== LOGO STABILITY FIXES ========== */
+    .logo,
+    .logo-badge,
+    .logo-text {
+        /* Stable logo elements */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+    }
+    
+    /* ========== SCROLL-BASED ANIMATION FIXES ========== */
+    .aos-animate,
+    [data-aos] {
+        /* Disable AOS animations on mobile */
+        animation: none !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        opacity: 1 !important;
+        transition: none !important;
+    }
+    
+    /* ========== PARALLAX FIXES ========== */
+    .parallax,
+    .parallax-element {
+        /* Disable parallax on mobile */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        background-attachment: scroll !important;
+    }
+    
+    /* ========== VIDEO STABILITY ========== */
+    video {
+        /* Stable video elements */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        will-change: auto;
+    }
+    
+    /* ========== COUNTER ANIMATION FIXES ========== */
+    .counter,
+    .stat-number,
+    .count-up {
+        /* Stable counter animations */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        will-change: auto;
+    }
+    
+    /* ========== MODAL AND OVERLAY FIXES ========== */
+    .modal,
+    .overlay,
+    .popup {
+        /* Stable modals */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: opacity 0.2s ease !important;
+        will-change: opacity;
+    }
+    
+    /* ========== FORM ELEMENT STABILITY ========== */
+    input,
+    textarea,
+    select {
+        /* Stable form elements */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transition: border-color 0.2s ease !important;
+        will-change: border-color;
+    }
+    
+    /* ========== GRID AND FLEX STABILITY ========== */
+    .grid,
+    .flex,
+    .programs-grid,
+    .subjects-grid,
+    .gallery-grid,
+    .stats-grid {
+        /* Stable grid layouts */
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        will-change: auto;
+    }
+}
+
+/* ========== REDUCED MOTION SUPPORT ========== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        /* Disable all animations for users who prefer reduced motion */
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    .chat-button,
+    .back-to-top,
+    .hamburger {
+        /* Keep essential functionality but remove animations */
+        transition: opacity 0.1s ease !important;
+    }
+}
+
+/* ========== WEBKIT SPECIFIC FIXES ========== */
+@media (max-width: 768px) {
+    /* iOS Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+        * {
+            /* iOS-specific hardware acceleration */
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            -webkit-perspective: 1000px;
+        }
+        
+        .chat-button,
+        .back-to-top {
+            /* iOS-specific positioning fixes */
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            position: -webkit-sticky;
+            position: sticky;
+        }
+    }
+}
+
+/* ========== ANDROID CHROME FIXES ========== */
+@media (max-width: 768px) {
+    /* Android Chrome specific fixes */
+    @supports (display: -webkit-box) {
+        .chat-button,
+        .back-to-top,
+        .hamburger {
+            /* Android-specific stability */
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+        }
+    }
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+@media (max-width: 768px) {
+    /* Optimize rendering performance */
+    .hero,
+    .section,
+    .footer {
+        /* Contain layout changes */
+        contain: layout style paint;
+    }
+    
+    /* Optimize scroll performance */
+    .container,
+    .content {
+        /* Use compositor layers efficiently */
+        transform: translate3d(0, 0, 0);
+        will-change: auto;
+    }
+    
+    /* Optimize image rendering */
+    img {
+        /* Better image rendering on mobile */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+        -ms-interpolation-mode: nearest-neighbor;
+    }
+}
+
+/* ========== TOUCH INTERACTION FIXES ========== */
+@media (max-width: 768px) {
+    /* Improve touch responsiveness */
+    .chat-button,
+    .back-to-top,
+    .hamburger,
+    .btn,
+    button {
+        /* Better touch feedback */
+        -webkit-tap-highlight-color: rgba(0, 102, 204, 0.2);
+        tap-highlight-color: rgba(0, 102, 204, 0.2);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        
+        /* Stable touch interactions */
+        touch-action: manipulation;
+    }
+    
+    /* Prevent text selection on interactive elements */
+    .logo,
+    .nav-menu,
+    .card {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+    }
+}
