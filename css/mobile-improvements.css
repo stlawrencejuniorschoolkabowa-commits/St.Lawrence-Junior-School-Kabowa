@@ -189,10 +189,11 @@ iframe {
 
   /* Floating buttons (chat + back-to-top) should never sit off-screen */
   .back-to-top {
-    right: calc(var(--fab-offset) + env(safe-area-inset-right, 0px)) !important;
-    bottom: calc(var(--fab-offset) + env(safe-area-inset-bottom, 0px) + var(--vvh-fix) + var(--chat-fab-size) + 12px) !important;
+    right: calc(max(16px, env(safe-area-inset-right, 0px)) + 4px) !important;
+    bottom: calc(max(16px, env(safe-area-inset-bottom, 0px)) + var(--chat-fab-size) + 16px) !important;
     width: 46px;
     height: 46px;
+    z-index: 100005 !important;
   }
 }
 

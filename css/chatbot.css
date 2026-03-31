@@ -1399,21 +1399,30 @@
 @media (max-width: 768px) {
     .chat-button {
         position: fixed !important;
-        right: max(12px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(max(16px, env(safe-area-inset-right, 0px)) + 4px) !important;
+        bottom: calc(max(16px, env(safe-area-inset-bottom, 0px)) + 4px) !important;
+        left: auto !important;
+        top: auto !important;
+        width: var(--chat-fab-size) !important;
+        height: var(--chat-fab-size) !important;
+        margin: 0 !important;
         z-index: 100010 !important;
         opacity: 1 !important;
         visibility: visible !important;
         transform: none !important;
         display: flex !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3) !important;
     }
 
     .chat-widget {
-        right: max(12px, env(safe-area-inset-right, 0px)) !important;
-        left: max(12px, env(safe-area-inset-left, 0px)) !important;
-        bottom: calc(max(12px, env(safe-area-inset-bottom, 0px)) + 64px + 10px) !important;
-        width: auto !important;
-        max-width: 640px !important;
-        height: min(68dvh, 620px) !important;
+        left: max(10px, env(safe-area-inset-left, 0px)) !important;
+        right: max(10px, env(safe-area-inset-right, 0px)) !important;
+        bottom: calc(max(10px, env(safe-area-inset-bottom, 0px)) + 70px) !important;
+        top: max(10px, env(safe-area-inset-top, 0px)) !important;
+        width: calc(100vw - max(20px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px))) !important;
+        max-width: calc(100vw - max(20px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px))) !important;
+        height: calc(100vh - max(20px, env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)) - 80px) !important;
+        height: calc(100dvh - max(20px, env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)) - 80px) !important;
     }
 }
