@@ -1,0 +1,223 @@
+/* ========================================
+   HAMBURGER MENU FIXES
+   St. Lawrence Junior School - Kabowa
+   
+   Fixes for:
+   - Squeezed hamburger icon appearance
+   - Better mobile positioning and sizing
+   - Consistent styling across all pages
+   ======================================== */
+
+/* ========== HAMBURGER ICON IMPROVEMENTS ========== */
+.hamburger {
+    /* Better sizing and positioning */
+    width: 48px !important;
+    height: 48px !important;
+    padding: 12px !important;
+    
+    /* Improved styling */
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px) !important;
+    
+    /* Better positioning */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+    
+    /* Smooth transitions */
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    z-index: 100020 !important;
+}
+
+.hamburger:hover {
+    background: rgba(0, 102, 204, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: scale(1.05) !important;
+}
+
+/* ========== HAMBURGER LINES STYLING ========== */
+.hamburger span {
+    /* Better line dimensions */
+    width: 22px !important;
+    height: 2px !important;
+    background: #ffffff !important;
+    border-radius: 2px !important;
+    
+    /* Smooth transitions */
+    transition: all 0.3s ease !important;
+    transform-origin: center !important;
+    
+    /* Remove any conflicting styles */
+    display: block !important;
+    position: relative !important;
+}
+
+/* ========== ACTIVE STATE ANIMATIONS ========== */
+.hamburger.active {
+    background: rgba(220, 53, 69, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px) !important;
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px) !important;
+}
+
+/* ========== MOBILE POSITIONING FIXES ========== */
+@media (max-width: 768px) {
+    .hamburger {
+        /* Fixed positioning for mobile */
+        position: fixed !important;
+        top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
+        right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+        left: auto !important;
+        bottom: auto !important;
+        
+        /* Ensure it's always visible */
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        
+        /* Better mobile sizing */
+        width: 44px !important;
+        height: 44px !important;
+        padding: 10px !important;
+    }
+    
+    .hamburger span {
+        /* Slightly smaller lines on mobile */
+        width: 20px !important;
+        height: 2px !important;
+    }
+    
+    /* Adjust active state for mobile */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px) !important;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px) !important;
+    }
+}
+
+/* ========== DEVICE-SPECIFIC ADJUSTMENTS ========== */
+
+/* Small phones (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .hamburger {
+        width: 40px !important;
+        height: 40px !important;
+        padding: 8px !important;
+        top: max(12px, env(safe-area-inset-top, 0px) + 8px) !important;
+        right: max(12px, env(safe-area-inset-right, 0px) + 8px) !important;
+    }
+    
+    .hamburger span {
+        width: 18px !important;
+    }
+}
+
+/* Large phones and tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hamburger {
+        width: 50px !important;
+        height: 50px !important;
+        padding: 14px !important;
+    }
+    
+    .hamburger span {
+        width: 24px !important;
+    }
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+.hamburger:focus {
+    outline: 2px solid #0066cc !important;
+    outline-offset: 2px !important;
+}
+
+.hamburger:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .hamburger {
+        background: #000000 !important;
+        border-color: #ffffff !important;
+    }
+    
+    .hamburger span {
+        background: #ffffff !important;
+    }
+    
+    .hamburger.active {
+        background: #cc0000 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .hamburger,
+    .hamburger span {
+        transition: none !important;
+    }
+    
+    .hamburger:hover {
+        transform: none !important;
+    }
+}
+
+/* ========== OVERRIDE CONFLICTING STYLES ========== */
+@media (max-width: 768px) {
+    /* Override any conflicting positioning from other CSS files */
+    #hamburger.hamburger {
+        position: fixed !important;
+        top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
+        right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 44px !important;
+        height: 44px !important;
+        margin: 0 !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    /* Ensure hamburger is above other elements */
+    .hamburger {
+        z-index: 100030 !important;
+    }
+}
+
+/* ========== ANIMATION STABILITY ========== */
+@media (max-width: 768px) {
+    .hamburger {
+        /* Stable hardware acceleration */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        will-change: opacity, background-color !important;
+    }
+    
+    .hamburger span {
+        /* Stable line animations */
+        -webkit-transform-origin: center !important;
+        transform-origin: center !important;
+        will-change: transform, opacity !important;
+    }
+}
