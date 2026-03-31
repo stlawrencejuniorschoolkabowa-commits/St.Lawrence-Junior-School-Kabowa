@@ -29,7 +29,54 @@
         will-change: auto !important;
     }
     
-    /* ========== COMPLETELY DISABLE HOVER EFFECTS ========== */
+    /* ========== ESSENTIAL FLOATING ELEMENTS - ALLOW FUNCTIONALITY ========== */
+    .chat-button,
+    .back-to-top,
+    #chatButton,
+    #backToTop {
+        /* Reset anti-shake rules for essential elements */
+        -webkit-animation: unset !important;
+        animation: unset !important;
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        
+        /* Ensure they can be visible */
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        
+        /* Stable positioning */
+        position: fixed !important;
+        z-index: 100010 !important;
+    }
+    
+    /* ========== CHATBOT SPECIFIC VISIBILITY ========== */
+    .chat-button,
+    #chatButton {
+        /* Always visible on mobile */
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        
+        /* Proper positioning */
+        right: max(16px, env(safe-area-inset-right, 0px)) !important;
+        bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+    }
+    
+    /* ========== BACK-TO-TOP SPECIFIC VISIBILITY ========== */
+    .back-to-top,
+    #backToTop {
+        /* Allow normal show/hide behavior */
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+        
+        /* Proper positioning */
+        right: max(16px, env(safe-area-inset-right, 0px)) !important;
+        bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
+    }
+    
+    /* ========== COMPLETELY DISABLE HOVER EFFECTS (EXCEPT ESSENTIAL) ========== */
     *:hover,
     *:focus,
     *:active {
@@ -39,6 +86,15 @@
         animation: none !important;
         -webkit-transition: none !important;
         transition: none !important;
+    }
+    
+    /* Allow hover effects for essential elements */
+    .chat-button:hover,
+    .back-to-top:hover,
+    #chatButton:hover,
+    #backToTop:hover {
+        -webkit-transition: opacity 0.2s ease, background-color 0.2s ease !important;
+        transition: opacity 0.2s ease, background-color 0.2s ease !important;
     }
     
     /* ========== DISABLE ALL SCALE TRANSFORMS ========== */
@@ -122,15 +178,29 @@
     /* ========== FLOATING ELEMENTS - ULTRA STABLE ========== */
     .chat-button,
     .back-to-top,
-    .hamburger {
+    .hamburger,
+    #chatButton,
+    #backToTop {
+        /* Reset problematic rules for essential elements */
         -webkit-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: opacity 0.1s ease !important;
-        transition: opacity 0.1s ease !important;
+        -webkit-animation: unset !important;
+        animation: unset !important;
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease !important;
         position: fixed !important;
-        will-change: opacity !important;
+        will-change: opacity, visibility !important;
+        
+        /* Ensure visibility */
+        display: flex !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Chatbot always visible */
+    .chat-button,
+    #chatButton {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
     /* ========== NAVIGATION ELEMENTS ========== */
@@ -346,9 +416,19 @@
     .back-to-top,
     .hamburger,
     .btn,
-    button {
-        -webkit-transition: opacity 0.1s linear !important;
-        transition: opacity 0.1s linear !important;
+    button,
+    #chatButton,
+    #backToTop {
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease !important;
+    }
+    
+    /* Ensure chatbot is always visible */
+    .chat-button,
+    #chatButton {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
     }
 }
 

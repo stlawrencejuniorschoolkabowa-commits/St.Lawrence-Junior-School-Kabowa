@@ -30,10 +30,20 @@
                 -webkit-transform: translate3d(0, 0, 0) !important;
             }
             
-            /* Only allow opacity for essential feedback */
-            .chat-button, .back-to-top, .hamburger, .btn, button {
-                transition: opacity 0.1s ease !important;
-                -webkit-transition: opacity 0.1s ease !important;
+            /* Allow essential elements to function */
+            .chat-button, .back-to-top, #chatButton, #backToTop {
+                transition: opacity 0.3s ease, visibility 0.3s ease !important;
+                -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: flex !important;
+                pointer-events: auto !important;
+            }
+            
+            /* Chatbot always visible */
+            .chat-button, #chatButton {
+                opacity: 1 !important;
+                visibility: visible !important;
             }
         `;
         
@@ -97,9 +107,15 @@
             'page-loader'
         ];
         
+        const essentialIds = [
+            'chatButton',
+            'backToTop',
+            'hamburger'
+        ];
+        
         return essentialClasses.some(className => 
             element.classList && element.classList.contains(className)
-        );
+        ) || essentialIds.some(id => element.id === id);
     }
 
     // ========== FORCE STABLE TRANSFORMS ==========
@@ -132,21 +148,35 @@
         const floatingElements = [
             '.chat-button',
             '.back-to-top',
-            '.hamburger'
+            '.hamburger',
+            '#chatButton',
+            '#backToTop'
         ];
 
         floatingElements.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach(element => {
-                // Force stable positioning
+                // Force stable positioning but allow visibility changes
                 element.style.transform = 'translate3d(0px, 0px, 0px)';
                 element.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
                 element.style.backfaceVisibility = 'hidden';
                 element.style.webkitBackfaceVisibility = 'hidden';
-                element.style.willChange = 'opacity';
+                element.style.willChange = 'opacity, visibility';
                 
                 // Remove any existing animation classes
                 element.classList.remove('animate__animated', 'aos-animate');
+                
+                // Allow essential transitions
+                element.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+                element.style.webkitTransition = 'opacity 0.3s ease, visibility 0.3s ease';
+                
+                // Ensure chatbot is always visible
+                if (element.classList.contains('chat-button') || element.id === 'chatButton') {
+                    element.style.opacity = '1';
+                    element.style.visibility = 'visible';
+                    element.style.display = 'flex';
+                    element.style.pointerEvents = 'auto';
+                }
                 
                 // Override any inline animations
                 element.style.animation = 'none';
