@@ -859,29 +859,8 @@
             offset: 100
         });
         
-        // Mobile Menu Functionality
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+        // Mobile expandable menu functionality only (hamburger handled by external script)
         const mobileExpandables = document.querySelectorAll('.mobile-expandable');
-        
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const isActive = navMenu.classList.contains('active');
-                
-                if (isActive) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                } else {
-                    hamburger.classList.add('active');
-                    navMenu.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        }
         
         mobileExpandables.forEach(item => {
             const link = item.querySelector('.nav-link-mobile');
@@ -901,27 +880,11 @@
             }
         });
         
-        const submenuLinks = document.querySelectorAll('.mobile-submenu a');
-        submenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (hamburger && navMenu) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
+        // Note: Hamburger menu functionality is handled by external hamburger-menu-fix.js
+        // Remove references to hamburger and navMenu to avoid conflicts
         
-        const regularMobileLinks = document.querySelectorAll('.mobile-only:not(.mobile-expandable) .nav-link-mobile');
-        regularMobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (hamburger && navMenu) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
+        // Note: Hamburger menu functionality is handled by external hamburger-menu-fix.js
+        // Remove references to hamburger and navMenu to avoid conflicts
         
         // Initialize all items as visible when page loads
         document.addEventListener('DOMContentLoaded', function() {

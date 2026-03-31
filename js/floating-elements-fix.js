@@ -2,7 +2,7 @@
  * Floating Elements Fix
  * St. Lawrence Junior School - Kabowa
  * 
- * Ensures chatbot and back-to-top button work properly after anti-shake fixes
+ * Ensures chatbot and back-to-top button work properly
  */
 
 (function() {
@@ -14,7 +14,7 @@
         
         chatButtons.forEach(button => {
             if (button) {
-                // Force visibility
+                // Force visibility and functionality
                 button.style.opacity = '1';
                 button.style.visibility = 'visible';
                 button.style.display = 'flex';
@@ -54,15 +54,6 @@
                 // Allow transitions for show/hide
                 button.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
                 button.style.webkitTransition = 'opacity 0.3s ease, visibility 0.3s ease';
-                
-                // Initial state (hidden until scroll)
-                if (window.pageYOffset < 300) {
-                    button.style.opacity = '0';
-                    button.style.visibility = 'hidden';
-                } else {
-                    button.style.opacity = '1';
-                    button.style.visibility = 'visible';
-                }
                 
                 console.log('Back-to-top functionality ensured');
             }
@@ -105,6 +96,22 @@
         updateBackToTopVisibility();
     }
 
+    // ========== ENSURE HAMBURGER MENU WORKS ==========
+    function ensureHamburgerWorks() {
+        const hamburgers = document.querySelectorAll('.hamburger, #hamburger');
+        
+        hamburgers.forEach(hamburger => {
+            if (hamburger) {
+                hamburger.style.pointerEvents = 'auto';
+                hamburger.style.cursor = 'pointer';
+                hamburger.style.zIndex = '100030';
+                hamburger.style.position = 'fixed';
+                
+                console.log('Hamburger functionality ensured');
+            }
+        });
+    }
+
     // ========== OVERRIDE ANTI-SHAKE FOR ESSENTIAL ELEMENTS ==========
     function overrideAntiShakeForEssentials() {
         const style = document.createElement('style');
@@ -133,6 +140,28 @@
                 -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
             }
             
+            .hamburger,
+            #hamburger {
+                pointer-events: auto !important;
+                cursor: pointer !important;
+                position: fixed !important;
+                z-index: 100030 !important;
+                transition: opacity 0.3s ease, background-color 0.3s ease !important;
+                -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+            }
+            
+            .hamburger span {
+                transition: all 0.3s ease !important;
+                -webkit-transition: all 0.3s ease !important;
+            }
+            
+            .nav-menu,
+            #navMenu {
+                pointer-events: auto !important;
+                transition: transform 0.3s ease, opacity 0.3s ease !important;
+                -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
+            }
+            
             /* Ensure proper positioning on mobile */
             @media (max-width: 768px) {
                 .chat-button,
@@ -146,18 +175,16 @@
                     right: max(16px, env(safe-area-inset-right, 0px)) !important;
                     bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
                 }
+                
+                .hamburger,
+                #hamburger {
+                    top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
+                    right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+                }
             }
         `;
         
         document.head.appendChild(style);
-    }
-
-    // ========== CONTINUOUS MONITORING ==========
-    function startContinuousMonitoring() {
-        setInterval(() => {
-            ensureChatbotVisibility();
-            ensureBackToTopFunctionality();
-        }, 1000); // Check every second
     }
 
     // ========== INITIALIZATION ==========
@@ -173,28 +200,25 @@
                 setTimeout(() => {
                     ensureChatbotVisibility();
                     ensureBackToTopFunctionality();
+                    ensureHamburgerWorks();
                     handleBackToTopScroll();
-                    startContinuousMonitoring();
-                }, 500); // Wait for other scripts
+                }, 200); // Wait for other scripts
             });
         } else {
             setTimeout(() => {
                 ensureChatbotVisibility();
                 ensureBackToTopFunctionality();
+                ensureHamburgerWorks();
                 handleBackToTopScroll();
-                startContinuousMonitoring();
-            }, 500);
+            }, 200);
         }
 
-        // Re-initialize on page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                setTimeout(() => {
-                    ensureChatbotVisibility();
-                    ensureBackToTopFunctionality();
-                }, 200);
-            }
-        });
+        // Re-check essential elements periodically
+        setInterval(() => {
+            ensureChatbotVisibility();
+            ensureBackToTopFunctionality();
+            ensureHamburgerWorks();
+        }, 3000); // Check every 3 seconds
 
         console.log('Floating Elements Fix: Initialized');
     }
@@ -207,6 +231,7 @@
         init: init,
         ensureChatbotVisibility: ensureChatbotVisibility,
         ensureBackToTopFunctionality: ensureBackToTopFunctionality,
+        ensureHamburgerWorks: ensureHamburgerWorks,
         handleBackToTopScroll: handleBackToTopScroll
     };
 

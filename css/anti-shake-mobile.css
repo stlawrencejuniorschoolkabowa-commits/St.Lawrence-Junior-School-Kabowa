@@ -1,290 +1,14 @@
 /* ========================================
-   ANTI-SHAKE MOBILE CSS
+   TARGETED ANTI-SHAKE MOBILE CSS
    St. Lawrence Junior School - Kabowa
    
-   AGGRESSIVE FIX for all shaking/jittery animations
-   This CSS completely eliminates shaking on mobile devices
+   SMART FIX that eliminates shaking while preserving functionality
    ======================================== */
 
-/* ========== GLOBAL ANTI-SHAKE RULES ========== */
+/* ========== TARGETED ANTI-SHAKE RULES ========== */
 @media (max-width: 768px) {
     
-    /* ========== FORCE STABLE RENDERING ========== */
-    * {
-        /* Force hardware acceleration for ALL elements */
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-backface-visibility: hidden !important;
-        backface-visibility: hidden !important;
-        -webkit-perspective: 1000px !important;
-        perspective: 1000px !important;
-        
-        /* Disable ALL animations and transitions */
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-        
-        /* Force stable positioning */
-        will-change: auto !important;
-    }
-    
-    /* ========== ESSENTIAL FLOATING ELEMENTS - ALLOW FUNCTIONALITY ========== */
-    .chat-button,
-    .back-to-top,
-    #chatButton,
-    #backToTop {
-        /* Reset anti-shake rules for essential elements */
-        -webkit-animation: unset !important;
-        animation: unset !important;
-        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        
-        /* Ensure they can be visible */
-        display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        
-        /* Stable positioning */
-        position: fixed !important;
-        z-index: 100010 !important;
-    }
-    
-    /* ========== CHATBOT SPECIFIC VISIBILITY ========== */
-    .chat-button,
-    #chatButton {
-        /* Always visible on mobile */
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: flex !important;
-        
-        /* Proper positioning */
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
-    }
-    
-    /* ========== BACK-TO-TOP SPECIFIC VISIBILITY ========== */
-    .back-to-top,
-    #backToTop {
-        /* Allow normal show/hide behavior */
-        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
-        
-        /* Proper positioning */
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
-    }
-    
-    /* ========== COMPLETELY DISABLE HOVER EFFECTS (EXCEPT ESSENTIAL) ========== */
-    *:hover,
-    *:focus,
-    *:active {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-    }
-    
-    /* Allow hover effects for essential elements */
-    .chat-button:hover,
-    .back-to-top:hover,
-    #chatButton:hover,
-    #backToTop:hover {
-        -webkit-transition: opacity 0.2s ease, background-color 0.2s ease !important;
-        transition: opacity 0.2s ease, background-color 0.2s ease !important;
-    }
-    
-    /* ========== DISABLE ALL SCALE TRANSFORMS ========== */
-    * {
-        -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
-        transform: translate3d(0, 0, 0) scale(1) !important;
-    }
-    
-    /* ========== SPECIFIC ELEMENT FIXES ========== */
-    
-    /* Images - Complete stability */
-    img,
-    picture,
-    svg {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-        -webkit-filter: none !important;
-        filter: none !important;
-        will-change: auto !important;
-        position: relative !important;
-    }
-    
-    /* Icons - Force stability */
-    i,
-    .icon,
-    .fa,
-    .fas,
-    .far,
-    .fab,
-    .fal {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-        display: inline-block !important;
-        vertical-align: middle !important;
-    }
-    
-    /* Buttons and Interactive Elements */
-    button,
-    .btn,
-    .button,
-    a,
-    input,
-    textarea,
-    select {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: opacity 0.1s ease !important;
-        transition: opacity 0.1s ease !important;
-    }
-    
-    /* Cards and Containers */
-    .card,
-    .program-card,
-    .subject-card,
-    .gallery-card,
-    .stat-card,
-    .feature-card,
-    .testimonial-card,
-    .history-card,
-    .value-card,
-    .info-card,
-    .process-step-card {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-    }
-    
-    /* ========== FLOATING ELEMENTS - ULTRA STABLE ========== */
-    .chat-button,
-    .back-to-top,
-    .hamburger,
-    #chatButton,
-    #backToTop {
-        /* Reset problematic rules for essential elements */
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: unset !important;
-        animation: unset !important;
-        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        position: fixed !important;
-        will-change: opacity, visibility !important;
-        
-        /* Ensure visibility */
-        display: flex !important;
-        pointer-events: auto !important;
-    }
-    
-    /* Chatbot always visible */
-    .chat-button,
-    #chatButton {
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    /* ========== NAVIGATION ELEMENTS ========== */
-    .nav-menu,
-    .navbar,
-    .header,
-    .logo {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-    }
-    
-    /* ========== DISABLE AOS ANIMATIONS COMPLETELY ========== */
-    [data-aos],
-    .aos-animate,
-    .aos-init {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    /* ========== DISABLE KEYFRAME ANIMATIONS ========== */
-    @-webkit-keyframes * {
-        0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
-    }
-    
-    @keyframes * {
-        0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
-    }
-    
-    /* ========== SPECIFIC PROBLEMATIC SELECTORS ========== */
-    
-    /* Gallery items */
-    .gallery-item,
-    .gallery-masonry-item,
-    .gallery-preview-item {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-    }
-    
-    /* Hero elements */
-    .hero,
-    .hero-content,
-    .hero-image,
-    .hero-title,
-    .hero-description {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-    }
-    
-    /* Form elements */
-    .form-input,
-    .form-group,
-    .contact-form,
-    .modern-contact-form {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-    }
-    
-    /* Video elements */
-    video,
-    .video-container,
-    .video-thumbnail {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
-    
-    /* ========== OVERRIDE ALL HOVER TRANSFORMS ========== */
+    /* ========== DISABLE ONLY PROBLEMATIC HOVER ANIMATIONS ========== */
     .gallery-card:hover img,
     .gallery-card:hover .category-tag,
     .subject-card:hover .subject-image img,
@@ -304,29 +28,48 @@
         transform: translate3d(0, 0, 0) !important;
         -webkit-animation: none !important;
         animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
     }
     
-    /* ========== DISABLE PSEUDO-ELEMENT ANIMATIONS ========== */
-    *::before,
-    *::after {
+    /* ========== STABILIZE IMAGES AND MEDIA ========== */
+    img,
+    picture,
+    svg,
+    video {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+    }
+    
+    /* ========== DISABLE AOS ANIMATIONS ON MOBILE ========== */
+    [data-aos],
+    .aos-animate,
+    .aos-init {
         -webkit-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
         -webkit-animation: none !important;
         animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
-    /* ========== FORCE STABLE SCROLLING ========== */
-    html,
-    body {
-        -webkit-overflow-scrolling: touch !important;
-        scroll-behavior: auto !important;
+    /* ========== STABILIZE CARDS AND CONTAINERS ========== */
+    .card,
+    .program-card,
+    .subject-card,
+    .gallery-card,
+    .stat-card,
+    .feature-card,
+    .testimonial-card,
+    .history-card,
+    .value-card,
+    .info-card,
+    .process-step-card {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
     }
     
-    /* ========== DISABLE PARALLAX AND COMPLEX EFFECTS ========== */
+    /* ========== DISABLE PARALLAX EFFECTS ========== */
     .parallax,
     .parallax-element,
     .background-parallax {
@@ -335,133 +78,95 @@
         background-attachment: scroll !important;
     }
     
-    /* ========== MODAL AND OVERLAY STABILITY ========== */
-    .modal,
-    .overlay,
-    .popup,
-    .lightbox {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
+    /* ========== PRESERVE ESSENTIAL UI FUNCTIONALITY ========== */
     
-    /* ========== COUNTER ANIMATIONS ========== */
-    .counter,
-    .stat-number,
-    .count-up {
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
-    
-    /* ========== LOADING ANIMATIONS ========== */
-    .loader,
-    .spinner,
-    .loading {
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
-    
-    /* ========== CHATBOT SPECIFIC ========== */
-    .chat-widget,
-    .chat-messages,
-    .chat-input {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
-}
-
-/* ========== WEBKIT SPECIFIC ANTI-SHAKE ========== */
-@media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-        /* iOS Safari specific */
-        * {
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            -webkit-backface-visibility: hidden !important;
-            -webkit-perspective: 1000px !important;
-            -webkit-animation: none !important;
-            -webkit-transition: none !important;
-        }
-    }
-}
-
-/* ========== ANDROID CHROME SPECIFIC ========== */
-@media (max-width: 768px) {
-    @supports (display: -webkit-box) {
-        * {
-            transform: translateZ(0) !important;
-            -webkit-transform: translateZ(0) !important;
-        }
-    }
-}
-
-/* ========== EMERGENCY OVERRIDE FOR PERSISTENT SHAKING ========== */
-@media (max-width: 768px) {
-    /* Nuclear option - disable ALL CSS transforms and animations */
-    * {
-        -webkit-transform: none !important;
-        transform: none !important;
-        -webkit-animation-name: none !important;
-        animation-name: none !important;
-        -webkit-animation-duration: 0s !important;
-        animation-duration: 0s !important;
-        -webkit-transition-duration: 0s !important;
-        transition-duration: 0s !important;
-    }
-    
-    /* Only allow opacity transitions for essential UI feedback */
-    .chat-button,
-    .back-to-top,
+    /* Hamburger menu - MUST work */
     .hamburger,
-    .btn,
-    button,
-    #chatButton,
-    #backToTop {
-        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease !important;
+    #hamburger {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        z-index: 100030 !important;
+        -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+        transition: opacity 0.3s ease, background-color 0.3s ease !important;
     }
     
-    /* Ensure chatbot is always visible */
+    .hamburger span {
+        -webkit-transition: all 0.3s ease !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Navigation menu - MUST work */
+    .nav-menu,
+    #navMenu {
+        pointer-events: auto !important;
+        -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
+        transition: transform 0.3s ease, opacity 0.3s ease !important;
+    }
+    
+    /* Chatbot - MUST be visible and work */
     .chat-button,
     #chatButton {
         opacity: 1 !important;
         visibility: visible !important;
         display: flex !important;
-    }
-}
-
-/* ========== PERFORMANCE OPTIMIZATIONS ========== */
-@media (max-width: 768px) {
-    /* Optimize rendering layers */
-    .hero,
-    .section,
-    .footer,
-    .header {
-        contain: layout style paint !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+        transition: opacity 0.3s ease, background-color 0.3s ease !important;
     }
     
-    /* Optimize image rendering */
-    img {
-        image-rendering: -webkit-optimize-contrast !important;
-        image-rendering: optimize-contrast !important;
-    }
-    
-    /* Disable expensive CSS properties */
-    * {
-        box-shadow: none !important;
-        text-shadow: none !important;
-        -webkit-filter: none !important;
-        filter: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-    
-    /* Keep only essential shadows */
-    .chat-button,
+    /* Back-to-top - MUST work */
     .back-to-top,
-    .hamburger {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    #backToTop {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease !important;
     }
-}
+    
+    /* All buttons and interactive elements - MUST work */
+    .btn,
+    button,
+    a,
+    input,
+    textarea,
+    select {
+        pointer-events: auto !important;
+        -webkit-transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+        transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+    }
+    
+    /* Form elements - MUST work */
+    .form-input,
+    .form-group,
+    .contact-form,
+    .modern-contact-form {
+        pointer-events: auto !important;
+    }
+    
+    /* ========== DISABLE PROBLEMATIC KEYFRAME ANIMATIONS ========== */
+    @-webkit-keyframes pulse,
+    @-webkit-keyframes bounce,
+    @-webkit-keyframes shake,
+    @-webkit-keyframes wobble,
+    @-webkit-keyframes swing,
+    @-webkit-keyframes tada,
+    @-webkit-keyframes heartbeat {
+        0%, 100% {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+    }
+    
+    @keyframes pulse,
+    @keyframes bounce,
+    @keyframes shake,
+    @keyframes wobble,
+    @keyframes swing,
+    @keyframes tada,
+    @keyframes heartbeat {
+        0%, 100% {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+    }
