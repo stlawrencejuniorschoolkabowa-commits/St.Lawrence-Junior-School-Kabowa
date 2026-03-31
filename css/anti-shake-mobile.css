@@ -1,23 +1,36 @@
 /* ========================================
-   ROBUST ANTI-SHAKE MOBILE CSS
+   SMART ANTI-SHAKE MOBILE CSS
    St. Lawrence Junior School - Kabowa
    
-   COMPREHENSIVE FIX that eliminates shaking while preserving functionality
+   Eliminates shaking while preserving navigation functionality
    ======================================== */
 
 @media (max-width: 768px) {
     
-    /* ========== DISABLE ALL PROBLEMATIC ANIMATIONS ========== */
-    * {
+    /* ========== DISABLE PROBLEMATIC ANIMATIONS ONLY ========== */
+    
+    /* Disable shaking hover effects */
+    .gallery-card:hover img,
+    .gallery-card:hover .category-tag,
+    .subject-card:hover .subject-image img,
+    .program-card:hover,
+    .why-card:hover .why-icon,
+    .photo-container:hover .director-image,
+    .value-card:hover .value-icon,
+    .history-card:hover .history-icon,
+    .history-image:hover img,
+    .video-thumbnail:hover img,
+    .play-button:hover,
+    .teacher-card:hover,
+    .calendar-date:hover,
+    .indicator:hover {
         -webkit-animation: none !important;
         animation: none !important;
-        -webkit-transition: none !important;
-        transition: none !important;
         -webkit-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
     }
     
-    /* ========== STABILIZE ALL VISUAL ELEMENTS ========== */
+    /* ========== STABILIZE VISUAL ELEMENTS ========== */
     img,
     picture,
     svg,
@@ -59,20 +72,39 @@
         transform: translate3d(0, 0, 0) !important;
         background-attachment: scroll !important;
     }
-    
-    /* ========== OVERRIDE ALL HOVER EFFECTS ========== */
-    *:hover {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-animation: none !important;
-        animation: none !important;
-    }
 }
 
-/* ========== ULTRA HIGH PRIORITY ESSENTIAL ELEMENTS ========== */
-/* These rules come AFTER the general rules to override them */
-
+/* ========== PRESERVE ESSENTIAL NAVIGATION FUNCTIONALITY ========== */
 @media (max-width: 768px) {
+    
+    /* Navigation dropdowns - MUST WORK */
+    .dropdown,
+    .dropdown-menu,
+    .mobile-submenu,
+    .nav-dropdown,
+    .submenu {
+        -webkit-transition: all 0.3s ease !important;
+        transition: all 0.3s ease !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Navigation links - MUST WORK */
+    .nav-link,
+    .nav-link-mobile,
+    .dropdown-toggle,
+    .nav-item a {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        -webkit-transition: color 0.2s ease, background-color 0.2s ease !important;
+        transition: color 0.2s ease, background-color 0.2s ease !important;
+    }
+    
+    /* Mobile expandable items - MUST WORK */
+    .mobile-expandable {
+        -webkit-transition: all 0.3s ease !important;
+        transition: all 0.3s ease !important;
+        pointer-events: auto !important;
+    }
     
     /* Chatbot - ULTRA HIGH PRIORITY - ALWAYS VISIBLE */
     .chat-button,
@@ -84,8 +116,8 @@
         cursor: pointer !important;
         position: fixed !important;
         z-index: 999999 !important;
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+        right: 16px !important;
+        bottom: 16px !important;
         -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
         transition: opacity 0.3s ease, background-color 0.2s ease !important;
         -webkit-transform: translate3d(0, 0, 0) !important;
@@ -100,8 +132,8 @@
         cursor: pointer !important;
         position: fixed !important;
         z-index: 999998 !important;
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
+        right: 16px !important;
+        bottom: 90px !important;
         -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
         transition: opacity 0.3s ease, visibility 0.3s ease !important;
         -webkit-transform: translate3d(0, 0, 0) !important;
@@ -115,8 +147,8 @@
         cursor: pointer !important;
         position: fixed !important;
         z-index: 999997 !important;
-        top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
-        right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+        top: 16px !important;
+        right: 16px !important;
         -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
         transition: opacity 0.3s ease, background-color 0.3s ease !important;
         -webkit-transform: translate3d(0, 0, 0) !important;

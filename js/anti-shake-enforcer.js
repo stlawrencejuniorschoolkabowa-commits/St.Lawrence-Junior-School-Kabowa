@@ -1,8 +1,8 @@
 /**
- * ULTRA AGGRESSIVE Anti-Shake Enforcer
+ * SMART Anti-Shake Enforcer
  * St. Lawrence Junior School - Kabowa
  * 
- * Forces essential elements to be visible with maximum priority
+ * Eliminates shaking while preserving navigation functionality
  */
 
 (function() {
@@ -11,18 +11,15 @@
     // Only run on mobile devices
     if (window.innerWidth > 768) return;
 
-    console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Initializing...');
+    console.log('SMART Anti-Shake Enforcer: Initializing...');
 
-    // ========== ULTRA FORCE ESSENTIAL ELEMENTS ========== 
-    function ultraForceEssentialElements() {
-        // Chatbot - ULTRA FORCE VISIBILITY
+    // ========== SMART FORCE ESSENTIAL ELEMENTS ========== 
+    function smartForceEssentialElements() {
+        // Chatbot - FORCE VISIBILITY
         const chatButtons = document.querySelectorAll('.chat-button, #chatButton');
         chatButtons.forEach(button => {
             if (button) {
-                // Remove any conflicting styles first
-                button.removeAttribute('style');
-                
-                // Force with maximum priority
+                // Only force essential properties, don't remove all styles
                 button.style.setProperty('opacity', '1', 'important');
                 button.style.setProperty('visibility', 'visible', 'important');
                 button.style.setProperty('display', 'flex', 'important');
@@ -31,52 +28,22 @@
                 button.style.setProperty('z-index', '999999', 'important');
                 button.style.setProperty('right', '16px', 'important');
                 button.style.setProperty('bottom', '16px', 'important');
-                button.style.setProperty('width', '60px', 'important');
-                button.style.setProperty('height', '60px', 'important');
-                button.style.setProperty('background', '#0066cc', 'important');
-                button.style.setProperty('border-radius', '50%', 'important');
-                button.style.setProperty('color', 'white', 'important');
-                button.style.setProperty('cursor', 'pointer', 'important');
-                button.style.setProperty('align-items', 'center', 'important');
-                button.style.setProperty('justify-content', 'center', 'important');
-                button.style.setProperty('font-size', '24px', 'important');
-                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
                 
-                // Ensure it's not hidden by any parent
-                let parent = button.parentElement;
-                while (parent && parent !== document.body) {
-                    parent.style.setProperty('overflow', 'visible', 'important');
-                    parent = parent.parentElement;
-                }
-                
-                console.log('Chatbot ULTRA FORCED visible');
+                console.log('Chatbot SMART FORCED visible');
             }
         });
 
-        // Back-to-top - ULTRA FORCE FUNCTIONALITY
+        // Back-to-top - FORCE FUNCTIONALITY
         const backToTopButtons = document.querySelectorAll('.back-to-top, #backToTop');
         backToTopButtons.forEach(button => {
             if (button) {
-                // Remove any conflicting styles first
-                button.removeAttribute('style');
-                
-                // Force with maximum priority
+                // Only force essential properties
                 button.style.setProperty('display', 'flex', 'important');
                 button.style.setProperty('pointer-events', 'auto', 'important');
                 button.style.setProperty('position', 'fixed', 'important');
                 button.style.setProperty('z-index', '999998', 'important');
                 button.style.setProperty('right', '16px', 'important');
                 button.style.setProperty('bottom', '90px', 'important');
-                button.style.setProperty('width', '50px', 'important');
-                button.style.setProperty('height', '50px', 'important');
-                button.style.setProperty('background', '#333', 'important');
-                button.style.setProperty('border-radius', '50%', 'important');
-                button.style.setProperty('color', 'white', 'important');
-                button.style.setProperty('cursor', 'pointer', 'important');
-                button.style.setProperty('align-items', 'center', 'important');
-                button.style.setProperty('justify-content', 'center', 'important');
-                button.style.setProperty('font-size', '20px', 'important');
-                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
                 
                 // Show/hide based on scroll
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -88,45 +55,34 @@
                     button.style.setProperty('visibility', 'hidden', 'important');
                 }
                 
-                // Ensure it's not hidden by any parent
-                let parent = button.parentElement;
-                while (parent && parent !== document.body) {
-                    parent.style.setProperty('overflow', 'visible', 'important');
-                    parent = parent.parentElement;
-                }
-                
-                console.log('Back-to-top ULTRA FORCED functional');
+                console.log('Back-to-top SMART FORCED functional');
             }
         });
 
-        // Hamburger - ULTRA FORCE FUNCTIONALITY
+        // Hamburger - PRESERVE FUNCTIONALITY
         const hamburgers = document.querySelectorAll('.hamburger, #hamburger');
         hamburgers.forEach(hamburger => {
             if (hamburger) {
                 hamburger.style.setProperty('pointer-events', 'auto', 'important');
                 hamburger.style.setProperty('cursor', 'pointer', 'important');
-                hamburger.style.setProperty('position', 'fixed', 'important');
-                hamburger.style.setProperty('z-index', '999997', 'important');
-                hamburger.style.setProperty('top', '16px', 'important');
-                hamburger.style.setProperty('right', '16px', 'important');
                 
-                console.log('Hamburger ULTRA FORCED functional');
+                console.log('Hamburger SMART PRESERVED functional');
             }
         });
     }
 
-    // ========== INJECT ULTRA AGGRESSIVE CSS ========== 
-    function injectUltraAggressiveCSS() {
-        // Remove any existing override styles
+    // ========== INJECT SMART CSS ========== 
+    function injectSmartCSS() {
+        // Remove any existing aggressive override styles
         const existingStyles = document.querySelectorAll('#ultra-aggressive-override, #aggressive-anti-shake, #floating-elements-override, #aggressive-floating-elements-override');
         existingStyles.forEach(style => style.remove());
         
         const style = document.createElement('style');
-        style.id = 'ultra-aggressive-override';
+        style.id = 'smart-override';
         style.textContent = `
-            /* ULTRA AGGRESSIVE OVERRIDE - MAXIMUM PRIORITY */
+            /* SMART OVERRIDE - PRESERVES NAVIGATION */
             @media (max-width: 768px) {
-                /* Chatbot - ULTRA HIGH PRIORITY */
+                /* Chatbot - HIGH PRIORITY */
                 .chat-button,
                 #chatButton {
                     opacity: 1 !important;
@@ -138,20 +94,9 @@
                     z-index: 999999 !important;
                     right: 16px !important;
                     bottom: 16px !important;
-                    width: 60px !important;
-                    height: 60px !important;
-                    background: #0066cc !important;
-                    border-radius: 50% !important;
-                    color: white !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    font-size: 24px !important;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-                    transform: translate3d(0, 0, 0) !important;
-                    -webkit-transform: translate3d(0, 0, 0) !important;
                 }
                 
-                /* Back-to-top - ULTRA HIGH PRIORITY */
+                /* Back-to-top - HIGH PRIORITY */
                 .back-to-top,
                 #backToTop {
                     display: flex !important;
@@ -161,55 +106,69 @@
                     z-index: 999998 !important;
                     right: 16px !important;
                     bottom: 90px !important;
-                    width: 50px !important;
-                    height: 50px !important;
-                    background: #333 !important;
-                    border-radius: 50% !important;
-                    color: white !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    font-size: 20px !important;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-                    transform: translate3d(0, 0, 0) !important;
-                    -webkit-transform: translate3d(0, 0, 0) !important;
                 }
                 
-                /* Hamburger - ULTRA HIGH PRIORITY */
+                /* Navigation elements - PRESERVE FUNCTIONALITY */
+                .dropdown,
+                .dropdown-menu,
+                .mobile-submenu,
+                .nav-dropdown,
+                .submenu,
+                .mobile-expandable {
+                    pointer-events: auto !important;
+                    transition: all 0.3s ease !important;
+                    -webkit-transition: all 0.3s ease !important;
+                }
+                
+                .nav-link,
+                .nav-link-mobile,
+                .dropdown-toggle,
+                .nav-item a {
+                    pointer-events: auto !important;
+                    cursor: pointer !important;
+                    transition: color 0.2s ease, background-color 0.2s ease !important;
+                    -webkit-transition: color 0.2s ease, background-color 0.2s ease !important;
+                }
+                
+                /* Hamburger - PRESERVE FUNCTIONALITY */
                 .hamburger,
                 #hamburger {
                     pointer-events: auto !important;
                     cursor: pointer !important;
-                    position: fixed !important;
-                    z-index: 999997 !important;
-                    top: 16px !important;
-                    right: 16px !important;
-                    transform: translate3d(0, 0, 0) !important;
-                    -webkit-transform: translate3d(0, 0, 0) !important;
+                    transition: opacity 0.3s ease, background-color 0.3s ease !important;
+                    -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
                 }
                 
-                /* Ensure parent containers don't hide elements */
-                body, html, .container, .wrapper, .main, .content {
-                    overflow: visible !important;
+                .hamburger span {
+                    transition: all 0.3s ease !important;
+                    -webkit-transition: all 0.3s ease !important;
+                }
+                
+                .nav-menu,
+                #navMenu {
+                    pointer-events: auto !important;
+                    transition: transform 0.3s ease, opacity 0.3s ease !important;
+                    -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
                 }
             }
         `;
         
-        // Insert at the very end of head to override everything
+        // Insert at the end of head
         document.head.appendChild(style);
     }
 
-    // ========== DISABLE AOS COMPLETELY ==========
+    // ========== DISABLE AOS ONLY ==========
     function disableAOS() {
         // Override AOS if it exists
         if (window.AOS) {
             window.AOS.init = function() {
-                console.log('AOS completely disabled');
+                console.log('AOS disabled for mobile stability');
             };
             window.AOS.refresh = function() {};
             window.AOS.refreshHard = function() {};
         }
 
-        // Remove all AOS attributes and classes
+        // Remove AOS attributes and classes
         document.querySelectorAll('[data-aos]').forEach(element => {
             element.removeAttribute('data-aos');
             element.removeAttribute('data-aos-delay');
@@ -238,12 +197,12 @@
         });
     }
 
-    // ========== ULTRA AGGRESSIVE MONITORING ==========
-    function startUltraAggressiveMonitoring() {
-        // Force elements every 100ms for maximum responsiveness
+    // ========== SMART MONITORING ==========
+    function startSmartMonitoring() {
+        // Check elements every 2 seconds (less aggressive)
         setInterval(() => {
-            ultraForceEssentialElements();
-        }, 100);
+            smartForceEssentialElements();
+        }, 2000);
         
         // Handle scroll for back-to-top
         let ticking = false;
@@ -260,30 +219,30 @@
 
     // ========== INITIALIZATION ==========
     function init() {
-        console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Starting maximum force approach...');
+        console.log('SMART Anti-Shake Enforcer: Starting balanced approach...');
         
-        // Apply all fixes immediately
-        injectUltraAggressiveCSS();
+        // Apply smart fixes
+        injectSmartCSS();
         disableAOS();
         
         // Force essential elements after DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
-                    ultraForceEssentialElements();
+                    smartForceEssentialElements();
                     handleScroll();
-                    startUltraAggressiveMonitoring();
-                }, 50);
+                    startSmartMonitoring();
+                }, 100);
             });
         } else {
             setTimeout(() => {
-                ultraForceEssentialElements();
+                smartForceEssentialElements();
                 handleScroll();
-                startUltraAggressiveMonitoring();
-            }, 50);
+                startSmartMonitoring();
+            }, 100);
         }
 
-        console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Maximum force activated');
+        console.log('SMART Anti-Shake Enforcer: Balanced approach activated');
     }
 
     // ========== AUTO-INITIALIZE ==========
@@ -292,8 +251,8 @@
     // Export for manual control
     window.AntiShakeEnforcer = {
         init: init,
-        ultraForceEssentialElements: ultraForceEssentialElements,
-        injectUltraAggressiveCSS: injectUltraAggressiveCSS,
+        smartForceEssentialElements: smartForceEssentialElements,
+        injectSmartCSS: injectSmartCSS,
         disableAOS: disableAOS,
         handleScroll: handleScroll
     };
