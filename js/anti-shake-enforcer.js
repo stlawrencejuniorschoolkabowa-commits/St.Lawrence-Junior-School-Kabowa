@@ -1,8 +1,8 @@
 /**
- * Aggressive Anti-Shake Enforcer
+ * ULTRA AGGRESSIVE Anti-Shake Enforcer
  * St. Lawrence Junior School - Kabowa
  * 
- * Completely prevents shaking animations while forcing essential elements to work
+ * Forces essential elements to be visible with maximum priority
  */
 
 (function() {
@@ -11,36 +11,72 @@
     // Only run on mobile devices
     if (window.innerWidth > 768) return;
 
-    console.log('Aggressive Anti-Shake Enforcer: Initializing...');
+    console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Initializing...');
 
-    // ========== FORCE ESSENTIAL ELEMENTS TO BE VISIBLE ========== 
-    function forceEssentialElementsVisible() {
-        // Chatbot - FORCE VISIBILITY
+    // ========== ULTRA FORCE ESSENTIAL ELEMENTS ========== 
+    function ultraForceEssentialElements() {
+        // Chatbot - ULTRA FORCE VISIBILITY
         const chatButtons = document.querySelectorAll('.chat-button, #chatButton');
         chatButtons.forEach(button => {
             if (button) {
+                // Remove any conflicting styles first
+                button.removeAttribute('style');
+                
+                // Force with maximum priority
                 button.style.setProperty('opacity', '1', 'important');
                 button.style.setProperty('visibility', 'visible', 'important');
                 button.style.setProperty('display', 'flex', 'important');
                 button.style.setProperty('pointer-events', 'auto', 'important');
                 button.style.setProperty('position', 'fixed', 'important');
-                button.style.setProperty('z-index', '100010', 'important');
-                button.style.setProperty('right', 'max(16px, env(safe-area-inset-right, 0px))', 'important');
-                button.style.setProperty('bottom', 'max(16px, env(safe-area-inset-bottom, 0px))', 'important');
-                console.log('Chatbot forced visible');
+                button.style.setProperty('z-index', '999999', 'important');
+                button.style.setProperty('right', '16px', 'important');
+                button.style.setProperty('bottom', '16px', 'important');
+                button.style.setProperty('width', '60px', 'important');
+                button.style.setProperty('height', '60px', 'important');
+                button.style.setProperty('background', '#0066cc', 'important');
+                button.style.setProperty('border-radius', '50%', 'important');
+                button.style.setProperty('color', 'white', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('align-items', 'center', 'important');
+                button.style.setProperty('justify-content', 'center', 'important');
+                button.style.setProperty('font-size', '24px', 'important');
+                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
+                
+                // Ensure it's not hidden by any parent
+                let parent = button.parentElement;
+                while (parent && parent !== document.body) {
+                    parent.style.setProperty('overflow', 'visible', 'important');
+                    parent = parent.parentElement;
+                }
+                
+                console.log('Chatbot ULTRA FORCED visible');
             }
         });
 
-        // Back-to-top - FORCE FUNCTIONALITY
+        // Back-to-top - ULTRA FORCE FUNCTIONALITY
         const backToTopButtons = document.querySelectorAll('.back-to-top, #backToTop');
         backToTopButtons.forEach(button => {
             if (button) {
+                // Remove any conflicting styles first
+                button.removeAttribute('style');
+                
+                // Force with maximum priority
                 button.style.setProperty('display', 'flex', 'important');
                 button.style.setProperty('pointer-events', 'auto', 'important');
                 button.style.setProperty('position', 'fixed', 'important');
-                button.style.setProperty('z-index', '100005', 'important');
-                button.style.setProperty('right', 'max(16px, env(safe-area-inset-right, 0px))', 'important');
-                button.style.setProperty('bottom', 'max(80px, env(safe-area-inset-bottom, 0px) + 70px)', 'important');
+                button.style.setProperty('z-index', '999998', 'important');
+                button.style.setProperty('right', '16px', 'important');
+                button.style.setProperty('bottom', '90px', 'important');
+                button.style.setProperty('width', '50px', 'important');
+                button.style.setProperty('height', '50px', 'important');
+                button.style.setProperty('background', '#333', 'important');
+                button.style.setProperty('border-radius', '50%', 'important');
+                button.style.setProperty('color', 'white', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('align-items', 'center', 'important');
+                button.style.setProperty('justify-content', 'center', 'important');
+                button.style.setProperty('font-size', '20px', 'important');
+                button.style.setProperty('box-shadow', '0 4px 12px rgba(0,0,0,0.3)', 'important');
                 
                 // Show/hide based on scroll
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -51,94 +87,114 @@
                     button.style.setProperty('opacity', '0', 'important');
                     button.style.setProperty('visibility', 'hidden', 'important');
                 }
-                console.log('Back-to-top forced functional');
+                
+                // Ensure it's not hidden by any parent
+                let parent = button.parentElement;
+                while (parent && parent !== document.body) {
+                    parent.style.setProperty('overflow', 'visible', 'important');
+                    parent = parent.parentElement;
+                }
+                
+                console.log('Back-to-top ULTRA FORCED functional');
             }
         });
 
-        // Hamburger - FORCE FUNCTIONALITY
+        // Hamburger - ULTRA FORCE FUNCTIONALITY
         const hamburgers = document.querySelectorAll('.hamburger, #hamburger');
         hamburgers.forEach(hamburger => {
             if (hamburger) {
                 hamburger.style.setProperty('pointer-events', 'auto', 'important');
                 hamburger.style.setProperty('cursor', 'pointer', 'important');
                 hamburger.style.setProperty('position', 'fixed', 'important');
-                hamburger.style.setProperty('z-index', '100030', 'important');
-                console.log('Hamburger forced functional');
+                hamburger.style.setProperty('z-index', '999997', 'important');
+                hamburger.style.setProperty('top', '16px', 'important');
+                hamburger.style.setProperty('right', '16px', 'important');
+                
+                console.log('Hamburger ULTRA FORCED functional');
             }
         });
     }
 
-    // ========== DISABLE ALL ANIMATIONS AGGRESSIVELY ==========
-    function disableAllAnimations() {
-        // Create ultra-aggressive anti-animation stylesheet
+    // ========== INJECT ULTRA AGGRESSIVE CSS ========== 
+    function injectUltraAggressiveCSS() {
+        // Remove any existing override styles
+        const existingStyles = document.querySelectorAll('#ultra-aggressive-override, #aggressive-anti-shake, #floating-elements-override, #aggressive-floating-elements-override');
+        existingStyles.forEach(style => style.remove());
+        
         const style = document.createElement('style');
-        style.id = 'aggressive-anti-shake';
+        style.id = 'ultra-aggressive-override';
         style.textContent = `
+            /* ULTRA AGGRESSIVE OVERRIDE - MAXIMUM PRIORITY */
             @media (max-width: 768px) {
-                /* NUCLEAR OPTION - DISABLE EVERYTHING */
-                *, *::before, *::after {
-                    animation: none !important;
-                    -webkit-animation: none !important;
-                    transition: none !important;
-                    -webkit-transition: none !important;
-                    transform: translate3d(0, 0, 0) !important;
-                    -webkit-transform: translate3d(0, 0, 0) !important;
-                }
-                
-                /* FORCE ESSENTIAL ELEMENTS */
-                .chat-button, #chatButton {
+                /* Chatbot - ULTRA HIGH PRIORITY */
+                .chat-button,
+                #chatButton {
                     opacity: 1 !important;
                     visibility: visible !important;
                     display: flex !important;
                     pointer-events: auto !important;
+                    cursor: pointer !important;
                     position: fixed !important;
-                    z-index: 100010 !important;
-                    right: max(16px, env(safe-area-inset-right, 0px)) !important;
-                    bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
-                    transition: opacity 0.3s ease, background-color 0.2s ease !important;
-                    -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
+                    z-index: 999999 !important;
+                    right: 16px !important;
+                    bottom: 16px !important;
+                    width: 60px !important;
+                    height: 60px !important;
+                    background: #0066cc !important;
+                    border-radius: 50% !important;
+                    color: white !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 24px !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
                 }
                 
-                .back-to-top, #backToTop {
+                /* Back-to-top - ULTRA HIGH PRIORITY */
+                .back-to-top,
+                #backToTop {
                     display: flex !important;
                     pointer-events: auto !important;
+                    cursor: pointer !important;
                     position: fixed !important;
-                    z-index: 100005 !important;
-                    right: max(16px, env(safe-area-inset-right, 0px)) !important;
-                    bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
-                    transition: opacity 0.3s ease, visibility 0.3s ease !important;
-                    -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+                    z-index: 999998 !important;
+                    right: 16px !important;
+                    bottom: 90px !important;
+                    width: 50px !important;
+                    height: 50px !important;
+                    background: #333 !important;
+                    border-radius: 50% !important;
+                    color: white !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 20px !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
                 }
                 
-                .hamburger, #hamburger {
+                /* Hamburger - ULTRA HIGH PRIORITY */
+                .hamburger,
+                #hamburger {
                     pointer-events: auto !important;
                     cursor: pointer !important;
                     position: fixed !important;
-                    z-index: 100030 !important;
-                    transition: opacity 0.3s ease, background-color 0.3s ease !important;
-                    -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+                    z-index: 999997 !important;
+                    top: 16px !important;
+                    right: 16px !important;
+                    transform: translate3d(0, 0, 0) !important;
+                    -webkit-transform: translate3d(0, 0, 0) !important;
                 }
                 
-                .hamburger span {
-                    transition: all 0.3s ease !important;
-                    -webkit-transition: all 0.3s ease !important;
-                }
-                
-                .nav-menu, #navMenu {
-                    pointer-events: auto !important;
-                    transition: transform 0.3s ease, opacity 0.3s ease !important;
-                    -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
-                }
-                
-                .btn, button, a, input, textarea, select {
-                    pointer-events: auto !important;
-                    cursor: pointer !important;
-                    transition: opacity 0.2s ease, background-color 0.2s ease !important;
-                    -webkit-transition: opacity 0.2s ease, background-color 0.2s ease !important;
+                /* Ensure parent containers don't hide elements */
+                body, html, .container, .wrapper, .main, .content {
+                    overflow: visible !important;
                 }
             }
         `;
         
+        // Insert at the very end of head to override everything
         document.head.appendChild(style);
     }
 
@@ -182,12 +238,12 @@
         });
     }
 
-    // ========== CONTINUOUS MONITORING ==========
-    function startAggressiveMonitoring() {
-        // Force essential elements every 500ms
+    // ========== ULTRA AGGRESSIVE MONITORING ==========
+    function startUltraAggressiveMonitoring() {
+        // Force elements every 100ms for maximum responsiveness
         setInterval(() => {
-            forceEssentialElementsVisible();
-        }, 500);
+            ultraForceEssentialElements();
+        }, 100);
         
         // Handle scroll for back-to-top
         let ticking = false;
@@ -204,30 +260,30 @@
 
     // ========== INITIALIZATION ==========
     function init() {
-        console.log('Aggressive Anti-Shake Enforcer: Starting nuclear approach...');
+        console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Starting maximum force approach...');
         
         // Apply all fixes immediately
-        disableAllAnimations();
+        injectUltraAggressiveCSS();
         disableAOS();
         
         // Force essential elements after DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
-                    forceEssentialElementsVisible();
+                    ultraForceEssentialElements();
                     handleScroll();
-                    startAggressiveMonitoring();
-                }, 100);
+                    startUltraAggressiveMonitoring();
+                }, 50);
             });
         } else {
             setTimeout(() => {
-                forceEssentialElementsVisible();
+                ultraForceEssentialElements();
                 handleScroll();
-                startAggressiveMonitoring();
-            }, 100);
+                startUltraAggressiveMonitoring();
+            }, 50);
         }
 
-        console.log('Aggressive Anti-Shake Enforcer: Nuclear approach activated');
+        console.log('ULTRA AGGRESSIVE Anti-Shake Enforcer: Maximum force activated');
     }
 
     // ========== AUTO-INITIALIZE ==========
@@ -236,8 +292,8 @@
     // Export for manual control
     window.AntiShakeEnforcer = {
         init: init,
-        forceEssentialElementsVisible: forceEssentialElementsVisible,
-        disableAllAnimations: disableAllAnimations,
+        ultraForceEssentialElements: ultraForceEssentialElements,
+        injectUltraAggressiveCSS: injectUltraAggressiveCSS,
         disableAOS: disableAOS,
         handleScroll: handleScroll
     };

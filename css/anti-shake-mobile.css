@@ -17,85 +17,6 @@
         transform: translate3d(0, 0, 0) !important;
     }
     
-    /* ========== FORCE ESSENTIAL ELEMENTS TO WORK ========== */
-    
-    /* Chatbot - ALWAYS VISIBLE */
-    .chat-button,
-    #chatButton {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: flex !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        position: fixed !important;
-        z-index: 100010 !important;
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
-        -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
-        transition: opacity 0.3s ease, background-color 0.2s ease !important;
-    }
-    
-    /* Back-to-top - ALWAYS FUNCTIONAL */
-    .back-to-top,
-    #backToTop {
-        display: flex !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        position: fixed !important;
-        z-index: 100005 !important;
-        right: max(16px, env(safe-area-inset-right, 0px)) !important;
-        bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
-        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease !important;
-    }
-    
-    /* Hamburger menu - ALWAYS FUNCTIONAL */
-    .hamburger,
-    #hamburger {
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        position: fixed !important;
-        z-index: 100030 !important;
-        top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
-        right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
-        -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
-        transition: opacity 0.3s ease, background-color 0.3s ease !important;
-    }
-    
-    .hamburger span {
-        -webkit-transition: all 0.3s ease !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    /* Navigation menu - ALWAYS FUNCTIONAL */
-    .nav-menu,
-    #navMenu {
-        pointer-events: auto !important;
-        -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
-        transition: transform 0.3s ease, opacity 0.3s ease !important;
-    }
-    
-    /* All buttons and interactive elements - ALWAYS FUNCTIONAL */
-    .btn,
-    button,
-    a,
-    input,
-    textarea,
-    select {
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        -webkit-transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
-        transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
-    }
-    
-    /* Form elements - ALWAYS FUNCTIONAL */
-    .form-input,
-    .form-group,
-    .contact-form,
-    .modern-contact-form {
-        pointer-events: auto !important;
-    }
-    
     /* ========== STABILIZE ALL VISUAL ELEMENTS ========== */
     img,
     picture,
@@ -146,19 +67,93 @@
         -webkit-animation: none !important;
         animation: none !important;
     }
+}
+
+/* ========== ULTRA HIGH PRIORITY ESSENTIAL ELEMENTS ========== */
+/* These rules come AFTER the general rules to override them */
+
+@media (max-width: 768px) {
     
-    /* ========== DISABLE ALL KEYFRAME ANIMATIONS ========== */
-    @-webkit-keyframes * {
-        0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
+    /* Chatbot - ULTRA HIGH PRIORITY - ALWAYS VISIBLE */
+    .chat-button,
+    #chatButton {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        position: fixed !important;
+        z-index: 999999 !important;
+        right: max(16px, env(safe-area-inset-right, 0px)) !important;
+        bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+        -webkit-transition: opacity 0.3s ease, background-color 0.2s ease !important;
+        transition: opacity 0.3s ease, background-color 0.2s ease !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
     }
     
-    @keyframes * {
-        0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
+    /* Back-to-top - ULTRA HIGH PRIORITY - FUNCTIONAL */
+    .back-to-top,
+    #backToTop {
+        display: flex !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        position: fixed !important;
+        z-index: 999998 !important;
+        right: max(16px, env(safe-area-inset-right, 0px)) !important;
+        bottom: max(80px, env(safe-area-inset-bottom, 0px) + 70px) !important;
+        -webkit-transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* Hamburger menu - ULTRA HIGH PRIORITY - FUNCTIONAL */
+    .hamburger,
+    #hamburger {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        position: fixed !important;
+        z-index: 999997 !important;
+        top: max(16px, env(safe-area-inset-top, 0px) + 10px) !important;
+        right: max(16px, env(safe-area-inset-right, 0px) + 10px) !important;
+        -webkit-transition: opacity 0.3s ease, background-color 0.3s ease !important;
+        transition: opacity 0.3s ease, background-color 0.3s ease !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .hamburger span {
+        -webkit-transition: all 0.3s ease !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Navigation menu - ULTRA HIGH PRIORITY - FUNCTIONAL */
+    .nav-menu,
+    #navMenu {
+        pointer-events: auto !important;
+        -webkit-transition: transform 0.3s ease, opacity 0.3s ease !important;
+        transition: transform 0.3s ease, opacity 0.3s ease !important;
+    }
+    
+    /* All buttons and interactive elements - FUNCTIONAL */
+    .btn,
+    button,
+    a,
+    input,
+    textarea,
+    select {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        -webkit-transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+        transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+    }
+    
+    /* Form elements - FUNCTIONAL */
+    .form-input,
+    .form-group,
+    .contact-form,
+    .modern-contact-form {
+        pointer-events: auto !important;
     }
 }
