@@ -1,0 +1,387 @@
+/* ========================================
+   ANTI-SHAKE MOBILE CSS
+   St. Lawrence Junior School - Kabowa
+   
+   AGGRESSIVE FIX for all shaking/jittery animations
+   This CSS completely eliminates shaking on mobile devices
+   ======================================== */
+
+/* ========== GLOBAL ANTI-SHAKE RULES ========== */
+@media (max-width: 768px) {
+    
+    /* ========== FORCE STABLE RENDERING ========== */
+    * {
+        /* Force hardware acceleration for ALL elements */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        -webkit-perspective: 1000px !important;
+        perspective: 1000px !important;
+        
+        /* Disable ALL animations and transitions */
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+        
+        /* Force stable positioning */
+        will-change: auto !important;
+    }
+    
+    /* ========== COMPLETELY DISABLE HOVER EFFECTS ========== */
+    *:hover,
+    *:focus,
+    *:active {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+    
+    /* ========== DISABLE ALL SCALE TRANSFORMS ========== */
+    * {
+        -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
+        transform: translate3d(0, 0, 0) scale(1) !important;
+    }
+    
+    /* ========== SPECIFIC ELEMENT FIXES ========== */
+    
+    /* Images - Complete stability */
+    img,
+    picture,
+    svg {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+        -webkit-filter: none !important;
+        filter: none !important;
+        will-change: auto !important;
+        position: relative !important;
+    }
+    
+    /* Icons - Force stability */
+    i,
+    .icon,
+    .fa,
+    .fas,
+    .far,
+    .fab,
+    .fal {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    
+    /* Buttons and Interactive Elements */
+    button,
+    .btn,
+    .button,
+    a,
+    input,
+    textarea,
+    select {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: opacity 0.1s ease !important;
+        transition: opacity 0.1s ease !important;
+    }
+    
+    /* Cards and Containers */
+    .card,
+    .program-card,
+    .subject-card,
+    .gallery-card,
+    .stat-card,
+    .feature-card,
+    .testimonial-card,
+    .history-card,
+    .value-card,
+    .info-card,
+    .process-step-card {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+    
+    /* ========== FLOATING ELEMENTS - ULTRA STABLE ========== */
+    .chat-button,
+    .back-to-top,
+    .hamburger {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: opacity 0.1s ease !important;
+        transition: opacity 0.1s ease !important;
+        position: fixed !important;
+        will-change: opacity !important;
+    }
+    
+    /* ========== NAVIGATION ELEMENTS ========== */
+    .nav-menu,
+    .navbar,
+    .header,
+    .logo {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+    
+    /* ========== DISABLE AOS ANIMATIONS COMPLETELY ========== */
+    [data-aos],
+    .aos-animate,
+    .aos-init {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* ========== DISABLE KEYFRAME ANIMATIONS ========== */
+    @-webkit-keyframes * {
+        0%, 100% {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+    }
+    
+    @keyframes * {
+        0%, 100% {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+    }
+    
+    /* ========== SPECIFIC PROBLEMATIC SELECTORS ========== */
+    
+    /* Gallery items */
+    .gallery-item,
+    .gallery-masonry-item,
+    .gallery-preview-item {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* Hero elements */
+    .hero,
+    .hero-content,
+    .hero-image,
+    .hero-title,
+    .hero-description {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* Form elements */
+    .form-input,
+    .form-group,
+    .contact-form,
+    .modern-contact-form {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    /* Video elements */
+    video,
+    .video-container,
+    .video-thumbnail {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+    
+    /* ========== OVERRIDE ALL HOVER TRANSFORMS ========== */
+    .gallery-card:hover img,
+    .gallery-card:hover .category-tag,
+    .subject-card:hover .subject-image img,
+    .program-card:hover,
+    .why-card:hover .why-icon,
+    .photo-container:hover .director-image,
+    .value-card:hover .value-icon,
+    .history-card:hover .history-icon,
+    .history-image:hover img,
+    .video-thumbnail:hover img,
+    .play-button:hover,
+    .teacher-card:hover,
+    .nav-btn:hover,
+    .calendar-date:hover,
+    .indicator:hover {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+    
+    /* ========== DISABLE PSEUDO-ELEMENT ANIMATIONS ========== */
+    *::before,
+    *::after {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+    
+    /* ========== FORCE STABLE SCROLLING ========== */
+    html,
+    body {
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* ========== DISABLE PARALLAX AND COMPLEX EFFECTS ========== */
+    .parallax,
+    .parallax-element,
+    .background-parallax {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        background-attachment: scroll !important;
+    }
+    
+    /* ========== MODAL AND OVERLAY STABILITY ========== */
+    .modal,
+    .overlay,
+    .popup,
+    .lightbox {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+    
+    /* ========== COUNTER ANIMATIONS ========== */
+    .counter,
+    .stat-number,
+    .count-up {
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+    
+    /* ========== LOADING ANIMATIONS ========== */
+    .loader,
+    .spinner,
+    .loading {
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+    
+    /* ========== CHATBOT SPECIFIC ========== */
+    .chat-widget,
+    .chat-messages,
+    .chat-input {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+}
+
+/* ========== WEBKIT SPECIFIC ANTI-SHAKE ========== */
+@media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+        /* iOS Safari specific */
+        * {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            -webkit-backface-visibility: hidden !important;
+            -webkit-perspective: 1000px !important;
+            -webkit-animation: none !important;
+            -webkit-transition: none !important;
+        }
+    }
+}
+
+/* ========== ANDROID CHROME SPECIFIC ========== */
+@media (max-width: 768px) {
+    @supports (display: -webkit-box) {
+        * {
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+        }
+    }
+}
+
+/* ========== EMERGENCY OVERRIDE FOR PERSISTENT SHAKING ========== */
+@media (max-width: 768px) {
+    /* Nuclear option - disable ALL CSS transforms and animations */
+    * {
+        -webkit-transform: none !important;
+        transform: none !important;
+        -webkit-animation-name: none !important;
+        animation-name: none !important;
+        -webkit-animation-duration: 0s !important;
+        animation-duration: 0s !important;
+        -webkit-transition-duration: 0s !important;
+        transition-duration: 0s !important;
+    }
+    
+    /* Only allow opacity transitions for essential UI feedback */
+    .chat-button,
+    .back-to-top,
+    .hamburger,
+    .btn,
+    button {
+        -webkit-transition: opacity 0.1s linear !important;
+        transition: opacity 0.1s linear !important;
+    }
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+@media (max-width: 768px) {
+    /* Optimize rendering layers */
+    .hero,
+    .section,
+    .footer,
+    .header {
+        contain: layout style paint !important;
+    }
+    
+    /* Optimize image rendering */
+    img {
+        image-rendering: -webkit-optimize-contrast !important;
+        image-rendering: optimize-contrast !important;
+    }
+    
+    /* Disable expensive CSS properties */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        -webkit-filter: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Keep only essential shadows */
+    .chat-button,
+    .back-to-top,
+    .hamburger {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    }
+}
