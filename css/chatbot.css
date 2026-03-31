@@ -22,6 +22,41 @@
     animation: pulse 2s infinite;
 }
 
+/* Safe-area aware placement + predictable mobile sizing */
+:root {
+    --fab-offset: 16px;
+    --chat-fab-size: 56px;
+    /* Move fixed FABs above mobile browser UI */
+    --vvh-fix: max(0px, calc(100vh - 100dvh));
+}
+
+@media (max-width: 768px) {
+    .chat-button {
+        width: var(--chat-fab-size);
+        height: var(--chat-fab-size);
+        right: calc(var(--fab-offset) + env(safe-area-inset-right, 0px));
+        bottom: calc(var(--fab-offset) + env(safe-area-inset-bottom, 0px) + var(--vvh-fix));
+    }
+
+    .chat-widget {
+        right: calc(var(--fab-offset) + env(safe-area-inset-right, 0px));
+        left: calc(var(--fab-offset) + env(safe-area-inset-left, 0px));
+        width: auto;
+        max-width: 640px;
+        bottom: calc(var(--fab-offset) + env(safe-area-inset-bottom, 0px) + var(--vvh-fix) + var(--chat-fab-size) + 12px);
+        height: min(70dvh, 640px);
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-widget {
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        border-radius: 0;
+    }
+}
+
 .chat-button:hover {
     transform: scale(1.1);
     box-shadow: 0 12px 35px rgba(0, 102, 204, 0.5);
@@ -1357,5 +1392,28 @@
     
     .voice-transcript {
         max-width: 100%;
+    }
+}
+
+/* Final mobile placement override: keep chatbot inside viewport edges */
+@media (max-width: 768px) {
+    .chat-button {
+        position: fixed !important;
+        right: max(12px, env(safe-area-inset-right, 0px)) !important;
+        bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
+        z-index: 100010 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        display: flex !important;
+    }
+
+    .chat-widget {
+        right: max(12px, env(safe-area-inset-right, 0px)) !important;
+        left: max(12px, env(safe-area-inset-left, 0px)) !important;
+        bottom: calc(max(12px, env(safe-area-inset-bottom, 0px)) + 64px + 10px) !important;
+        width: auto !important;
+        max-width: 640px !important;
+        height: min(68dvh, 620px) !important;
     }
 }

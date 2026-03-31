@@ -4,7 +4,7 @@
 ### Complete School Management System with AI Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://cultoonmovic4-stack.github.io/st-lawrence-school/)
-[![Version](https://img.shields.io/badge/Version-1.4.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
+[![Version](https://img.shields.io/badge/Version-1.5.0-blue)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
 **[🌐 Live Website](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)** | **[📧 Contact Us](mailto:stlawrencejuniorschoolkabowa@gmail.com)** | **[📞 Call Us](tel:+256701420506)**
@@ -637,6 +637,52 @@ Response:
 
 <div align="center">
 
+### 📅 March 31, 2026 - Version 1.5.0
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🎯 Dashboard Optimization
+- ✅ **Streamlined Navigation** - Removed unused sidebar elements
+- ✅ **Clean Top Bar** - Removed search, theme toggle, notifications
+- ✅ **Enhanced Admissions Modal** - Compact, well-organized layout
+- ✅ **Improved Settings Modal** - Simplified, space-efficient design
+- ✅ **Better Organization** - Focused on essential functionality
+- ✅ **Mobile-Optimized** - Responsive compact modals
+
+**Removed Elements:**
+- Students, Staff Management, Finance, Communications (sidebar)
+- Search bar, theme toggle, notifications, messages (top bar)
+
+</td>
+<td width="50%">
+
+#### 🎨 Modal Improvements
+- ✅ **Compact Admissions Modal** - Enhanced search & filtering
+- ✅ **Mini Statistics Dashboard** - Application counts & status
+- ✅ **Streamlined Settings** - Essential customization options
+- ✅ **Better Visual Hierarchy** - Clean row-based layout
+- ✅ **Real-time Updates** - Instant color & theme changes
+- ✅ **Quick Presets** - One-click theme switching
+
+**Modal Features:**
+- Color pickers with text inputs
+- Theme mode toggle (Dark/Light)
+- Font size selection
+- Quick color presets
+- Reset to defaults option
+
+</td>
+</tr>
+</table>
+
+---
+
+<div align="center">
+
 ### 📅 January 30, 2026 - Version 1.4.0
 
 </div>
@@ -935,7 +981,7 @@ This project is **proprietary software** developed for St. Lawrence Junior Schoo
 
 ### 🌟 Made with ❤️ for St. Lawrence Junior School - Kabowa
 
-**Last Updated:** January 30, 2026 | **Version:** 1.4.0 | **Status:** ✅ Production Ready
+**Last Updated:** March 31, 2026 | **Version:** 1.5.0 | **Status:** ✅ Production Ready
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/cultoonmovic4-stack/st-lawrence-school)
 [![Website](https://img.shields.io/badge/Website-Live-success?style=for-the-badge&logo=google-chrome)](https://cultoonmovic4-stack.github.io/st-lawrence-school/frontend/index-redesign.html)

@@ -3,8 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
     display: flex;
     flex-direction: column;
@@ -12,6 +12,12 @@
     justify-content: center;
     z-index: 99999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 .page-loader.hidden {
@@ -29,6 +35,7 @@
     border: 4px solid rgba(255, 255, 255, 0.3);
     animation: pulse 2s ease-in-out infinite;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .loader-logo img {
@@ -56,6 +63,10 @@
     margin-bottom: 10px;
     text-align: center;
     animation: fadeInOut 2s ease-in-out infinite;
+    line-height: 1.2;
+    max-width: 90%;
+    word-wrap: break-word;
+    flex-shrink: 0;
 }
 
 .loader-subtitle {
@@ -63,6 +74,10 @@
     font-size: 14px;
     margin-bottom: 30px;
     text-align: center;
+    line-height: 1.3;
+    max-width: 90%;
+    word-wrap: break-word;
+    flex-shrink: 0;
 }
 
 @keyframes fadeInOut {
@@ -78,6 +93,8 @@
     border-top: 4px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 @keyframes spin {
@@ -89,6 +106,8 @@
     display: flex;
     gap: 8px;
     margin-top: 20px;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .loader-dot {
@@ -97,6 +116,7 @@
     background: white;
     border-radius: 50%;
     animation: bounce 1.4s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 .loader-dot:nth-child(1) {
@@ -131,6 +151,8 @@
     border-top-color: white;
     border-bottom-color: white;
     animation: dualRing 1.2s linear infinite;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 @keyframes dualRing {
@@ -143,6 +165,8 @@
     position: relative;
     width: 60px;
     height: 60px;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 .pulse-circle {
@@ -179,6 +203,9 @@
     gap: 8px;
     align-items: flex-end;
     height: 50px;
+    flex-shrink: 0;
+    margin: 10px 0;
+    justify-content: center;
 }
 
 .loader-bar {
@@ -206,6 +233,8 @@
     border: 4px solid white;
     border-radius: 8px;
     animation: squareSpin 2s ease-in-out infinite;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 @keyframes squareSpin {
@@ -220,6 +249,8 @@
     position: relative;
     width: 60px;
     height: 60px;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 .orbit-dot {
@@ -257,6 +288,9 @@
     display: flex;
     gap: 6px;
     align-items: center;
+    flex-shrink: 0;
+    margin: 10px 0;
+    justify-content: center;
 }
 
 .wave-dot {
@@ -285,6 +319,8 @@
     background: white;
     border-radius: 8px;
     animation: flip 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 @keyframes flip {
@@ -297,6 +333,8 @@
     width: 50px;
     height: 50px;
     position: relative;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 .hexagon-part {
@@ -331,6 +369,8 @@
         white 360deg
     );
     animation: gradientRing 1.5s linear infinite;
+    flex-shrink: 0;
+    margin: 10px 0;
 }
 
 @keyframes gradientRing {
@@ -354,48 +394,79 @@
 
 /* Extra Small Devices (320px - 480px) */
 @media (max-width: 480px) {
+    .page-loader {
+        padding: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
     .loader-logo {
         width: 80px;
         height: 80px;
         margin-bottom: 20px;
         border: 3px solid rgba(255, 255, 255, 0.3);
+        flex-shrink: 0;
     }
     
     .loader-text {
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 8px;
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90vw;
+        padding: 0 10px;
     }
     
     .loader-subtitle {
-        font-size: 12px;
+        font-size: 11px;
         margin-bottom: 25px;
+        line-height: 1.3;
+        text-align: center;
+        max-width: 90vw;
+        word-wrap: break-word;
+        padding: 0 10px;
     }
     
     .loader-spinner {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         border-width: 3px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .loader-dots {
-        gap: 6px;
+        gap: 5px;
         margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     
     .loader-dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
     }
     
     .loader-dual-ring {
-        width: 45px;
-        height: 45px;
-        border-width: 5px;
+        width: 40px;
+        height: 40px;
+        border-width: 4px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .loader-pulse-circles {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .pulse-circle {
@@ -403,58 +474,78 @@
     }
     
     .loader-bars {
-        height: 40px;
-        gap: 6px;
+        height: 35px;
+        gap: 4px;
+        margin: 10px 0;
+        justify-content: center;
+        flex-shrink: 0;
     }
     
     .loader-bar {
-        width: 6px;
+        width: 5px;
+        border-radius: 3px;
+    }
+    
+    @keyframes barBounce {
+        0%, 100% { height: 10px; }
+        50% { height: 35px; }
     }
     
     .loader-square {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         border-width: 3px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .loader-orbit {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .orbit-dot {
-        width: 10px;
-        height: 10px;
-        margin: -5px 0 0 -5px;
+        width: 8px;
+        height: 8px;
+        margin: -4px 0 0 -4px;
     }
     
     @keyframes orbit {
-        0% { transform: rotate(0deg) translateX(18px); }
-        100% { transform: rotate(360deg) translateX(18px); }
+        0% { transform: rotate(0deg) translateX(15px); }
+        100% { transform: rotate(360deg) translateX(15px); }
     }
     
     .loader-wave {
-        gap: 5px;
+        gap: 4px;
+        margin: 10px 0;
+        justify-content: center;
+        flex-shrink: 0;
     }
     
     .wave-dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
     }
     
     @keyframes wave {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
+        50% { transform: translateY(-12px); }
     }
     
     .loader-flip {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .loader-hexagon {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .hexagon-part {
@@ -462,18 +553,26 @@
     }
     
     .loader-gradient-ring {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        flex-shrink: 0;
     }
     
     .loader-gradient-ring::before {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
 }
 
 /* Small Mobile Devices (481px - 576px) */
 @media (min-width: 481px) and (max-width: 576px) {
+    .page-loader {
+        padding: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
     .loader-logo {
         width: 90px;
         height: 90px;
@@ -481,21 +580,43 @@
     }
     
     .loader-text {
-        font-size: 22px;
+        font-size: 20px;
+        line-height: 1.2;
+        max-width: 95vw;
+        padding: 0 15px;
     }
     
     .loader-subtitle {
-        font-size: 13px;
+        font-size: 12px;
+        max-width: 95vw;
+        padding: 0 15px;
     }
     
     .loader-spinner {
-        width: 45px;
-        height: 45px;
+        width: 42px;
+        height: 42px;
+        margin: 12px 0;
+    }
+    
+    .loader-dots {
+        gap: 6px;
+        margin-top: 18px;
+    }
+    
+    .loader-dot {
+        width: 10px;
+        height: 10px;
     }
 }
 
 /* Medium Mobile & Small Tablets (577px - 768px) */
 @media (min-width: 577px) and (max-width: 768px) {
+    .page-loader {
+        padding: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
     .loader-logo {
         width: 100px;
         height: 100px;
@@ -503,11 +624,32 @@
     }
     
     .loader-text {
-        font-size: 23px;
+        font-size: 22px;
+        line-height: 1.2;
+        max-width: 95vw;
+        padding: 0 20px;
     }
     
     .loader-subtitle {
         font-size: 13px;
+        max-width: 95vw;
+        padding: 0 20px;
+    }
+    
+    .loader-spinner {
+        width: 48px;
+        height: 48px;
+        margin: 15px 0;
+    }
+    
+    .loader-dots {
+        gap: 7px;
+        margin-top: 20px;
+    }
+    
+    .loader-dot {
+        width: 11px;
+        height: 11px;
     }
 }
 
@@ -638,64 +780,546 @@
 
 /* Landscape Orientation - Compact Height */
 @media (max-width: 768px) and (orientation: landscape) {
+    .page-loader {
+        padding: 0;
+        justify-content: center;
+        gap: 8px;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
     .loader-logo {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 15px;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
     }
     
     .loader-text {
-        font-size: 18px;
-        margin-bottom: 5px;
+        font-size: 16px;
+        margin-bottom: 4px;
+        line-height: 1.1;
+        padding: 0 15px;
     }
     
     .loader-subtitle {
-        font-size: 11px;
-        margin-bottom: 15px;
+        font-size: 10px;
+        margin-bottom: 10px;
+        line-height: 1.2;
+        padding: 0 15px;
     }
     
     .loader-spinner {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        margin: 5px 0;
     }
     
     .loader-dots {
-        margin-top: 10px;
+        margin-top: 8px;
+        gap: 4px;
+    }
+    
+    .loader-dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    /* Adjust all other loaders for landscape */
+    .loader-dual-ring {
+        width: 30px;
+        height: 30px;
+        border-width: 3px;
+        margin: 5px 0;
+    }
+    
+    .loader-pulse-circles {
+        width: 30px;
+        height: 30px;
+        margin: 5px 0;
+    }
+    
+    .loader-bars {
+        height: 25px;
+        gap: 3px;
+        margin: 5px 0;
+    }
+    
+    .loader-bar {
+        width: 4px;
+    }
+    
+    @keyframes barBounce {
+        0%, 100% { height: 8px; }
+        50% { height: 25px; }
+    }
+    
+    .loader-square {
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        margin: 5px 0;
+    }
+    
+    .loader-orbit {
+        width: 30px;
+        height: 30px;
+        margin: 5px 0;
+    }
+    
+    .orbit-dot {
+        width: 6px;
+        height: 6px;
+        margin: -3px 0 0 -3px;
+    }
+    
+    @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(12px); }
+        100% { transform: rotate(360deg) translateX(12px); }
+    }
+    
+    .loader-wave {
+        gap: 3px;
+        margin: 5px 0;
+    }
+    
+    .wave-dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    @keyframes wave {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+    
+    .loader-flip {
+        width: 30px;
+        height: 30px;
+        margin: 5px 0;
+    }
+    
+    .loader-hexagon {
+        width: 30px;
+        height: 30px;
+        margin: 5px 0;
+    }
+    
+    .loader-gradient-ring {
+        width: 30px;
+        height: 30px;
+        margin: 5px 0;
+    }
+    
+    .loader-gradient-ring::before {
+        width: 22px;
+        height: 22px;
     }
 }
 
 /* Very Small Screens (iPhone SE, small Android) */
 @media (max-width: 360px) {
+    .page-loader {
+        padding: 0;
+        gap: 5px;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
     .loader-logo {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 15px;
+        width: 65px;
+        height: 65px;
+        margin-bottom: 12px;
         border: 2px solid rgba(255, 255, 255, 0.3);
     }
     
     .loader-text {
-        font-size: 18px;
-        margin-bottom: 6px;
+        font-size: 16px;
+        margin-bottom: 5px;
+        line-height: 1.1;
+        max-width: 85vw;
+        padding: 0 10px;
     }
     
     .loader-subtitle {
-        font-size: 11px;
-        margin-bottom: 20px;
+        font-size: 10px;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        max-width: 85vw;
+        padding: 0 10px;
     }
     
     .loader-spinner {
-        width: 35px;
-        height: 35px;
-        border-width: 3px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        margin: 8px 0;
     }
     
     .loader-dots {
-        gap: 5px;
-        margin-top: 12px;
+        gap: 4px;
+        margin-top: 10px;
     }
     
     .loader-dot {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
+    }
+    
+    /* Adjust all other loaders for very small screens */
+    .loader-dual-ring {
+        width: 30px;
+        height: 30px;
+        border-width: 3px;
+        margin: 8px 0;
+    }
+    
+    .loader-pulse-circles {
+        width: 30px;
+        height: 30px;
+        margin: 8px 0;
+    }
+    
+    .pulse-circle {
+        border-width: 2px;
+    }
+    
+    .loader-bars {
+        height: 25px;
+        gap: 3px;
+        margin: 8px 0;
+    }
+    
+    .loader-bar {
+        width: 4px;
+    }
+    
+    @keyframes barBounce {
+        0%, 100% { height: 8px; }
+        50% { height: 25px; }
+    }
+    
+    .loader-square {
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        margin: 8px 0;
+    }
+    
+    .loader-orbit {
+        width: 30px;
+        height: 30px;
+        margin: 8px 0;
+    }
+    
+    .orbit-dot {
+        width: 6px;
+        height: 6px;
+        margin: -3px 0 0 -3px;
+    }
+    
+    @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(12px); }
+        100% { transform: rotate(360deg) translateX(12px); }
+    }
+    
+    .loader-wave {
+        gap: 3px;
+        margin: 8px 0;
+    }
+    
+    .wave-dot {
+        width: 6px;
+        height: 6px;
+    }
+    
+    @keyframes wave {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+    
+    .loader-flip {
+        width: 30px;
+        height: 30px;
+        margin: 8px 0;
+    }
+    
+    .loader-hexagon {
+        width: 30px;
+        height: 30px;
+        margin: 8px 0;
+    }
+    
+    .hexagon-part {
+        border-width: 2px;
+    }
+    
+    .loader-gradient-ring {
+        width: 30px;
+        height: 30px;
+        margin: 8px 0;
+    }
+    
+    .loader-gradient-ring::before {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* Ultra Small Screens (Galaxy Fold, etc.) */
+@media (max-width: 320px) {
+    .page-loader {
+        padding: 0;
+        gap: 3px;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
+    .loader-logo {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .loader-text {
+        font-size: 14px;
+        margin-bottom: 4px;
+        line-height: 1.1;
+        max-width: 80vw;
+        padding: 0 10px;
+    }
+    
+    .loader-subtitle {
+        font-size: 9px;
+        margin-bottom: 12px;
+        line-height: 1.2;
+        max-width: 80vw;
+        padding: 0 10px;
+    }
+    
+    .loader-spinner {
+        width: 25px;
+        height: 25px;
+        border-width: 2px;
+        margin: 6px 0;
+    }
+    
+    .loader-dots {
+        gap: 3px;
+        margin-top: 8px;
+    }
+    
+    .loader-dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .loader-logo img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Perfect Centering for All Browsers */
+.page-loader {
+    /* Flexbox centering */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    
+    /* Fallback centering for older browsers */
+    text-align: center;
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .page-loader {
+        height: 100vh;
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Android Chrome specific fixes */
+@media screen and (max-width: 768px) {
+    .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    .page-loader * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loader-logo {
+        animation: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .page-loader {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+}
+
+/* =========================================
+   RESPONSIVE LOADER REBUILD (2026)
+   Use dynamic viewport units + clamp sizing.
+   This block is intentionally last to win
+   over earlier per-device overrides.
+   ========================================= */
+
+:root {
+    --loader-safe-top: env(safe-area-inset-top, 0px);
+    --loader-safe-right: env(safe-area-inset-right, 0px);
+    --loader-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --loader-safe-left: env(safe-area-inset-left, 0px);
+
+    --loader-logo-size: clamp(64px, 18vw, 120px);
+    --loader-text-size: clamp(16px, 5vw, 24px);
+    --loader-subtitle-size: clamp(10px, 3.2vw, 14px);
+
+    --loader-ring-size: clamp(34px, 10vw, 60px);
+    --loader-border: clamp(2px, 0.6vw, 6px);
+    --loader-dot: clamp(6px, 2.5vw, 12px);
+}
+
+.page-loader {
+    /* Dynamic viewport height fixes (mobile address bar) */
+    height: 100vh;
+    min-height: 100vh;
+    height: 100svh;     /* stable viewport height */
+    min-height: 100svh;
+    height: 100dvh;     /* dynamic viewport height */
+    min-height: 100dvh;
+
+    width: 100vw;
+    inset: 0;
+    padding: max(12px, var(--loader-safe-top)) max(12px, var(--loader-safe-right))
+             max(12px, var(--loader-safe-bottom)) max(12px, var(--loader-safe-left));
+    gap: clamp(8px, 2.5vh, 18px);
+}
+
+.loader-logo {
+    width: var(--loader-logo-size);
+    height: var(--loader-logo-size);
+    margin-bottom: 0;
+    border-width: var(--loader-border);
+}
+
+.loader-text {
+    font-size: var(--loader-text-size);
+    margin-bottom: 0;
+    max-width: min(92vw, 520px);
+    padding: 0;
+    white-space: normal; /* allow wrap on small screens */
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.loader-subtitle {
+    font-size: var(--loader-subtitle-size);
+    margin-bottom: 0;
+    max-width: min(92vw, 520px);
+    padding: 0;
+}
+
+/* Normalize animation element sizing across variants */
+.loader-spinner,
+.loader-square,
+.loader-flip,
+.loader-hexagon {
+    width: var(--loader-ring-size);
+    height: var(--loader-ring-size);
+    margin: 0;
+}
+
+.loader-spinner {
+    border-width: var(--loader-border);
+    border-top-width: var(--loader-border);
+}
+
+.loader-square {
+    border-width: var(--loader-border);
+}
+
+.loader-dual-ring,
+.loader-pulse-circles,
+.loader-orbit,
+.loader-gradient-ring {
+    width: var(--loader-ring-size);
+    height: var(--loader-ring-size);
+    margin: 0;
+}
+
+.loader-dual-ring {
+    border-width: var(--loader-border);
+}
+
+.pulse-circle {
+    border-width: max(2px, calc(var(--loader-border) - 1px));
+}
+
+.loader-gradient-ring::before {
+    width: calc(var(--loader-ring-size) * 0.72);
+    height: calc(var(--loader-ring-size) * 0.72);
+}
+
+.loader-dots,
+.loader-wave,
+.loader-bars {
+    margin: 0;
+}
+
+.loader-dots {
+    gap: clamp(4px, 1.8vw, 10px);
+}
+
+.loader-dot,
+.wave-dot,
+.orbit-dot {
+    width: var(--loader-dot);
+    height: var(--loader-dot);
+}
+
+/* Orbit transform needs to scale with size */
+@keyframes orbit {
+    0% { transform: rotate(0deg) translateX(calc(var(--loader-ring-size) * 0.42)); }
+    100% { transform: rotate(360deg) translateX(calc(var(--loader-ring-size) * 0.42)); }
+}
+
+/* Keep content centered even in very short landscape viewports */
+@media (max-height: 420px) and (orientation: landscape) {
+    .page-loader {
+        gap: 8px;
     }
 }

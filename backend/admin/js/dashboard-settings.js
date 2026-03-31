@@ -218,8 +218,350 @@ function loadDashboardSettings() {
     }
 }
 
-// Open enhanced settings modal
+// Open compact settings modal
 function openSystemSettings() {
+    // Get current settings from localStorage or defaults
+    const savedSettings = JSON.parse(localStorage.getItem('dashboardSettings') || '{}');
+    const root = document.documentElement;
+    const currentPrimaryColor = savedSettings.primaryColor || getComputedStyle(root).getPropertyValue('--primary-blue').trim() || '#0066cc';
+    const currentAccentColor = savedSettings.accentColor || getComputedStyle(root).getPropertyValue('--accent-red').trim() || '#dc3545';
+    const currentFontSize = savedSettings.fontSize || '14px';
+    const currentThemeMode = savedSettings.themeMode || 'dark';
+    
+    Swal.fire({
+        title: '<i class="fas fa-cog"></i> Dashboard Settings',
+        html: `
+            <style>
+                .compact-settings {
+                    text-align: left;
+                    padding: 15px;
+                    max-height: 60vh;
+                    overflow-y: auto;
+                }
+                .compact-settings::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .compact-settings::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 8px;
+                }
+                .compact-settings::-webkit-scrollbar-thumb {
+                    background: #0066cc;
+                    border-radius: 8px;
+                }
+                .settings-row {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 12px 0;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .settings-row:last-child {
+                    border-bottom: none;
+                }
+                .settings-label {
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                .settings-label i {
+                    color: #0066cc;
+                    width: 16px;
+                }
+                .settings-control {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                .color-picker-compact {
+                    width: 40px;
+                    height: 30px;
+                    border: 2px solid #ddd;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+                .color-picker-compact:hover {
+                    border-color: #0066cc;
+                    transform: scale(1.05);
+                }
+                .color-text-compact {
+                    width: 80px;
+                    padding: 6px 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    font-family: 'Courier New', monospace;
+                    text-transform: uppercase;
+                }
+                .select-compact {
+                    padding: 6px 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 13px;
+                    background: white;
+                    cursor: pointer;
+                    min-width: 120px;
+                }
+                .theme-toggle {
+                    display: flex;
+                    background: #f8f9fa;
+                    border-radius: 20px;
+                    padding: 2px;
+                    border: 1px solid #ddd;
+                }
+                .theme-option {
+                    padding: 6px 12px;
+                    border-radius: 18px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    font-weight: 600;
+                    transition: all 0.2s;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                }
+                .theme-option.active {
+                    background: #0066cc;
+                    color: white;
+                }
+                .theme-option:not(.active):hover {
+                    background: #e9ecef;
+                }
+                .preset-buttons {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 8px;
+                    margin-top: 8px;
+                }
+                .preset-btn {
+                    padding: 8px 12px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: white;
+                    transition: all 0.2s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4px;
+                }
+                .preset-btn:hover {
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }
+                .reset-btn {
+                    width: 100%;
+                    padding: 10px;
+                    background: #6c757d;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 13px;
+                    margin-top: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 6px;
+                }
+                .reset-btn:hover {
+                    background: #5a6268;
+                }
+                .section-divider {
+                    margin: 15px 0;
+                    border-top: 2px solid #e9ecef;
+                    position: relative;
+                }
+                .section-title {
+                    position: absolute;
+                    top: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: white;
+                    padding: 0 10px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #0066cc;
+                    text-transform: uppercase;
+                }
+            </style>
+            <div class="compact-settings">
+                <!-- Colors Section -->
+                <div class="settings-row">
+                    <div class="settings-label">
+                        <i class="fas fa-palette"></i> Primary Color
+                    </div>
+                    <div class="settings-control">
+                        <input type="color" id="primaryColor" value="${currentPrimaryColor}" class="color-picker-compact">
+                        <input type="text" id="primaryColorText" value="${currentPrimaryColor}" class="color-text-compact">
+                    </div>
+                </div>
+                
+                <div class="settings-row">
+                    <div class="settings-label">
+                        <i class="fas fa-heart"></i> Accent Color
+                    </div>
+                    <div class="settings-control">
+                        <input type="color" id="accentColor" value="${currentAccentColor}" class="color-picker-compact">
+                        <input type="text" id="accentColorText" value="${currentAccentColor}" class="color-text-compact">
+                    </div>
+                </div>
+                
+                <div class="section-divider">
+                    <div class="section-title">Appearance</div>
+                </div>
+                
+                <!-- Theme Mode -->
+                <div class="settings-row">
+                    <div class="settings-label">
+                        <i class="fas fa-moon"></i> Theme Mode
+                    </div>
+                    <div class="theme-toggle">
+                        <div class="theme-option ${currentThemeMode === 'dark' ? 'active' : ''}" onclick="selectTheme('dark')">
+                            <i class="fas fa-moon"></i> Dark
+                        </div>
+                        <div class="theme-option ${currentThemeMode === 'light' ? 'active' : ''}" onclick="selectTheme('light')">
+                            <i class="fas fa-sun"></i> Light
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Font Size -->
+                <div class="settings-row">
+                    <div class="settings-label">
+                        <i class="fas fa-text-height"></i> Font Size
+                    </div>
+                    <select id="fontSize" class="select-compact">
+                        <option value="12px" ${currentFontSize === '12px' ? 'selected' : ''}>Small</option>
+                        <option value="14px" ${currentFontSize === '14px' ? 'selected' : ''}>Medium</option>
+                        <option value="16px" ${currentFontSize === '16px' ? 'selected' : ''}>Large</option>
+                        <option value="18px" ${currentFontSize === '18px' ? 'selected' : ''}>Extra Large</option>
+                    </select>
+                </div>
+                
+                <div class="section-divider">
+                    <div class="section-title">Quick Presets</div>
+                </div>
+                
+                <!-- Color Presets -->
+                <div class="preset-buttons">
+                    <button onclick="applyPreset('default')" class="preset-btn" style="background: linear-gradient(135deg, #0066cc, #0052a3);">
+                        <i class="fas fa-check"></i> Default
+                    </button>
+                    <button onclick="applyPreset('green')" class="preset-btn" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-leaf"></i> Green
+                    </button>
+                    <button onclick="applyPreset('purple')" class="preset-btn" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-crown"></i> Purple
+                    </button>
+                    <button onclick="applyPreset('orange')" class="preset-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-fire"></i> Orange
+                    </button>
+                </div>
+                
+                <!-- Reset Button -->
+                <button onclick="resetToDefaults()" class="reset-btn">
+                    <i class="fas fa-undo"></i> Reset to Defaults
+                </button>
+            </div>
+            
+            <script>
+                let selectedTheme = '${currentThemeMode}';
+                
+                function selectTheme(theme) {
+                    selectedTheme = theme;
+                    document.querySelectorAll('.theme-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    event.target.closest('.theme-option').classList.add('active');
+                    applyThemeMode(theme);
+                }
+            </script>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-save"></i> Save Settings',
+        cancelButtonText: '<i class="fas fa-times"></i> Cancel',
+        confirmButtonColor: '#0066cc',
+        cancelButtonColor: '#6c757d',
+        width: '500px',
+        customClass: {
+            popup: 'compact-settings-modal'
+        },
+        didOpen: () => {
+            // Real-time color updates
+            const primaryColorInput = document.getElementById('primaryColor');
+            const primaryColorText = document.getElementById('primaryColorText');
+            const accentColorInput = document.getElementById('accentColor');
+            const accentColorText = document.getElementById('accentColorText');
+            
+            primaryColorInput.addEventListener('input', (e) => {
+                const color = e.target.value;
+                primaryColorText.value = color;
+                document.documentElement.style.setProperty('--primary-blue', color);
+                document.documentElement.style.setProperty('--dark-blue', adjustColor(color, -20));
+            });
+            
+            primaryColorText.addEventListener('input', (e) => {
+                const color = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    primaryColorInput.value = color;
+                    document.documentElement.style.setProperty('--primary-blue', color);
+                    document.documentElement.style.setProperty('--dark-blue', adjustColor(color, -20));
+                }
+            });
+            
+            accentColorInput.addEventListener('input', (e) => {
+                const color = e.target.value;
+                accentColorText.value = color;
+                document.documentElement.style.setProperty('--accent-red', color);
+            });
+            
+            accentColorText.addEventListener('input', (e) => {
+                const color = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    accentColorInput.value = color;
+                    document.documentElement.style.setProperty('--accent-red', color);
+                }
+            });
+            
+            // Real-time font size updates
+            document.getElementById('fontSize').addEventListener('change', (e) => {
+                document.body.style.fontSize = e.target.value;
+            });
+        },
+        preConfirm: () => {
+            return {
+                primaryColor: document.getElementById('primaryColor').value,
+                accentColor: document.getElementById('accentColor').value,
+                fontSize: document.getElementById('fontSize').value,
+                themeMode: selectedTheme
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Save settings to localStorage
+            localStorage.setItem('dashboardSettings', JSON.stringify(result.value));
+            Swal.fire({
+                icon: 'success',
+                title: 'Settings Saved!',
+                text: 'Your preferences have been saved successfully.',
+                confirmButtonColor: '#0066cc',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        } else if (result.isDismissed) {
+            // Reload settings if cancelled
+            loadDashboardSettings();
+        }
+    });
+}
     // Get current settings from localStorage or defaults
     const savedSettings = JSON.parse(localStorage.getItem('dashboardSettings') || '{}');
     const root = document.documentElement;

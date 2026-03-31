@@ -51,6 +51,14 @@ try {
         $stmt->execute();
         $totalTeachers = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
         error_log("Teachers count (active): " . $totalTeachers);
+        
+        // If no active teachers, get all teachers
+        if ($totalTeachers == 0) {
+            $stmt = $db->prepare("SELECT COUNT(*) as total FROM teachers");
+            $stmt->execute();
+            $totalTeachers = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+            error_log("Teachers count (all): " . $totalTeachers);
+        }
     } catch (PDOException $e) {
         // If status column doesn't exist, count all teachers
         $stmt = $db->prepare("SELECT COUNT(*) as total FROM teachers");
@@ -97,6 +105,108 @@ try {
     $stmt->execute();
     $revenueData = $stmt->fetch(PDO::FETCH_ASSOC);
     
+    // Get this month's admissions count from admission_applications table
+    try {
+        // First, let's get total admissions to debug
+        $stmt = $db->prepare("SELECT COUNT(*) as total_admissions FROM admission_applications");
+        $stmt->execute();
+        $totalAdmissions = $stmt->fetch(PDO::FETCH_ASSOC)['total_admissions'];
+        error_log("Total admission_applications in database: " . $totalAdmissions);
+        
+        // Check what date columns exist
+        $stmt = $db->prepare("DESCRIBE admission_applications");
+        $stmt->execute();
+        $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+        // Try different possible date column names
+        $dateColumns = ['submitted_date', 'created_at', 'submission_date', 'date_created', 'application_date', 'date_submitted'];
+        $admissionsCount = 0;
+        $dateColumnUsed = null;
+        
+        foreach ($dateColumns as $dateCol) {
+            if (in_array($dateCol, $columns)) {
+                try {
+                    $stmt = $db->prepare("
+                        SELECT COUNT(*) as admissions_count 
+                        FROM admission_applications 
+                        WHERE DATE_FORMAT($dateCol, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+                    ");
+                    $stmt->execute();
+                    $admissionsCount = $stmt->fetch(PDO::FETCH_ASSOC)['admissions_count'];
+                    $dateColumnUsed = $dateCol;
+                    error_log("This month's admission_applications using $dateCol: " . $admissionsCount);
+                    break;
+                } catch (PDOException $e) {
+                    error_log("Error with date column $dateCol: " . $e->getMessage());
+                    continue;
+                }
+            }
+        }
+        
+        // If no admissions this month, show total admissions
+        if ($admissionsCount == 0) {
+            $admissionsCount = $totalAdmissions;
+            error_log("No admissions this month, showing total: " . $admissionsCount);
+        }
+        
+    } catch (PDOException $e) {
+        error_log("Admission_applications query error: " . $e->getMessage());
+        $admissionsCount = 0;
+    }
+    
+    // Get unread contact submissions count
+    try {
+        // First, let's get total contact submissions to debug
+        $stmt = $db->prepare("SELECT COUNT(*) as total_messages FROM contact_submissions");
+        $stmt->execute();
+        $totalMessages = $stmt->fetch(PDO::FETCH_ASSOC)['total_messages'];
+        error_log("Total contact_submissions in database: " . $totalMessages);
+        
+        // Check what columns exist in contact_submissions table
+        $stmt = $db->prepare("DESCRIBE contact_submissions");
+        $stmt->execute();
+        $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        error_log("Contact_submissions table columns: " . implode(', ', $columns));
+        
+        // Try different approaches for unread messages based on available columns
+        if (in_array('is_read', $columns)) {
+            $stmt = $db->prepare("
+                SELECT COUNT(*) as unread_messages 
+                FROM contact_submissions 
+                WHERE is_read = 0 OR is_read IS NULL
+            ");
+        } elseif (in_array('status', $columns)) {
+            $stmt = $db->prepare("
+                SELECT COUNT(*) as unread_messages 
+                FROM contact_submissions 
+                WHERE status = 'new' OR status = 'unread'
+            ");
+        } else {
+            // If no read status column, show total messages
+            $stmt = $db->prepare("SELECT COUNT(*) as unread_messages FROM contact_submissions");
+        }
+        
+        $stmt->execute();
+        $unreadMessages = $stmt->fetch(PDO::FETCH_ASSOC)['unread_messages'];
+        error_log("Unread contact submissions: " . $unreadMessages);
+    } catch (PDOException $e) {
+        error_log("Contact_submissions query error: " . $e->getMessage());
+        $unreadMessages = 0;
+    }
+    
+    // Get upcoming events count (this month)
+    try {
+        $stmt = $db->prepare("
+            SELECT COUNT(*) as events_count 
+            FROM events 
+            WHERE DATE_FORMAT(event_date, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+            AND event_date >= CURDATE()
+        ");
+        $stmt->execute();
+        $eventsCount = $stmt->fetch(PDO::FETCH_ASSOC)['events_count'];
+    } catch (PDOException $e) {
+        $eventsCount = 0; // Default if table doesn't exist
+    }
     // Get student distribution by class
     $stmt = $db->prepare("
         SELECT 
@@ -113,13 +223,17 @@ try {
     // Clear any output buffer before sending JSON
     if (ob_get_length()) ob_clean();
     
+    // Log the final values for debugging
+    error_log("Final stats - Teachers: $totalTeachers, Admissions: $admissionsCount, Messages: $unreadMessages, Events: $eventsCount");
+    
     echo json_encode([
         'success' => true,
         'data' => [
-            'total_students' => (int)$totalStudents,
-            'new_students' => (int)$newStudents,
             'total_teachers' => (int)$totalTeachers,
             'inactive_teachers' => (int)$inactiveTeachers,
+            'admissions_count' => (int)$admissionsCount,
+            'unread_messages' => (int)$unreadMessages,
+            'events_count' => (int)$eventsCount,
             'attendance_rate' => (float)$attendanceRate,
             'absent_count' => (int)$absentCount,
             'revenue' => [

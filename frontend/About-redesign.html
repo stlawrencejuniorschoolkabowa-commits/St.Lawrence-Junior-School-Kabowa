@@ -25,10 +25,79 @@
     <link rel="stylesheet" href="../css/redesign-style.css">
     
     <!-- Mobile Improvements CSS -->
-    <link rel="stylesheet" href="../css/mobile-improvements.css">
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- About page responsive cleanup -->
+    <link rel="stylesheet" href="../css/about-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Footer Contact Improvements -->
+    <style>
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Ensure email doesn't break on smaller screens */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -61,21 +130,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link active">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link active">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -84,31 +147,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                            <li><a href="About-redesign.html#mission">Mission & Vision</a></li>
-                            <li><a href="About-redesign.html#director">Director's Message</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -369,85 +421,6 @@
         </div>
     </section>
 
-    <!-- Core Values Section -->
-    <section class="values-section">
-        <div class="values-container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-label-alt">Our Core Values</span>
-                <h2 class="section-title-alt">The Principles That Guide Us</h2>
-                <p class="section-subtitle">These values shape everything we do and define who we are as an institution</p>
-            </div>
-            
-            <div class="values-grid-advanced">
-                <!-- Value Card 1 - Large Featured -->
-                <div class="value-card-advanced large-value" data-aos="fade-up" data-aos-delay="100">
-                    <div class="value-number">01</div>
-                    <div class="value-icon-advanced">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Excellence</h3>
-                    <p>We strive for the highest standards in everything we do, from academics to character development, ensuring every student reaches their full potential.</p>
-                    <div class="value-decoration"></div>
-                </div>
-                
-                <!-- Value Card 2 -->
-                <div class="value-card-advanced" data-aos="fade-up" data-aos-delay="200">
-                    <div class="value-number">02</div>
-                    <div class="value-icon-advanced red">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Integrity</h3>
-                    <p>We uphold honesty, transparency, and ethical behavior in all our interactions and decisions.</p>
-                    <div class="value-decoration"></div>
-                </div>
-                
-                <!-- Value Card 3 -->
-                <div class="value-card-advanced" data-aos="fade-up" data-aos-delay="300">
-                    <div class="value-number">03</div>
-                    <div class="value-icon-advanced">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Compassion</h3>
-                    <p>We create a caring environment where every child feels valued, supported, and understood.</p>
-                    <div class="value-decoration"></div>
-                </div>
-                
-                <!-- Value Card 4 - Large Featured -->
-                <div class="value-card-advanced large-value" data-aos="fade-up" data-aos-delay="400">
-                    <div class="value-number">04</div>
-                    <div class="value-icon-advanced">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Innovation</h3>
-                    <p>We embrace modern teaching methods and technology to enhance the learning experience, preparing students for tomorrow's challenges.</p>
-                    <div class="value-decoration"></div>
-                </div>
-                
-                <!-- Value Card 5 -->
-                <div class="value-card-advanced" data-aos="fade-up" data-aos-delay="500">
-                    <div class="value-number">05</div>
-                    <div class="value-icon-advanced">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community</h3>
-                    <p>We foster strong partnerships with parents, staff, and the wider community.</p>
-                    <div class="value-decoration"></div>
-                </div>
-                
-                <!-- Value Card 6 -->
-                <div class="value-card-advanced" data-aos="fade-up" data-aos-delay="600">
-                    <div class="value-number">06</div>
-                    <div class="value-icon-advanced">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Discipline</h3>
-                    <p>We instill self-discipline, responsibility, and respect for rules and authority.</p>
-                    <div class="value-decoration"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Our History Section -->
     <section class="history-section">
         <div class="history-container">
@@ -475,7 +448,7 @@
                                 </div>
                                 <div class="mini-stat">
                                     <i class="fas fa-chalkboard-teacher"></i>
-                                    <span>15Teachers</span>
+                                    <span>5 Teachers</span>
                                 </div>
                             </div>
                         </div>
@@ -555,11 +528,11 @@
                                 <i class="fas fa-laptop-code"></i>
                             </div>
                             <h3>Digital Transformation</h3>
-                            <p>Launched state-of-the-art ICT laboratory with 15 computers. Introduced digital learning platforms and smart classrooms. Became one of the first primary schools in the area to integrate technology into daily learning.</p>
+                            <p>Launched state-of-the-art ICT laboratory with 30 computers. Introduced digital learning platforms and smart classrooms. Became one of the first primary schools in the area to integrate technology into daily learning.</p>
                             <div class="history-stats-mini">
                                 <div class="mini-stat">
                                     <i class="fas fa-desktop"></i>
-                                    <span>50 Computers</span>
+                                    <span>30 Computers</span>
                                 </div>
                                 <div class="mini-stat">
                                     <i class="fas fa-wifi"></i>
@@ -583,7 +556,7 @@
                             <div class="history-stats-mini">
                                 <div class="mini-stat">
                                     <i class="fas fa-users"></i>
-                                    <span>500+ Students</span>
+                                    <span>250+ Students</span>
                                 </div>
                                 <div class="mini-stat">
                                     <i class="fas fa-graduation-cap"></i>
@@ -611,7 +584,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <h3>Present Day Excellence</h3>
-                            <p>Today, we stand proud with over 350 alumni, consistent 98%+ success rates, and recognition as a center of excellence. We continue to innovate, inspire, and prepare students for the future while maintaining our core values.</p>
+                            <p>Today, we stand proud with over 350 alumni, consistent 95%+ success rates, and recognition as a center of excellence. We continue to innovate, inspire, and prepare students for the future while maintaining our core values.</p>
                             <div class="history-achievements">
                                 <div class="achievement-badge">
                                     <i class="fas fa-certificate"></i>
@@ -619,7 +592,7 @@
                                 </div>
                                 <div class="achievement-badge">
                                     <i class="fas fa-star"></i>
-                                    <span>88% Success</span>
+                                    <span>95% Success</span>
                                 </div>
                             </div>
                         </div>
@@ -628,49 +601,6 @@
                 
                 <!-- Center Timeline Line -->
                 <div class="timeline-line"></div>
-            </div>
-            
-            <!-- History Stats Banner -->
-            <div class="history-stats-banner" data-aos="zoom-in">
-                <div class="stat-banner-item">
-                    <div class="stat-banner-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="stat-banner-content">
-                        <div class="stat-banner-number">14+</div>
-                        <div class="stat-banner-label">Years of Service</div>
-                    </div>
-                </div>
-                
-                <div class="stat-banner-item">
-                    <div class="stat-banner-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div class="stat-banner-content">
-                        <div class="stat-banner-number">350+</div>
-                        <div class="stat-banner-label">Successful Alumni</div>
-                    </div>
-                </div>
-                
-                <div class="stat-banner-item">
-                    <div class="stat-banner-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="stat-banner-content">
-                        <div class="stat-banner-number">20+</div>
-                        <div class="stat-banner-label">Awards & Recognition</div>
-                    </div>
-                </div>
-                
-                <div class="stat-banner-item">
-                    <div class="stat-banner-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="stat-banner-content">
-                        <div class="stat-banner-number">88%</div>
-                        <div class="stat-banner-label">Success Rate</div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -780,29 +710,6 @@
                                 </div>
                                 <div class="step-decoration"></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Bottom CTA Banner -->
-                <div class="apply-cta-banner" data-aos="zoom-in">
-                    <div class="cta-banner-content">
-                        <div class="cta-icon-large">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="cta-text-content">
-                            <h3>Ready to Get Started?</h3>
-                            <p>Download the application form now and take the first step towards your child's bright future</p>
-                        </div>
-                        <div class="cta-buttons-group">
-                            <a href="Admission-redesign.html" class="btn-cta-download">
-                                <i class="fas fa-download"></i>
-                                Download Form
-                            </a>
-                            <a href="Contact-redesign.html" class="btn-cta-contact">
-                                <i class="fas fa-phone-alt"></i>
-                                Contact Us
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -993,8 +900,7 @@
                     </div>
                     <div class="info-content-advanced">
                         <h4>Email Us</h4>
-                        <p>st.lawrence.juniorschool@yahoo.com</p>
-                        <span class="info-detail">stlawrencejuniorschoolkabowa@gmail.com</span>
+                    <p>stlawrencejuniorschoolkabowa@gmail.com</p>
                     </div>
                     <div class="info-decoration"></div>
                 </div>
@@ -1162,21 +1068,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -1192,26 +1102,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 

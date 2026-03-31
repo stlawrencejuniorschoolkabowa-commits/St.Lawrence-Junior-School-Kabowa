@@ -22,9 +22,81 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=4.0">
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Admission page responsive cleanup -->
+    <link rel="stylesheet" href="../css/admission-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Footer Contact Improvements -->
+    <style>
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Ensure email doesn't break on smaller screens */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+        }
+    </style>
     
     <!-- Defer heavy scripts to improve page load speed -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -69,21 +141,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link active">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link active">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -91,27 +157,18 @@
                     
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="mobile-only"><a href="Contact-redesign.html" class="nav-link-mobile">Contact</a></li>
@@ -284,143 +341,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Requirements Section -->
-    <section class="admission-requirements-section" id="requirements">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">What You Need</span>
-                <h2 class="section-title">Required Documents Checklist</h2>
-                <p class="section-description">Prepare these documents for a smooth application process</p>
-            </div>
-            
-            <div class="requirements-modern-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="requirement-badge">Required</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-id-card"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Birth Certificate</h3>
-                        <p>Original or certified copy of the child's birth certificate issued by the relevant authority</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> Original or certified copy</li>
-                            <li><i class="fas fa-check-circle"></i> Clear and legible</li>
-                            <li><i class="fas fa-check-circle"></i> PDF or JPG format</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="requirement-badge optional">Optional</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Previous School Report</h3>
-                        <p>Latest academic report card from your child's previous school (if applicable)</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> Most recent term</li>
-                            <li><i class="fas fa-check-circle"></i> Official school stamp</li>
-                            <li><i class="fas fa-check-circle"></i> All pages included</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="requirement-badge">Required</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Passport Photographs</h3>
-                        <p>Two recent passport-size color photographs of the child with white background</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> Passport size (35x45mm)</li>
-                            <li><i class="fas fa-check-circle"></i> White background</li>
-                            <li><i class="fas fa-check-circle"></i> Recent (within 6 months)</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="requirement-badge">Required</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-syringe"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Immunization Records</h3>
-                        <p>Up-to-date immunization card showing all required vaccinations and medical history</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> Complete vaccination record</li>
-                            <li><i class="fas fa-check-circle"></i> Signed by medical officer</li>
-                            <li><i class="fas fa-check-circle"></i> Current health status</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="requirement-badge">Required</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Parent/Guardian ID</h3>
-                        <p>Valid identification document of parent or legal guardian (National ID or Passport)</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> National ID or Passport</li>
-                            <li><i class="fas fa-check-circle"></i> Valid and not expired</li>
-                            <li><i class="fas fa-check-circle"></i> Both sides if ID card</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="requirement-modern-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="requirement-badge optional">Optional</div>
-                    <div class="requirement-visual">
-                        <div class="visual-icon">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <div class="visual-decoration"></div>
-                    </div>
-                    <div class="requirement-info">
-                        <h3>Transfer Letter</h3>
-                        <p>Official transfer letter from previous school on school letterhead (if transferring)</p>
-                        <ul class="requirement-specs">
-                            <li><i class="fas fa-check-circle"></i> School letterhead</li>
-                            <li><i class="fas fa-check-circle"></i> Signed by head teacher</li>
-                            <li><i class="fas fa-check-circle"></i> Official school stamp</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Download Checklist Button -->
-            <div class="requirements-cta" data-aos="fade-up" data-aos-delay="450">
-                <button class="btn-checklist">
-                    <i class="fas fa-download"></i>
-                    Download Complete Checklist
-                </button>
-                <p class="cta-note">Get a printable PDF checklist to ensure you have everything ready</p>
-            </div>
-        </div>
-    </section>
-
 
     <!-- Application Form Section - PREMIUM MULTI-STEP WIZARD -->
     <section class="admission-form-section">
@@ -913,170 +833,6 @@
         </div>
     </section>
 
-    <!-- Contact CTA Section - Enhanced -->
-    <section class="admission-cta-section-enhanced">
-        <div class="cta-background-pattern"></div>
-        <div class="container">
-            <div class="cta-enhanced-grid" data-aos="fade-up">
-                <!-- Left Side - Main CTA -->
-                <div class="cta-main-content">
-                    <div class="cta-badge">
-                        <i class="fas fa-headset"></i>
-                        <span>We're Here to Help</span>
-                    </div>
-                    <h2>Need Assistance with Your Application?</h2>
-                    <p>Our dedicated admissions team is ready to guide you through every step of the enrollment process. Get personalized support and answers to all your questions.</p>
-                    
-                    <div class="cta-features-list">
-                        <div class="cta-feature-item">
-                            <div class="feature-icon-cta">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="feature-text-cta">
-                                <h4>Quick Response</h4>
-                                <p>Get answers within 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="cta-feature-item">
-                            <div class="feature-icon-cta">
-                                <i class="fas fa-user-friends"></i>
-                            </div>
-                            <div class="feature-text-cta">
-                                <h4>Personal Guidance</h4>
-                                <p>One-on-one support available</p>
-                            </div>
-                        </div>
-                        <div class="cta-feature-item">
-                            <div class="feature-icon-cta">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                            <div class="feature-text-cta">
-                                <h4>Schedule a Visit</h4>
-                                <p>Tour our campus anytime</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Side - Contact Options -->
-                <div class="cta-contact-cards">
-                    <!-- Phone Card -->
-                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="100">
-                        <div class="contact-card-icon phone">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h3>Call Us Now</h3>
-                            <p>Speak directly with our team</p>
-                            <div class="contact-card-actions">
-                                <a href="tel:+256701420506" class="contact-link">
-                                    <i class="fas fa-phone"></i>
-                                    +256 701 420 506
-                                </a>
-                                <a href="tel:+256772420506" class="contact-link">
-                                    <i class="fas fa-phone"></i>
-                                    +256 772 420 506
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Email Card -->
-                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="200">
-                        <div class="contact-card-icon email">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h3>Email Us</h3>
-                            <p>Send us your questions</p>
-                            <div class="contact-card-actions">
-                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">
-                                    <i class="fas fa-envelope"></i>
-                                    Send Email
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Visit Card -->
-                    <div class="cta-contact-card" data-aos="fade-left" data-aos-delay="300">
-                        <div class="contact-card-icon visit">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h3>Visit Our Campus</h3>
-                            <p>See our facilities firsthand</p>
-                            <div class="contact-card-actions">
-                                <a href="Contact-redesign.html" class="contact-link primary">
-                                    <i class="fas fa-arrow-right"></i>
-                                    Get Directions
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- WhatsApp Card -->
-                    <div class="cta-contact-card whatsapp" data-aos="fade-left" data-aos-delay="400">
-                        <div class="contact-card-icon whatsapp">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h3>WhatsApp Chat</h3>
-                            <p>Quick and convenient messaging</p>
-                            <div class="contact-card-actions">
-                                <a href="https://wa.me/256701420506?text=Hello%2C%20I%20need%20help%20with%20admission" target="_blank" class="contact-link whatsapp-link">
-                                    <i class="fab fa-whatsapp"></i>
-                                    Start Chat
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom Stats Bar -->
-            <div class="cta-stats-bar" data-aos="fade-up" data-aos-delay="500">
-                <div class="cta-stat-item">
-                    <div class="stat-icon-cta">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-content-cta">
-                        <span class="stat-number-cta">250+</span>
-                        <span class="stat-label-cta">Happy Families</span>
-                    </div>
-                </div>
-                <div class="cta-stat-item">
-                    <div class="stat-icon-cta">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="stat-content-cta">
-                        <span class="stat-number-cta">4.9/5</span>
-                        <span class="stat-label-cta">Parent Rating</span>
-                    </div>
-                </div>
-                <div class="cta-stat-item">
-                    <div class="stat-icon-cta">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-content-cta">
-                        <span class="stat-number-cta">24hrs</span>
-                        <span class="stat-label-cta">Response Time</span>
-                    </div>
-                </div>
-                <div class="cta-stat-item">
-                    <div class="stat-icon-cta">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="stat-content-cta">
-                        <span class="stat-number-cta">14+</span>
-                        <span class="stat-label-cta">Years Experience</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <!-- Footer -->
     <footer class="footer">
         <!-- Video Background -->
@@ -1130,21 +886,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -1160,26 +920,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 

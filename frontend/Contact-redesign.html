@@ -22,9 +22,294 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=3.1">
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Contact page responsive cleanup -->
+    <link rel="stylesheet" href="../css/contact-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Footer Contact Improvements & Location Section Styling -->
+    <style>
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Location Section Styling */
+        .location-section {
+            padding: 80px 0;
+        }
+        
+        .location-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .location-side {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-header-center {
+            margin-bottom: 50px;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .section-description {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .location-details {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .location-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #dc3545, #007bff);
+        }
+        
+        .location-detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 15px;
+            border-left: 4px solid #007bff;
+            transition: all 0.3s ease;
+        }
+        
+        .location-detail-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+            border-left-color: #dc3545;
+        }
+        
+        .location-detail-item:last-of-type {
+            margin-bottom: 40px;
+        }
+        
+        .location-detail-item i {
+            font-size: 24px;
+            color: #007bff;
+            margin-right: 20px;
+            margin-top: 5px;
+            min-width: 30px;
+            transition: color 0.3s ease;
+        }
+        
+        .location-detail-item:hover i {
+            color: #dc3545;
+        }
+        
+        .location-detail-item div {
+            flex: 1;
+        }
+        
+        .location-detail-item strong {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .location-detail-item p {
+            margin: 0;
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+        
+        .location-detail-item p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .btn-get-directions {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            border: 2px solid transparent;
+        }
+        
+        .btn-get-directions:hover {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-get-directions i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+            
+            .location-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .location-details {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .location-detail-item {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .location-detail-item i {
+                font-size: 20px;
+                margin-right: 15px;
+            }
+            
+            .location-detail-item strong {
+                font-size: 1.1rem;
+            }
+            
+            .btn-get-directions {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .location-section {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .location-details {
+                padding: 25px 15px;
+                margin: 0 10px;
+            }
+            
+            .location-detail-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 15px;
+            }
+            
+            .location-detail-item i {
+                margin-right: 0;
+                margin-bottom: 10px;
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -57,21 +342,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link active">Contact</a></li>
@@ -80,29 +359,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -189,7 +459,7 @@
                             </div>
                             <div class="contact-info-content">
                                 <h3>Email Address</h3>
-                                <p>stlawrence.juniorschool<br>@yahoo.com</p>
+                                <p>stlawrencejuniorschoolkabowa@gmail.com</p>
                             </div>
                         </div>
                         
@@ -247,13 +517,13 @@
         </div>
     </section>
 
-    <!-- Location & FAQ Section - Side by Side -->
-    <section class="location-faq-section">
+    <!-- Location Section -->
+    <section class="location-section">
         <div class="container">
-            <div class="location-faq-grid">
-                <!-- Left Side - Location -->
-                <div class="location-side" data-aos="fade-right">
-                    <div class="section-header-left">
+            <div class="location-content">
+                <!-- Location -->
+                <div class="location-side" data-aos="fade-up">
+                    <div class="section-header-center">
                         <span class="section-tag">Location</span>
                         <h2 class="section-title">Where to Find Us</h2>
                         <p class="section-description">Visit our campus at Kabowa, Kampala</p>
@@ -292,77 +562,6 @@
                             <i class="fas fa-route"></i>
                             <span>Get Directions</span>
                         </a>
-                    </div>
-                </div>
-
-                <!-- Right Side - FAQ -->
-                <div class="faq-side" data-aos="fade-left">
-                    <div class="section-header-left">
-                        <span class="section-tag">FAQ</span>
-                        <h2 class="section-title">Frequently Asked Questions</h2>
-                        <p class="section-description">Quick answers to common questions</p>
-                    </div>
-                    
-                    <div class="faq-list">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What are the school's operating hours?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The school operates Monday to Friday from 7:30 AM to 5:00 PM. Our office is open from 8:00 AM to 5:00 PM on weekdays and 9:00 AM to 1:00 PM on Saturdays.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>How can I schedule a school tour?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>You can schedule a school tour by calling us at +256 772 420 506 or sending an email to stlawrencejuniorschoolkabowa@gmail.com. Tours are available on weekdays by appointment.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What is the admission process?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The admission process involves filling out an application form, submitting required documents, attending an interview, and completing the registration process. Visit our <a href="Admission-redesign.html">Admission page</a> for detailed information.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Do you offer transportation services?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes, we offer school bus transportation services to various routes around Kampala. Please contact our office for route details and transportation fees.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What is the teacher-to-student ratio?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>We maintain a 1:15 teacher-to-student ratio to ensure personalized attention and quality education for every child.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Are meals provided for students?</h4>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes, we provide nutritious meals for all students. Boarding students receive three meals daily, while day scholars can opt for lunch services.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -422,21 +621,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -452,26 +655,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 

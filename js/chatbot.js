@@ -31,6 +31,11 @@ class StLawrenceChatbot {
         this.attachEventListeners();
         this.initializeChat();
         this.initializeVoice();
+
+        // Ask global layout helpers to re-pin floating controls after widget injection.
+        if (typeof window.pinFloatingControls === 'function') {
+            window.pinFloatingControls();
+        }
     }
     
     createChatWidget() {

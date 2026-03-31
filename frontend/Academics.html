@@ -23,9 +23,620 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=2.0">
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Academics page responsive cleanup -->
+    <link rel="stylesheet" href="../css/academics-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Footer Contact Improvements - Match Index Page -->
+    <style>
+        /* Footer Contact Improvements - Match Index Page */
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 12px;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .contact-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #fff;
+        }
+        
+        .phone-separator {
+            margin: 0 8px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-text {
+                font-size: 0.9rem;
+            }
+            
+            .phone-separator {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        
+        /* Enhanced Academic Achievements Section */
+        .achievements-section {
+            position: relative;
+            padding: 120px 0;
+            overflow: hidden;
+        }
+        
+        .achievements-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .achievements-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 123, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(220, 53, 69, 0.05) 0%, transparent 50%);
+        }
+        
+        .achievements-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 80px;
+            z-index: 2;
+        }
+        
+        .achievements-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        .achievements-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+        
+        .achievements-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin: 0 0 30px 0;
+            font-weight: 400;
+        }
+        
+        .achievements-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #007bff, #dc3545);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        .achievements-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            z-index: 2;
+        }
+        
+        .achievement-card {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+        
+        .achievement-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(220, 53, 69, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 16px;
+        }
+        
+        .achievement-card:hover .achievement-glow {
+            opacity: 1;
+        }
+        
+        .achievement-icon-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        .achievement-card:hover .achievement-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(0, 123, 255, 0.4);
+        }
+        
+        .achievement-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .achievement-content {
+            position: relative;
+            z-index: 3;
+        }
+        
+        .achievement-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #007bff, #dc3545);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .achievement-label {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* Enhanced Extra-Curricular Section */
+        .extracurricular-section {
+            position: relative;
+            padding: 120px 0;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .extracurricular-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+        }
+        
+        .extracurricular-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(220, 53, 69, 0.03) 0%, transparent 50%);
+        }
+        
+        .extracurricular-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        .extracurricular-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+        
+        .extracurricular-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin: 0 0 30px 0;
+            font-weight: 400;
+        }
+        
+        .extracurricular-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #dc3545, #007bff);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        .activity-filters {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 60px 0;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        
+        .activity-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .activity-filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #007bff;
+        }
+        
+        .activity-filter-btn.active {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-color: #007bff;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        .filter-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .filter-count {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        .activity-filter-btn:not(.active) .filter-count {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+        
+        .activities-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            z-index: 2;
+        }
+        
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .activity-card:hover .activity-image img {
+            transform: scale(1.05);
+        }
+        
+        .activity-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .activity-category {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .activity-category.sports {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .activity-category.arts {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: white;
+        }
+        
+        .activity-category.academic {
+            background: linear-gradient(135deg, #007bff, #6f42c1);
+            color: white;
+        }
+        
+        .activity-content {
+            padding: 25px;
+        }
+        
+        .activity-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+        }
+        
+        .activity-content p {
+            color: #6c757d;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        .activity-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .activity-feature {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8f9fa;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .activity-feature i {
+            font-size: 0.75rem;
+            color: #007bff;
+        }
+        
+        .activity-schedule {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .activity-schedule i {
+            color: #007bff;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .achievements-title, .extracurricular-title {
+                font-size: 2.5rem;
+            }
+            
+            .achievement-number {
+                font-size: 3rem;
+            }
+            
+            .activities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .achievements-section, .extracurricular-section {
+                padding: 80px 0;
+            }
+            
+            .achievements-header {
+                margin-bottom: 60px;
+            }
+            
+            .achievements-title, .extracurricular-title {
+                font-size: 2rem;
+            }
+            
+            .achievements-subtitle, .extracurricular-subtitle {
+                font-size: 1rem;
+            }
+            
+            .achievement-card {
+                padding: 30px 20px;
+            }
+            
+            .achievement-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .achievement-icon i {
+                font-size: 1.8rem;
+            }
+            
+            .achievement-number {
+                font-size: 2.5rem;
+            }
+            
+            .activity-filters {
+                gap: 10px;
+                margin: 40px 0;
+            }
+            
+            .activity-filter-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .activity-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .achievements-section, .extracurricular-section {
+                padding: 60px 0;
+            }
+            
+            .achievements-title, .extracurricular-title {
+                font-size: 1.8rem;
+            }
+            
+            .achievement-card {
+                padding: 25px 15px;
+            }
+            
+            .achievement-number {
+                font-size: 2.2rem;
+            }
+            
+            .achievement-label {
+                font-size: 0.9rem;
+            }
+            
+            .activity-filter-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                gap: 8px;
+            }
+            
+            .activity-content {
+                padding: 20px;
+            }
+            
+            .activity-features {
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -62,21 +673,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link active">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link active">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -85,29 +690,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -333,90 +929,6 @@
         </div>
     </section>
 
-    <!-- Teaching Methodology Section - Enhanced -->
-    <section class="why-choose-us-section">
-        <div class="container">
-            <div class="why-choose-header" data-aos="fade-up">
-                <span class="section-tag">How We Teach</span>
-                <h2 class="why-choose-title">Our <span class="highlight">Teaching Philosophy</span></h2>
-            </div>
-            
-            <div class="why-choose-grid">
-                <!-- Left Column -->
-                <div class="why-choose-left">
-                    <!-- Top Cards -->
-                    <div class="top-cards">
-                        <div class="why-card square-card light-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="why-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>Student-Centered Learning</h3>
-                            <p>Every child is unique. We place students at the heart of learning, encouraging active participation, questions, and exploration. Small class sizes ensure personalized attention.</p>
-                        </div>
-                        
-                        <div class="why-card square-card light-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="why-icon">
-                                <i class="fas fa-hands"></i>
-                            </div>
-                            <h3>Hands-On Learning</h3>
-                            <p>Learning by doing makes concepts stick. Students engage in experiments, projects, and practical activities that transform abstract ideas into concrete understanding.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Bottom Card -->
-                    <div class="bottom-card">
-                        <div class="why-card horizontal-card light-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="why-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3>Technology-Enhanced Education</h3>
-                            <p>Modern technology amplifies learning. Interactive whiteboards, educational software, computer labs, and digital resources prepare students for tomorrow's world while making today's lessons more engaging and effective.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Column -->
-                <div class="why-choose-right">
-                    <div class="why-card tall-card featured-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="why-icon white-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Continuous Assessment & Growth</h3>
-                        <p>We believe in ongoing evaluation and feedback. Regular assessments help us track progress, identify strengths, and address challenges early.</p>
-                        <p class="featured-extra">Our comprehensive assessment system includes:</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; color: rgba(255,255,255,0.95);">
-                            <li style="margin-bottom: 8px;">✓ Weekly progress monitoring</li>
-                            <li style="margin-bottom: 8px;">✓ Monthly parent-teacher conferences</li>
-                            <li style="margin-bottom: 8px;">✓ Termly detailed report cards</li>
-                            <li style="margin-bottom: 8px;">✓ Mock examinations for PLE preparation</li>
-                            <li>✓ Individual learning plans for every student</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Teaching Features -->
-            <div class="program-stats" style="margin-top: 80px;" data-aos="fade-up">
-                <div class="stat-item">
-                    <div class="stat-number">1:15</div>
-                    <div class="stat-label">Teacher-Student Ratio</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Qualified Teachers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">25</div>
-                    <div class="stat-label">Teaching Staff</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Academic Programs Section - Enhanced -->
     <section class="programs-section">
         <div class="container">
@@ -512,332 +1024,492 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Program Comparison -->
-            <div class="tour-content-wrapper" style="margin-top: 80px; grid-template-columns: 1fr;">
-                <div class="tour-text-content" data-aos="fade-up">
-                    <h3 style="font-size: 2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; text-align: center;">Why Choose Our Programs?</h3>
-                    <div class="tour-features">
-                        <div class="tour-feature-item">
-                            <div class="feature-icon-tour">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                            </div>
-                            <div class="feature-text-tour">
-                                <h4>Expert Teachers</h4>
-                                <p>Qualified, experienced educators passionate about student success</p>
-                            </div>
-                        </div>
-                        
-                        <div class="tour-feature-item">
-                            <div class="feature-icon-tour">
-                                <i class="fas fa-book-reader"></i>
-                            </div>
-                            <div class="feature-text-tour">
-                                <h4>Modern Resources</h4>
-                                <p>Well-equipped classrooms, libraries, and learning materials</p>
-                            </div>
-                        </div>
-                        
-                        <div class="tour-feature-item">
-                            <div class="feature-icon-tour">
-                                <i class="fas fa-users-cog"></i>
-                            </div>
-                            <div class="feature-text-tour">
-                                <h4>Small Classes</h4>
-                                <p>Maximum 25 students per class for personalized attention</p>
-                            </div>
-                        </div>
-                        
-                        <div class="tour-feature-item">
-                            <div class="feature-icon-tour">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="feature-text-tour">
-                                <h4>Proven Results</h4>
-                                <p>Consistent excellent performance in national examinations</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Academic Achievements Section -->
-    <section class="anthem-intro-section" style="background: white;">
+    <!-- Academic Achievements Section - Enhanced -->
+    <section class="achievements-section">
+        <div class="achievements-background">
+            <div class="achievements-gradient"></div>
+        </div>
+        
         <div class="container">
-            <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
-                <span class="section-label-alt">Our Success</span>
-                <h2 class="section-title-alt">Academic Achievements</h2>
-                <p class="section-subtitle">Excellence in examinations and competitions</p>
+            <div class="achievements-header" data-aos="fade-up">
+                <span class="achievements-badge">Our Success</span>
+                <h2 class="achievements-title">Academic Achievements</h2>
+                <p class="achievements-subtitle">Excellence in examinations and competitions</p>
+                <div class="achievements-divider"></div>
             </div>
             
-            <div class="stats-grid">
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-icon">
-                        <i class="fas fa-trophy"></i>
+            <div class="achievements-grid">
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="achievement-icon-wrapper">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
                     </div>
-                    <div class="stat-number">85%</div>
-                    <div class="stat-label">PLE Pass Rate</div>
+                    <div class="achievement-content">
+                        <div class="achievement-number" data-target="95">0%</div>
+                        <div class="achievement-label">PLE Pass Rate</div>
+                    </div>
+                    <div class="achievement-glow"></div>
                 </div>
                 
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-icon">
-                        <i class="fas fa-medal"></i>
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-icon-wrapper">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
                     </div>
-                    <div class="stat-number">25</div>
-                    <div class="stat-label">Awards Won</div>
+                    <div class="achievement-content">
+                        <div class="achievement-number" data-target="25">0</div>
+                        <div class="achievement-label">Awards Won</div>
+                    </div>
+                    <div class="achievement-glow"></div>
                 </div>
                 
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="stat-icon">
-                        <i class="fas fa-star"></i>
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="achievement-icon-wrapper">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
-                    <div class="stat-number">85%</div>
-                    <div class="stat-label">First Grade</div>
+                    <div class="achievement-content">
+                        <div class="achievement-number" data-target="90">0%</div>
+                        <div class="achievement-label">First Grade</div>
+                    </div>
+                    <div class="achievement-glow"></div>
                 </div>
                 
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="stat-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="achievement-icon-wrapper">
+                        <div class="achievement-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
                     </div>
-                    <div class="stat-number">350+</div>
-                    <div class="stat-label">Graduates</div>
+                    <div class="achievement-content">
+                        <div class="achievement-number" data-target="350">0+</div>
+                        <div class="achievement-label">Graduates</div>
+                    </div>
+                    <div class="achievement-glow"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Extra-Curricular Activities - Enhanced -->
-    <section class="gallery-preview-section">
+    <section class="extracurricular-section">
+        <div class="extracurricular-background">
+            <div class="extracurricular-gradient"></div>
+        </div>
+        
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Beyond the Classroom</span>
-                <h2 class="section-title">Extra-Curricular Excellence</h2>
-                <p class="section-description">Developing well-rounded individuals through diverse activities and experiences</p>
+                <span class="extracurricular-badge">Beyond the Classroom</span>
+                <h2 class="extracurricular-title">Extra-Curricular Excellence</h2>
+                <p class="extracurricular-subtitle">Developing well-rounded individuals through diverse activities and experiences</p>
+                <div class="extracurricular-divider"></div>
             </div>
             
             <!-- Activity Categories -->
-            <div class="gallery-filters" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i>
-                    All Activities
+            <div class="activity-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="activity-filter-btn active" data-filter="all">
+                    <div class="filter-icon">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <span>All Activities</span>
+                    <div class="filter-count">12</div>
                 </button>
-                <button class="filter-btn" data-filter="sports">
-                    <i class="fas fa-futbol"></i>
-                    Sports
+                <button class="activity-filter-btn" data-filter="sports">
+                    <div class="filter-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <span>Sports</span>
+                    <div class="filter-count">4</div>
                 </button>
-                <button class="filter-btn" data-filter="arts">
-                    <i class="fas fa-palette"></i>
-                    Arts
+                <button class="activity-filter-btn" data-filter="arts">
+                    <div class="filter-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <span>Arts & Music</span>
+                    <div class="filter-count">4</div>
                 </button>
-                <button class="filter-btn" data-filter="academic">
-                    <i class="fas fa-book"></i>
-                    Academic Clubs
+                <button class="activity-filter-btn" data-filter="academic">
+                    <div class="filter-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <span>Academic Clubs</span>
+                    <div class="filter-count">4</div>
                 </button>
             </div>
             
             <!-- Activities Grid -->
-            <div class="gallery-masonry-grid" style="columns: 3; column-gap: 25px;">
+            <div class="activities-grid" data-aos="fade-up" data-aos-delay="200">
                 <!-- Sports Activities -->
-                <div class="gallery-item featured" data-category="sports">
-                    <div class="gallery-card">
-                        <img src="../img/51.jpg" alt="Football">
-                        <span class="category-tag sports">
-                            <i class="fas fa-futbol"></i>
-                            Sports
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Football & Netball</h4>
-                                <p>Competitive teams and training programs</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="sports">
+                    <div class="activity-image">
+                        <img src="../img/51.jpg" alt="Football & Netball">
+                        <div class="activity-overlay">
+                            <div class="activity-category sports">
+                                <i class="fas fa-futbol"></i>
+                                <span>Sports</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Football & Netball</h3>
+                        <p>Competitive teams and training programs developing teamwork, fitness, and sportsmanship</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-users"></i>
+                                Team Sports
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-trophy"></i>
+                                Competitions
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon, Wed, Fri - 4:00 PM</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item medium" data-category="sports">
-                    <div class="gallery-card">
-                        <img src="../img/48.jpg" alt="Athletics">
-                        <span class="category-tag sports">
-                            <i class="fas fa-running"></i>
-                            Sports
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Athletics & Track</h4>
-                                <p>Inter-school competitions and training</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="sports">
+                    <div class="activity-image">
+                        <img src="../img/48.jpg" alt="Athletics & Track">
+                        <div class="activity-overlay">
+                            <div class="activity-category sports">
+                                <i class="fas fa-running"></i>
+                                <span>Sports</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Athletics & Track</h3>
+                        <p>Inter-school competitions and training in running, jumping, and field events</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-medal"></i>
+                                Individual Excellence
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-stopwatch"></i>
+                                Speed & Agility
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Tue, Thu - 4:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="sports">
+                    <div class="activity-image">
+                        <img src="../img/62.jpg" alt="Swimming">
+                        <div class="activity-overlay">
+                            <div class="activity-category sports">
+                                <i class="fas fa-swimmer"></i>
+                                <span>Sports</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Swimming</h3>
+                        <p>Professional swimming lessons and water safety training for all skill levels</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-water"></i>
+                                Water Safety
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-heart"></i>
+                                Fitness
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Sat - 9:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="sports">
+                    <div class="activity-image">
+                        <img src="../img/123.jpg" alt="Basketball">
+                        <div class="activity-overlay">
+                            <div class="activity-category sports">
+                                <i class="fas fa-basketball-ball"></i>
+                                <span>Sports</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Basketball</h3>
+                        <p>Skill development and team play in our modern basketball court</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-crosshairs"></i>
+                                Precision
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-users"></i>
+                                Teamwork
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon, Wed - 5:00 PM</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Arts & Music -->
-                <div class="gallery-item tall" data-category="arts">
-                    <div class="gallery-card">
-                        <img src="../img/124.jpg" alt="Music">
-                        <span class="category-tag events">
-                            <i class="fas fa-music"></i>
-                            Arts
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Music & Choir</h4>
-                                <p>Instrumental lessons and vocal training</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="arts">
+                    <div class="activity-image">
+                        <img src="../img/124.jpg" alt="Music & Choir">
+                        <div class="activity-overlay">
+                            <div class="activity-category arts">
+                                <i class="fas fa-music"></i>
+                                <span>Arts</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Music & Choir</h3>
+                        <p>Instrumental lessons, vocal training, and choir performances</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-microphone"></i>
+                                Vocal Training
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-guitar"></i>
+                                Instruments
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Tue, Thu - 3:30 PM</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item medium" data-category="arts">
-                    <div class="gallery-card">
-                        <img src="../img/66.jpg" alt="Drama">
-                        <span class="category-tag events">
-                            <i class="fas fa-theater-masks"></i>
-                            Arts
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Drama & Theatre</h4>
-                                <p>Annual productions and performances</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="arts">
+                    <div class="activity-image">
+                        <img src="../img/66.jpg" alt="Drama & Theatre">
+                        <div class="activity-overlay">
+                            <div class="activity-category arts">
+                                <i class="fas fa-theater-masks"></i>
+                                <span>Arts</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Drama & Theatre</h3>
+                        <p>Annual productions, performances, and creative expression</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-masks-theater"></i>
+                                Performance
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-lightbulb"></i>
+                                Creativity
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Wed, Fri - 4:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="arts">
+                    <div class="activity-image">
+                        <img src="../img/leo 5.jpg" alt="Art & Craft">
+                        <div class="activity-overlay">
+                            <div class="activity-category arts">
+                                <i class="fas fa-paint-brush"></i>
+                                <span>Arts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Art & Craft</h3>
+                        <p>Creative expression through painting, drawing, and craft projects</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-palette"></i>
+                                Visual Arts
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-hands"></i>
+                                Hands-on
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon, Fri - 3:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="arts">
+                    <div class="activity-image">
+                        <img src="../img/leo 6.jpg" alt="Dance">
+                        <div class="activity-overlay">
+                            <div class="activity-category arts">
+                                <i class="fas fa-music"></i>
+                                <span>Arts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Dance & Movement</h3>
+                        <p>Traditional and modern dance styles, rhythm, and cultural expression</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-heart"></i>
+                                Cultural Heritage
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-running"></i>
+                                Physical Fitness
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Tue, Thu - 4:30 PM</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Academic Clubs -->
-                <div class="gallery-item wide" data-category="academic">
-                    <div class="gallery-card">
+                <div class="activity-card" data-category="academic">
+                    <div class="activity-image">
                         <img src="../img/62.jpg" alt="Science Club">
-                        <span class="category-tag academics">
-                            <i class="fas fa-flask"></i>
-                            Academic
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Science Club</h4>
-                                <p>Experiments, projects, and science fairs</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                        <div class="activity-overlay">
+                            <div class="activity-category academic">
+                                <i class="fas fa-flask"></i>
+                                <span>Academic</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Science Club</h3>
+                        <p>Experiments, projects, science fairs, and STEM exploration</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-microscope"></i>
+                                Experiments
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-rocket"></i>
+                                Innovation
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Wed - 3:30 PM</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item small" data-category="academic">
-                    <div class="gallery-card">
+                <div class="activity-card" data-category="academic">
+                    <div class="activity-image">
                         <img src="../img/leo 6.jpg" alt="Reading Club">
-                        <span class="category-tag academics">
-                            <i class="fas fa-book-reader"></i>
-                            Academic
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Reading Club</h4>
-                                <p>Book discussions and literacy programs</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                        <div class="activity-overlay">
+                            <div class="activity-category academic">
+                                <i class="fas fa-book-reader"></i>
+                                <span>Academic</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Reading Club</h3>
+                        <p>Book discussions, literacy programs, and storytelling sessions</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-book-open"></i>
+                                Literature
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Fri - 3:30 PM</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item medium" data-category="academic">
-                    <div class="gallery-card">
-                        <img src="../img/leo 5.jpg" alt="Debate">
-                        <span class="category-tag academics">
-                            <i class="fas fa-comments"></i>
-                            Academic
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Debate Club</h4>
-                                <p>Public speaking and critical thinking</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="academic">
+                    <div class="activity-image">
+                        <img src="../img/leo 5.jpg" alt="Debate Club">
+                        <div class="activity-overlay">
+                            <div class="activity-category academic">
+                                <i class="fas fa-comments"></i>
+                                <span>Academic</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Debate Club</h3>
+                        <p>Public speaking, critical thinking, and argumentation skills</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-microphone-alt"></i>
+                                Public Speaking
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-brain"></i>
+                                Critical Thinking
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Thu - 4:00 PM</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item tall" data-category="arts">
-                    <div class="gallery-card">
-                        <img src="../img/leo 5.jpg" alt="Art">
-                        <span class="category-tag events">
-                            <i class="fas fa-paint-brush"></i>
-                            Arts
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Art & Craft</h4>
-                                <p>Creative expression and exhibitions</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                <div class="activity-card" data-category="academic">
+                    <div class="activity-image">
+                        <img src="../img/123.jpg" alt="Chess Club">
+                        <div class="activity-overlay">
+                            <div class="activity-category academic">
+                                <i class="fas fa-chess"></i>
+                                <span>Academic</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="gallery-item small" data-category="academic">
-                    <div class="gallery-card">
-                        <img src="../img/123.jpg" alt="Chess">
-                        <span class="category-tag academics">
-                            <i class="fas fa-chess"></i>
-                            Academic
-                        </span>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Chess Club</h4>
-                                <p>Strategic thinking and tournaments</p>
-                                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
-                            </div>
+                    <div class="activity-content">
+                        <h3>Chess Club</h3>
+                        <p>Strategic thinking, problem-solving, and chess tournaments</p>
+                        <div class="activity-features">
+                            <span class="activity-feature">
+                                <i class="fas fa-chess-knight"></i>
+                                Strategy
+                            </span>
+                            <span class="activity-feature">
+                                <i class="fas fa-trophy"></i>
+                                Tournaments
+                            </span>
+                        </div>
+                        <div class="activity-schedule">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon, Wed - 3:30 PM</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Activity Benefits -->
-            <div class="tour-features" style="margin-top: 60px;" data-aos="fade-up">
-                <div class="tour-feature-item">
-                    <div class="feature-icon-tour">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="feature-text-tour">
-                        <h4>Competitive Excellence</h4>
-                        <p>Regular participation in inter-school competitions and tournaments</p>
-                    </div>
-                </div>
-                
-                <div class="tour-feature-item">
-                    <div class="feature-icon-tour">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="feature-text-tour">
-                        <h4>Teamwork & Leadership</h4>
-                        <p>Building collaboration skills and leadership qualities</p>
-                    </div>
-                </div>
-                
-                <div class="tour-feature-item">
-                    <div class="feature-icon-tour">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="feature-text-tour">
-                        <h4>Character Development</h4>
-                        <p>Fostering discipline, perseverance, and sportsmanship</p>
-                    </div>
-                </div>
-                
-                <div class="tour-feature-item">
-                    <div class="feature-icon-tour">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="feature-text-tour">
-                        <h4>Talent Discovery</h4>
-                        <p>Identifying and nurturing individual talents and passions</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -884,8 +1556,8 @@
                     <ul>
                         <li><a href="Academics.html">Nursery School</a></li>
                         <li><a href="Academics.html">Primary School</a></li>
-                        <li><a href="Admission-redesign.html">Boarding</a></li>
-                        <li><a href="Admission-redesign.html">Day School</a></li>
+                        <li><a href="Academics.html">Boarding</a></li>
+                        <li><a href="Academics.html">Day School</a></li>
                         <li><a href="Library-redesign.html">Library</a></li>
                     </ul>
                 </div>
@@ -894,21 +1566,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -924,26 +1600,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 
@@ -1037,5 +1693,120 @@
     
     <!-- Page Loader Script -->
     <script src="../js/page-loader.js"></script>
+    
+    <!-- Academic Achievements Counter Animation -->
+    <script>
+        // Number counting animation for achievements
+        function animateNumbers() {
+            const achievementNumbers = document.querySelectorAll('.achievement-number');
+            
+            achievementNumbers.forEach(number => {
+                const target = parseInt(number.getAttribute('data-target'));
+                const isPercentage = number.textContent.includes('%');
+                const hasPlus = number.textContent.includes('+');
+                
+                let current = 0;
+                const increment = target / 100; // Adjust speed by changing divisor
+                const timer = setInterval(() => {
+                    current += increment;
+                    
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    // Format the number display
+                    let displayValue = Math.floor(current);
+                    if (isPercentage) {
+                        displayValue += '%';
+                    }
+                    if (hasPlus) {
+                        displayValue += '+';
+                    }
+                    
+                    number.textContent = displayValue;
+                }, 20); // Animation speed (lower = faster)
+            });
+        }
+        
+        // Intersection Observer for triggering animation when section is visible
+        const achievementsSection = document.querySelector('.achievements-section');
+        let hasAnimated = false;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    // Add a small delay for better visual effect
+                    setTimeout(() => {
+                        animateNumbers();
+                        hasAnimated = true;
+                    }, 300);
+                }
+            });
+        }, {
+            threshold: 0.3 // Trigger when 30% of the section is visible
+        });
+        
+        if (achievementsSection) {
+            observer.observe(achievementsSection);
+        }
+        
+        // Fallback: animate on page load if section is already visible
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const rect = achievementsSection?.getBoundingClientRect();
+                if (rect && rect.top < window.innerHeight && rect.bottom > 0 && !hasAnimated) {
+                    animateNumbers();
+                    hasAnimated = true;
+                }
+            }, 1000);
+        });
+        
+        // Activity Filter System for Extra-Curricular Section
+        function initActivityFilters() {
+            const filterButtons = document.querySelectorAll('.activity-filter-btn');
+            const activityCards = document.querySelectorAll('.activity-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter cards with animation
+                    activityCards.forEach((card, index) => {
+                        const category = card.getAttribute('data-category');
+                        const shouldShow = filter === 'all' || category === filter;
+                        
+                        if (shouldShow) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Initialize card styles
+            activityCards.forEach(card => {
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        }
+        
+        // Initialize activity filters when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initActivityFilters);
+    </script>
 </body>
 </html>

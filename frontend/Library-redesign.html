@@ -22,9 +22,81 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=3.5">
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Library page responsive cleanup -->
+    <link rel="stylesheet" href="../css/library-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <style>
+        /* Footer Contact Improvements */
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -57,21 +129,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -80,29 +146,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -145,97 +202,6 @@
         </div>
     </section>
 
-    <!-- Library Benefits Section -->
-    <section class="library-benefits-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Why Use Our Library</span>
-                <h2 class="section-title">Why Our Digital Library is The Right Choice for You</h2>
-            </div>
-            
-            <div class="benefits-grid-layout">
-                <!-- Top Left - Wide Rectangle -->
-                <div class="benefit-card card-wide" data-aos="fade-up" data-aos-delay="100">
-                    <div class="benefit-card-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>42+ Quality Resources</h3>
-                    <p>Access a comprehensive collection of textbooks, assignments, past papers, and revision materials covering all subjects from P.1 to P.7, carefully curated to support your academic journey.</p>
-                </div>
-
-                <!-- Bottom Left - Square -->
-                <div class="benefit-card card-square" data-aos="fade-up" data-aos-delay="200">
-                    <div class="benefit-card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>24/7 Access</h3>
-                    <p>Study anytime, anywhere. Our digital library never closes, giving you the freedom to learn on your schedule.</p>
-                </div>
-
-                <!-- Bottom Middle - Square -->
-                <div class="benefit-card card-square" data-aos="fade-up" data-aos-delay="300">
-                    <div class="benefit-card-icon">
-                        <i class="fas fa-download"></i>
-                    </div>
-                    <h3>Instant Downloads</h3>
-                    <p>Get your study materials with just one click. No waiting, no delays - immediate access to everything you need.</p>
-                </div>
-
-                <!-- Right Side - Tall Featured Card -->
-                <div class="benefit-card card-featured" data-aos="fade-left" data-aos-delay="100">
-                    <div class="benefit-featured-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Complete Exam Preparation</h3>
-                    <p>At St. Lawrence, we understand the importance of exam success. That's why our library is packed with comprehensive PLE preparation materials and revision guides.</p>
-                    <p>Whether you're in P.7 preparing for finals or building a strong foundation in lower classes, our resources boost your confidence and help you achieve excellent results.</p>
-                    <a href="#pdfGrid" class="btn-start-learning">
-                        <span>Browse Resources</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resource Types Section -->
-    <section class="resource-types-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">What We Offer</span>
-                <h2 class="section-title">Resource Types</h2>
-                <p class="section-description">Comprehensive learning materials for all subjects</p>
-            </div>
-            
-            <div class="resource-types-grid">
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Assignments</span>
-                </div>
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="150">
-                    <i class="fas fa-book"></i>
-                    <span>Reading Materials</span>
-                </div>
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-file-pdf"></i>
-                    <span>Past Exams</span>
-                </div>
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="250">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span>Revision Papers</span>
-                </div>
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-video"></i>
-                    <span>Multimedia</span>
-                </div>
-                <div class="resource-type-item" data-aos="zoom-in" data-aos-delay="350">
-                    <i class="fas fa-book-open"></i>
-                    <span>Study Guides</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Library News Section -->
     <section class="library-news-section">
         <div class="container">
@@ -257,55 +223,6 @@
                         <strong>Tip:</strong> Use the search bar to quickly find assignments by subject or class.
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Search and Filter Section -->
-    <section class="search-filter-section">
-        <div class="container">
-            <!-- Search Bar -->
-            <div class="search-container" data-aos="fade-up">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search assignments by subject or class...">
-                </div>
-            </div>
-
-            <!-- Class Filter Buttons -->
-            <div class="filter-buttons-container" data-aos="fade-up" data-aos-delay="100">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th-large"></i>
-                    <span>All Classes</span>
-                </button>
-                <button class="filter-btn" data-filter="p1">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.1</span>
-                </button>
-                <button class="filter-btn" data-filter="p2">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.2</span>
-                </button>
-                <button class="filter-btn" data-filter="p3">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.3</span>
-                </button>
-                <button class="filter-btn" data-filter="p4">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.4</span>
-                </button>
-                <button class="filter-btn" data-filter="p5">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.5</span>
-                </button>
-                <button class="filter-btn" data-filter="p6">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.6</span>
-                </button>
-                <button class="filter-btn" data-filter="p7">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>P.7</span>
-                </button>
             </div>
         </div>
     </section>
@@ -383,21 +300,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -413,26 +334,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 
@@ -523,53 +424,7 @@
             });
         });
 
-        // Library Functionality
-        let currentFilter = 'all';
-        const searchInput = document.getElementById('searchInput');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const libraryContainer = document.getElementById('libraryContainer');
-        const noResults = document.querySelector('.no-results');
-
-        // Filter button click handlers
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.getAttribute('data-filter');
-                filterAndSearch();
-            });
-        });
-
-        // Search input handler
-        if (searchInput) {
-            searchInput.addEventListener('input', filterAndSearch);
-        }
-
-        // Filter and Search functionality
-        function filterAndSearch() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const resourceCards = document.querySelectorAll('.library-pdf-card');
-            let hasResults = false;
-
-            resourceCards.forEach(card => {
-                const matchesFilter = currentFilter === 'all' || card.classList.contains(currentFilter);
-                const matchesSearch = card.textContent.toLowerCase().includes(searchTerm);
-                
-                if (matchesFilter && matchesSearch) {
-                    card.style.display = '';
-                    hasResults = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (noResults) {
-                noResults.style.display = hasResults ? 'none' : 'flex';
-            }
-
-            if (window.AOS) AOS.refresh();
-        }
-
+        // Library Functionality - Basic setup
         // Load PDFs from API on page load
         // The api-library.js file will handle this automatically
     </script>

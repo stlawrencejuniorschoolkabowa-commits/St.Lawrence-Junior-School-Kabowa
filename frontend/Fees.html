@@ -26,11 +26,19 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=20260112">
     <link rel="stylesheet" href="../css/fees-styles.css?v=20260112">
-    
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Fees page responsive cleanup -->
+    <link rel="stylesheet" href="../css/fees-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
+
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
     
-    <!-- Inline Fees Styles - Direct Embed -->
     <style>
         /* Fees Hero */
         .fees-hero-simple { margin-top: 85px; }
@@ -98,48 +106,814 @@
         .uniform-includes ul li i { color: #28a745; font-size: 12px; }
         .hero-tagline { font-size: 18px; color: rgba(255, 255, 255, 0.95); font-weight: 500; margin-top: 10px; }
         
-        /* Mobile Fee Cards */
-        .mobile-fee-cards { display: none; }
-        .mobile-fee-card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 2px solid rgba(0, 102, 204, 0.1); position: relative; }
-        .mobile-fee-card.featured { border-color: #0066cc; background: rgba(0, 102, 204, 0.02); }
-        .mobile-card-number { position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; }
-        .mobile-card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .mobile-card-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; flex-shrink: 0; }
-        .mobile-card-title h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 4px 0; }
-        .mobile-card-subtitle { font-size: 13px; color: #666; margin: 0; }
-        .mobile-popular-badge { display: inline-block; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
-        .mobile-card-prices { display: flex; flex-direction: column; gap: 15px; }
-        .mobile-price-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(0, 102, 204, 0.05); border-radius: 10px; border-left: 3px solid #0066cc; }
-        .mobile-price-label { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #1a1a1a; }
-        .mobile-price-label i { font-size: 16px; color: #0066cc; }
-        .mobile-price-value { display: flex; align-items: baseline; gap: 5px; }
-        .mobile-price-value .currency { font-size: 11px; font-weight: 600; color: #666; }
-        .mobile-price-value .amount { font-size: 20px; font-weight: 800; color: #0066cc; font-family: 'Poppins', sans-serif; }
-        .mobile-payment-info { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 102, 204, 0.1); text-align: center; }
-        .mobile-payment-badge { display: inline-block; background: rgba(0, 102, 204, 0.1); color: #0066cc; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+        /* Payment Information Section */
+        .payment-info-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .uniform-pricing-grid-2x2 { grid-template-columns: 1fr; gap: 25px; }
+        .payment-info-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(220, 53, 69, 0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
+        
+        .payment-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .payment-methods-card,
+        .payment-policies-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .payment-methods-card:hover,
+        .payment-policies-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .payment-card-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+        }
+        
+        .payment-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .payment-card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 8px 0;
+        }
+        
+        .payment-card-header p {
+            color: #6c757d;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .payment-methods-list,
+        .policies-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .payment-method,
+        .policy-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(0, 102, 204, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid #0066cc;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover,
+        .policy-item:hover {
+            background: rgba(0, 102, 204, 0.08);
+            transform: translateX(4px);
+        }
+        
+        .method-icon,
+        .policy-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .method-icon i,
+        .policy-icon i {
+            font-size: 1rem;
+            color: white;
+        }
+        
+        .method-info h4,
+        .policy-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 4px 0;
+        }
+        
+        .method-info p,
+        .policy-content p {
+            color: #6c757d;
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .fees-contact-section {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .fees-contact-card {
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 12px 40px rgba(0, 102, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fees-contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .contact-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .contact-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+        }
+        
+        .contact-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            white-space: nowrap;
+        }
+        
+        .contact-btn.primary {
+            background: white;
+            color: #0066cc;
+            border-color: white;
+        }
+        
+        .contact-btn.primary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-2px);
+        }
+        
+        .contact-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .contact-btn.tertiary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .contact-btn.tertiary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Uniform Pricing Grid Responsive */
+        .uniform-pricing-grid-2x2 { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+            margin-top: 40px; 
+        }
+        
+        .uniform-category-card { 
+            background: #fff; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 2px solid transparent; 
+        }
+        
+        .uniform-category-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12); 
+            border-color: rgba(0, 102, 204, 0.2); 
+        }
+        
+        .uniform-card-header { 
+            padding: 25px; 
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); 
+            color: #fff; 
+            text-align: center; 
+            position: relative; 
+        }
+        
+        .uniform-card-header.boys-header { 
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%); 
+        }
+        
+        .uniform-card-header.girls-header { 
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); 
+        }
+        
+        .uniform-icon { 
+            width: 50px; 
+            height: 50px; 
+            background: rgba(255, 255, 255, 0.2); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto 15px; 
+            backdrop-filter: blur(10px); 
+        }
+        
+        .uniform-icon i { 
+            font-size: 24px; 
+            color: #fff; 
+        }
+        
+        .uniform-card-header h3 { 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            margin-bottom: 6px; 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        .uniform-subtitle { 
+            font-size: 0.8rem; 
+            opacity: 0.9; 
+            font-weight: 500; 
+        }
+        
+        .boarding-tag { 
+            position: absolute; 
+            top: 12px; 
+            right: 12px; 
+            background: rgba(255, 255, 255, 0.25); 
+            color: #fff; 
+            padding: 4px 10px; 
+            border-radius: 15px; 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            backdrop-filter: blur(10px); 
+        }
+        
+        .uniform-card-body { 
+            padding: 20px; 
+        }
+        
+        .uniform-price-table { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
+        .uniform-price-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 16px; 
+            background: rgba(0, 102, 204, 0.03); 
+            border-radius: 10px; 
+            border-left: 3px solid #0066cc; 
+            transition: all 0.3s ease; 
+        }
+        
+        .uniform-price-row:hover { 
+            background: rgba(0, 102, 204, 0.08); 
+            transform: translateX(4px); 
+        }
+        
+        .class-label { 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            color: #1a1a1a; 
+        }
+        
+        .price-value { 
+            display: flex; 
+            align-items: baseline; 
+            gap: 4px; 
+        }
+        
+        .price-value .currency { 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: #666; 
+        }
+        
+        .price-value .amount { 
+            font-size: 1.1rem; 
+            font-weight: 800; 
+            color: #0066cc; 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        .uniform-card-footer { 
+            padding: 20px; 
+            background: rgba(0, 102, 204, 0.02); 
+            border-top: 1px solid rgba(0, 102, 204, 0.1); 
+        }
+        
+        .uniform-includes { 
+            margin: 0; 
+        }
+        
+        .includes-title { 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: #1a1a1a; 
+            margin-bottom: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .uniform-includes ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 8px; 
+        }
+        
+        .uniform-includes ul li { 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-size: 0.75rem; 
+            color: #666; 
+        }
+        
+        .uniform-includes ul li i { 
+            color: #28a745; 
+            font-size: 0.7rem; 
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 1200px) {
+            .payment-content-grid {
+                gap: 25px;
+            }
+            
+            .payment-methods-card,
+            .payment-policies-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .payment-info-section {
+                padding: 60px 0;
+            }
+            
+            .uniform-pricing-grid-2x2 {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 500px;
+                margin: 40px auto 0;
+            }
+            
+            .uniform-card-header {
+                padding: 30px 25px;
+            }
+            
+            .uniform-card-body {
+                padding: 25px;
+            }
+            
+            .uniform-card-footer {
+                padding: 25px;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .fee-toggle-wrapper { flex-direction: column; max-width: 300px; }
-            .fee-toggle-btn { width: 100%; padding: 16px 28px; font-size: 15px; }
-            .fees-table-wrapper { display: none; }
-            .mobile-fee-cards { display: block; }
-            .uniform-includes ul { grid-template-columns: 1fr; }
+            .payment-content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .payment-methods-card,
+            .payment-policies-card {
+                padding: 20px;
+            }
+            
+            .payment-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .payment-icon i {
+                font-size: 1.2rem;
+            }
+            
+            .payment-card-header h3 {
+                font-size: 1.2rem;
+            }
+            
+            .method-icon,
+            .policy-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .method-icon i,
+            .policy-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .fees-contact-card {
+                padding: 30px 20px;
+            }
+            
+            .contact-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+            
+            .uniform-pricing-grid-2x2 {
+                margin-top: 30px;
+            }
+            
+            .uniform-includes ul {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
         }
-        @media (max-width: 480px) {
-            .fee-toggle-section { padding: 30px 0; }
-            .fee-toggle-btn { padding: 14px 24px; font-size: 14px; }
-            .mobile-fee-card { padding: 18px; margin-bottom: 15px; }
-            .mobile-card-header { gap: 12px; }
-            .mobile-card-icon { width: 45px; height: 45px; font-size: 20px; }
-            .mobile-card-title h3 { font-size: 16px; }
-            .mobile-card-subtitle { font-size: 12px; }
-            .mobile-price-row { padding: 12px; }
-            .mobile-price-label { font-size: 13px; }
-            .mobile-price-value .amount { font-size: 18px; }
+        
+        @media (max-width: 576px) {
+            .payment-info-section {
+                padding: 40px 0;
+            }
+            
+            .payment-methods-card,
+            .payment-policies-card {
+                padding: 16px;
+            }
+            
+            .payment-method,
+            .policy-item {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .method-info h4,
+            .policy-content h4 {
+                font-size: 0.9rem;
+            }
+            
+            .method-info p,
+            .policy-content p {
+                font-size: 0.8rem;
+            }
+            
+            .fees-contact-card {
+                padding: 25px 16px;
+            }
+            
+            .contact-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .contact-header p {
+                font-size: 0.9rem;
+            }
+            
+            .contact-btn {
+                font-size: 0.85rem;
+                padding: 12px 16px;
+            }
+            
+            .uniform-card-header {
+                padding: 20px 16px;
+            }
+            
+            .uniform-card-body {
+                padding: 16px;
+            }
+            
+            .uniform-card-footer {
+                padding: 16px;
+            }
+            
+            .uniform-price-row {
+                padding: 12px;
+            }
+            
+            .class-label {
+                font-size: 0.85rem;
+            }
+            
+            .price-value .amount {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Fees Table Responsive */
+        @media (max-width: 768px) {
+            .fees-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .fees-table {
+                min-width: 600px;
+            }
+            
+            .fees-table-header,
+            .fees-table-cell {
+                padding: 15px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .class-info {
+                gap: 10px;
+            }
+            
+            .class-info i {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .class-info strong {
+                font-size: 0.95rem;
+            }
+            
+            .price-tag .amount {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .fee-toggle-wrapper {
+                flex-direction: column;
+                max-width: 300px;
+            }
+            
+            .fee-toggle-btn {
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .fees-table {
+                min-width: 500px;
+            }
+            
+            .fees-table-header,
+            .fees-table-cell {
+                padding: 12px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .class-info strong {
+                font-size: 0.9rem;
+            }
+            
+            .class-subtitle {
+                font-size: 0.75rem;
+            }
+        }
+        .contact-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+        }
+        
+        .contact-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-btn.primary {
+            background: white;
+            color: #0066cc;
+            border-color: white;
+        }
+        
+        .contact-btn.primary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-2px);
+        }
+        
+        .contact-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .contact-btn.tertiary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .contact-btn.tertiary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+        
+        </style>
+    
+    <!-- Footer Contact Improvements -->
+    <style>
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Ensure email doesn't break on smaller screens */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
         }
     </style>
 </head>
@@ -178,21 +952,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link active">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link active">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -200,27 +968,18 @@
                     
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="mobile-only"><a href="Contact-redesign.html" class="nav-link-mobile">Contact</a></li>
@@ -734,6 +1493,144 @@
         </div>
     </section>
 
+    <!-- Payment Methods & Information Section -->
+    <section class="payment-info-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Payment Information</span>
+                <h2 class="section-title">Payment Methods & Policies</h2>
+                <p class="section-description">Flexible payment options to make quality education accessible</p>
+            </div>
+            
+            <div class="payment-content-grid" data-aos="fade-up" data-aos-delay="100">
+                <!-- Payment Methods -->
+                <div class="payment-methods-card">
+                    <div class="payment-card-header">
+                        <div class="payment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Accepted Payment Methods</h3>
+                        <p>Multiple convenient ways to pay your fees</p>
+                    </div>
+                    <div class="payment-methods-list">
+                        <div class="payment-method">
+                            <div class="method-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Bank Transfer</h4>
+                                <p>Direct bank transfers and deposits</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="method-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Mobile Money</h4>
+                                <p>MTN Mobile Money & Airtel Money</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="method-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Cash Payment</h4>
+                                <p>Pay directly at the school office</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="method-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Card Payment</h4>
+                                <p>Visa & Mastercard accepted</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Policies -->
+                <div class="payment-policies-card">
+                    <div class="payment-card-header">
+                        <div class="payment-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Payment Policies</h3>
+                        <p>Important information about fee payments</p>
+                    </div>
+                    <div class="policies-list">
+                        <div class="policy-item">
+                            <div class="policy-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="policy-content">
+                                <h4>Payment Schedule</h4>
+                                <p>Fees are paid per term, due at the beginning of each term</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <div class="policy-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="policy-content">
+                                <h4>Early Payment Discount</h4>
+                                <p>5% discount for full year payment in advance</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <div class="policy-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="policy-content">
+                                <h4>Payment Plans</h4>
+                                <p>Flexible installment options available upon request</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <div class="policy-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="policy-content">
+                                <h4>Receipt & Records</h4>
+                                <p>Official receipts provided for all payments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact for Fees -->
+            <div class="fees-contact-section" data-aos="fade-up" data-aos-delay="200">
+                <div class="fees-contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Need Help with Payments?</h3>
+                        <p>Our finance team is here to assist you with any payment-related questions</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:+256701420506" class="contact-btn primary">
+                            <i class="fas fa-phone"></i>
+                            <span>Call Finance Office</span>
+                        </a>
+                        <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-btn secondary">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Us</span>
+                        </a>
+                        <a href="Contact-redesign.html" class="contact-btn tertiary">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Visit School</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <!-- Video Background -->
@@ -775,11 +1672,11 @@
                 <div class="footer-col">
                     <h3>Programs</h3>
                     <ul>
-                        <li><a href="#">Nursery School</a></li>
-                        <li><a href="#">Primary School</a></li>
-                        <li><a href="#">Boarding</a></li>
-                        <li><a href="#">Day School</a></li>
-                        <li><a href="Library.html">Library</a></li>
+                        <li><a href="Academics.html">Nursery School</a></li>
+                        <li><a href="Academics.html">Primary School</a></li>
+                        <li><a href="Academics.html">Boarding</a></li>
+                        <li><a href="Academics.html">Day School</a></li>
+                        <li><a href="Library-redesign.html">Library</a></li>
                     </ul>
                 </div>
                 
@@ -787,21 +1684,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>P.O.BOX 36198, KAMPALA</span>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+256 701 420 506 / +256 772 420 506</span>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>stlawrencejuniorschoolkabowa@gmail.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>st.lawrence.juniorschool@yahoo.com</span>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -817,26 +1718,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 
@@ -847,9 +1728,14 @@
 
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="../js/redesign-script.js"></script>
+    
+    <!-- API Integration -->
+    <script src="../js/api-config.js"></script>
+    <script src="../js/custom-alerts.js"></script>
+    <script src="../js/api-contact.js"></script>
     
     <script>
         // Initialize AOS
@@ -864,6 +1750,7 @@
         const navMenu = document.getElementById('navMenu');
         const mobileExpandables = document.querySelectorAll('.mobile-expandable');
         
+        // Toggle mobile menu
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -883,6 +1770,7 @@
             });
         }
         
+        // Handle expandable menu items
         mobileExpandables.forEach(item => {
             const link = item.querySelector('.nav-link-mobile');
             
@@ -901,6 +1789,7 @@
             }
         });
         
+        // Close menu when clicking submenu links
         const submenuLinks = document.querySelectorAll('.mobile-submenu a');
         submenuLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -912,6 +1801,7 @@
             });
         });
         
+        // Close menu when clicking regular mobile links
         const regularMobileLinks = document.querySelectorAll('.mobile-only:not(.mobile-expandable) .nav-link-mobile');
         regularMobileLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -919,41 +1809,6 @@
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     document.body.style.overflow = '';
-                }
-            });
-        });
-        
-        // Fee Type Toggle
-        const toggleBtns = document.querySelectorAll('.fee-toggle-btn');
-        const dayScholarCols = document.querySelectorAll('.day-scholar-col');
-        const boardingCols = document.querySelectorAll('.boarding-col');
-        const dayScholarRows = document.querySelectorAll('.day-scholar-row');
-        const boardingRows = document.querySelectorAll('.boarding-row');
-        
-        toggleBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const type = this.getAttribute('data-type');
-                
-                // Update active button
-                toggleBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show/hide table columns (desktop)
-                if (type === 'day') {
-                    dayScholarCols.forEach(col => col.style.display = 'table-cell');
-                    boardingCols.forEach(col => col.style.display = 'none');
-                } else {
-                    dayScholarCols.forEach(col => col.style.display = 'none');
-                    boardingCols.forEach(col => col.style.display = 'table-cell');
-                }
-                
-                // Show/hide mobile card rows
-                if (type === 'day') {
-                    dayScholarRows.forEach(row => row.style.display = 'flex');
-                    boardingRows.forEach(row => row.style.display = 'none');
-                } else {
-                    dayScholarRows.forEach(row => row.style.display = 'none');
-                    boardingRows.forEach(row => row.style.display = 'flex');
                 }
             });
         });

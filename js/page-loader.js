@@ -1,21 +1,42 @@
 /**
  * Page Loader Script
- * Hides the loading animation after page loads
+ * Hides loader quickly and reliably on all devices.
  */
 
-window.addEventListener('load', function() {
+(function () {
     const loader = document.getElementById('pageLoader');
-    if (loader) {
-        // Random duration between 3-4.5 seconds
-        const duration = Math.floor(Math.random() * 1500) + 3000;
-        setTimeout(function() {
+    if (!loader) return;
+
+    let hidden = false;
+
+    function hideLoader(delayMs) {
+        if (hidden) return;
+        hidden = true;
+
+        setTimeout(function () {
             loader.classList.add('hidden');
-            
-            // Dispatch custom event when loader is hidden
-            // This allows other scripts to know when to start animations
-            setTimeout(function() {
+            setTimeout(function () {
                 window.dispatchEvent(new Event('loaderHidden'));
-            }, 300); // Small delay after fade-out animation
-        }, duration);
+            }, 300);
+        }, delayMs);
     }
-});
+
+    // Preferred: hide shortly after DOM is interactive.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            hideLoader(900);
+        }, { once: true });
+    } else {
+        hideLoader(900);
+    }
+
+    // Backup: if page fully loads earlier/later, still hide promptly.
+    window.addEventListener('load', function () {
+        hideLoader(700);
+    }, { once: true });
+
+    // Hard fallback: never keep loader forever on slow networks.
+    setTimeout(function () {
+        hideLoader(0);
+    }, 3000);
+})();

@@ -221,13 +221,70 @@ if (!document.getElementById('pageLoader')) {
 // ========== BACK TO TOP BUTTON ==========
 const backToTopBtn = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
+function updateBackToTopVisibility() {
+    if (!backToTopBtn) return;
+    // Keep visible on mobile as requested; desktop still scroll-based.
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile || window.pageYOffset > 80) {
         backToTopBtn.classList.add('show');
     } else {
         backToTopBtn.classList.remove('show');
     }
-});
+}
+
+window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+updateBackToTopVisibility();
+
+// Keep floating controls pinned inside visible viewport on mobile.
+function pinFloatingControls() {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) return;
+
+    const safeRight = 12;
+    const safeBottom = 12;
+
+    const chatButton = document.getElementById('chatButton');
+    if (chatButton) {
+        chatButton.style.setProperty('position', 'fixed', 'important');
+        chatButton.style.setProperty('left', 'auto', 'important');
+        chatButton.style.setProperty('right', `${safeRight}px`, 'important');
+        chatButton.style.setProperty('top', 'auto', 'important');
+        chatButton.style.setProperty('bottom', `${safeBottom}px`, 'important');
+        chatButton.style.setProperty('z-index', '100010', 'important');
+        chatButton.style.setProperty('display', 'flex', 'important');
+        chatButton.style.setProperty('visibility', 'visible', 'important');
+        chatButton.style.setProperty('opacity', '1', 'important');
+        chatButton.style.setProperty('transform', 'none', 'important');
+    }
+
+    if (backToTopBtn) {
+        const bottomOffset = safeBottom + 56 + 12;
+        backToTopBtn.style.setProperty('position', 'fixed', 'important');
+        backToTopBtn.style.setProperty('left', 'auto', 'important');
+        backToTopBtn.style.setProperty('right', `${safeRight}px`, 'important');
+        backToTopBtn.style.setProperty('top', 'auto', 'important');
+        backToTopBtn.style.setProperty('bottom', `${bottomOffset}px`, 'important');
+        backToTopBtn.style.setProperty('z-index', '100005', 'important');
+        backToTopBtn.style.setProperty('visibility', 'visible', 'important');
+        backToTopBtn.style.setProperty('opacity', '1', 'important');
+    }
+
+    const hamburger = document.getElementById('hamburger');
+    if (hamburger) {
+        hamburger.style.setProperty('display', 'inline-flex', 'important');
+        hamburger.style.setProperty('visibility', 'visible', 'important');
+        hamburger.style.setProperty('opacity', '1', 'important');
+    }
+}
+window.pinFloatingControls = pinFloatingControls;
+
+window.addEventListener('resize', pinFloatingControls, { passive: true });
+window.addEventListener('orientationchange', pinFloatingControls, { passive: true });
+window.addEventListener('loaderHidden', pinFloatingControls);
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', pinFloatingControls, { passive: true });
+}
+pinFloatingControls();
 
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({

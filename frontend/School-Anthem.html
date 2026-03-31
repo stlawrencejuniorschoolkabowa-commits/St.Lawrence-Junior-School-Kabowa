@@ -23,9 +23,88 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/redesign-style.css?v=2.0">
+
+    <!-- Responsive Overrides (Clean) -->
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- School Anthem page responsive cleanup -->
+    <link rel="stylesheet" href="../css/anthem-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <style>
+        /* Footer Contact Improvements */
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Ensure email doesn't break on smaller screens */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+            
+            .contact-info .contact-icon {
+                margin-right: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -58,21 +137,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link active">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link active">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -81,29 +154,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -390,51 +454,6 @@
         </div>
     </section>
 
-    <!-- Anthem Values Section -->
-    <section class="anthem-values-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-label-alt">What It Means</span>
-                <h2 class="section-title-alt">Values in Our Anthem</h2>
-                <p class="section-subtitle">Every line carries a powerful message</p>
-            </div>
-            
-            <div class="values-grid-anthem">
-                <div class="value-card-anthem" data-aos="fade-up" data-aos-delay="100">
-                    <div class="value-icon-anthem">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Excellence</h3>
-                    <p>"We strive to excel in all we do" - Our commitment to achieving the highest standards in academics and character.</p>
-                </div>
-                
-                <div class="value-card-anthem" data-aos="fade-up" data-aos-delay="200">
-                    <div class="value-icon-anthem red">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Unity</h3>
-                    <p>"With hearts united, we stand tall and strong" - Together, we are stronger and can achieve anything.</p>
-                </div>
-                
-                <div class="value-card-anthem" data-aos="fade-up" data-aos-delay="300">
-                    <div class="value-icon-anthem">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Integrity</h3>
-                    <p>"With discipline and honor, we pave the way" - Upholding moral values and ethical behavior in all we do.</p>
-                </div>
-                
-                <div class="value-card-anthem" data-aos="fade-up" data-aos-delay="400">
-                    <div class="value-icon-anthem red">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Knowledge</h3>
-                    <p>"Where knowledge blooms in every girl and boy" - Education as the foundation for a bright future.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <!-- Video Background -->
@@ -466,9 +485,9 @@
                     <ul>
                         <li><a href="index-redesign.html">Home</a></li>
                         <li><a href="About-redesign.html">About Us</a></li>
-                        <li><a href="Teachers.html">Teachers</a></li>
-                        <li><a href="Gallery.html">Gallery</a></li>
-                        <li><a href="Admission.html">Admission</a></li>
+                        <li><a href="Teachers-redesign.html">Teachers</a></li>
+                        <li><a href="Gallery-redesign.html">Gallery</a></li>
+                        <li><a href="Admission-redesign.html">Admission</a></li>
                     </ul>
                 </div>
                 
@@ -476,11 +495,11 @@
                 <div class="footer-col">
                     <h3>Programs</h3>
                     <ul>
-                        <li><a href="#">Nursery School</a></li>
-                        <li><a href="#">Primary School</a></li>
-                        <li><a href="#">Boarding</a></li>
-                        <li><a href="#">Day School</a></li>
-                        <li><a href="Library.html">Library</a></li>
+                        <li><a href="Academics.html">Nursery School</a></li>
+                        <li><a href="Academics.html">Primary School</a></li>
+                        <li><a href="Admission-redesign.html">Boarding</a></li>
+                        <li><a href="Admission-redesign.html">Day School</a></li>
+                        <li><a href="Library-redesign.html">Library</a></li>
                     </ul>
                 </div>
                 
@@ -488,21 +507,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>P.O.BOX 36198, KAMPALA</span>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+256 701 420 506 / +256 772 420 506</span>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>stlawrencejuniorschoolkabowa@gmail.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>st.lawrence.juniorschool@yahoo.com</span>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -518,26 +541,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 

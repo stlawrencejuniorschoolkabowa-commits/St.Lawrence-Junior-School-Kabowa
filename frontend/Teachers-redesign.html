@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,10 +24,414 @@
     <link rel="stylesheet" href="../css/redesign-style.css?v=3.0">
     
     <!-- Mobile Improvements CSS -->
-    <link rel="stylesheet" href="../css/mobile-improvements.css">
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Teachers page responsive cleanup -->
+    <link rel="stylesheet" href="../css/teachers-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <style>
+        /* Footer Contact Improvements - Match Index Page */
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 12px;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .contact-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #fff;
+        }
+        
+        .phone-separator {
+            margin: 0 8px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-text {
+                font-size: 0.9rem;
+            }
+            
+            .phone-separator {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        
+        /* Teacher Profile Modal Styles */
+        .teacher-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .teacher-modal.active {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .teacher-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .teacher-modal-content {
+            position: relative;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .teacher-modal.active .teacher-modal-content {
+            transform: scale(1);
+        }
+        
+        .teacher-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .teacher-modal-close:hover {
+            background: #ff4757;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .teacher-modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .teacher-modal-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .teacher-modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .teacher-modal-info h2 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .teacher-modal-position {
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .teacher-modal-department {
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+        
+        .teacher-modal-body {
+            padding: 30px;
+        }
+        
+        .teacher-modal-section {
+            margin-bottom: 30px;
+        }
+        
+        .teacher-modal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .teacher-modal-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .teacher-modal-section h3 i {
+            color: #667eea;
+            width: 20px;
+        }
+        
+        .teacher-modal-section p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .teacher-modal-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .modal-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .modal-stat-item i {
+            font-size: 1.5rem;
+            color: #667eea;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .teacher-modal-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .modal-specialty-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .teacher-modal-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .modal-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .modal-contact-item i {
+            font-size: 1.2rem;
+            color: #667eea;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .contact-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        
+        .contact-value {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .contact-value:hover {
+            color: #667eea;
+        }
+        
+        /* Make teacher cards clickable */
+        .teacher-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Teacher card footer with view profile button */
+        .teacher-card-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .view-profile-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .view-profile-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .view-profile-btn i {
+            font-size: 0.8rem;
+        }
+        
+        /* Simplified teacher overlay */
+        .teacher-quick-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .teacher-quick-action i {
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+        
+        /* Responsive modal */
+        @media (max-width: 768px) {
+            .teacher-modal-content {
+                width: 95%;
+                margin: 20px auto;
+                max-height: calc(100vh - 40px);
+            }
+            
+            .teacher-modal-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px 25px;
+            }
+            
+            .teacher-modal-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .teacher-modal-info h2 {
+                font-size: 1.5rem;
+            }
+            
+            .teacher-modal-body {
+                padding: 20px;
+            }
+            
+            .teacher-modal-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-stat-item {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -66,21 +470,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link active">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -88,27 +486,18 @@
                     
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="mobile-only"><a href="Contact-redesign.html" class="nav-link-mobile">Contact</a></li>
@@ -160,7 +549,7 @@
                     <p class="intro-description">
                         At St. Lawrence Junior School, our teachers are the heart of our educational excellence. 
                         Each member of our teaching staff brings a wealth of experience, dedication, and passion 
-                        for nurturing young minds. Our educators are not just teachers â€“ they are mentors, role 
+                        for nurturing young minds. Our educators are not just teachers – they are mentors, role 
                         models, and lifelong learners committed to student success.
                     </p>
                     <p class="intro-description">
@@ -251,73 +640,87 @@
         </div>
     </section>
 
-    <!-- Why Our Teachers Are Special -->
-    <section class="why-choose-us-section">
-        <div class="container">
-            <div class="why-choose-header" data-aos="fade-up">
-                <span class="section-tag">What Makes Us Different</span>
-                <h2 class="why-choose-title">Why Our <span class="highlight">Teachers Excel</span></h2>
+    <!-- Teacher Profile Modal -->
+    <div class="teacher-modal" id="teacherModal">
+        <div class="teacher-modal-overlay" onclick="closeTeacherModal()"></div>
+        <div class="teacher-modal-content">
+            <button class="teacher-modal-close" onclick="closeTeacherModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="teacher-modal-header">
+                <div class="teacher-modal-photo">
+                    <img id="modalTeacherPhoto" src="../img/user.jpg" alt="Teacher Photo">
+                </div>
+                <div class="teacher-modal-info">
+                    <h2 id="modalTeacherName">Teacher Name</h2>
+                    <p class="teacher-modal-position" id="modalTeacherPosition">Position</p>
+                    <p class="teacher-modal-department" id="modalTeacherDepartment">Department</p>
+                </div>
             </div>
             
-            <div class="why-choose-grid">
-                <!-- Left Column -->
-                <div class="why-choose-left">
-                    <!-- Top Cards -->
-                    <div class="top-cards">
-                        <div class="why-card square-card light-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="why-icon">
-                                <i class="fas fa-certificate"></i>
+            <div class="teacher-modal-body">
+                <div class="teacher-modal-section">
+                    <h3><i class="fas fa-user"></i> About</h3>
+                    <p id="modalTeacherBio">Teacher biography will appear here...</p>
+                </div>
+                
+                <div class="teacher-modal-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Qualifications & Experience</h3>
+                    <div class="teacher-modal-stats">
+                        <div class="modal-stat-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <span class="stat-label">Qualification</span>
+                                <span class="stat-value" id="modalTeacherQualification">-</span>
                             </div>
-                            <h3>Highly Qualified</h3>
-                            <p>All our teachers hold recognized teaching qualifications and degrees. Continuous professional development ensures they stay current with best practices.</p>
                         </div>
-                        
-                        <div class="why-card square-card light-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="why-icon">
-                                <i class="fas fa-heart"></i>
+                        <div class="modal-stat-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <span class="stat-label">Experience</span>
+                                <span class="stat-value" id="modalTeacherExperience">-</span>
                             </div>
-                            <h3>Passionate & Caring</h3>
-                            <p>Beyond academics, our teachers genuinely care about each student's wellbeing, creating a nurturing environment where children thrive.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Bottom Card -->
-                    <div class="bottom-card">
-                        <div class="why-card horizontal-card light-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="why-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3>Technology-Savvy Educators</h3>
-                            <p>Our teachers integrate modern technology into lessons, using interactive whiteboards, educational apps, and digital resources to make learning engaging and effective for the 21st-century student.</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Right Column -->
-                <div class="why-choose-right">
-                    <div class="why-card tall-card featured-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="why-icon white-icon">
-                            <i class="fas fa-users"></i>
+                <div class="teacher-modal-section" id="modalSpecialtiesSection">
+                    <h3><i class="fas fa-star"></i> Specialties</h3>
+                    <div class="teacher-modal-specialties" id="modalTeacherSpecialties">
+                        <!-- Specialties will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="teacher-modal-section">
+                    <h3><i class="fas fa-phone"></i> Contact Information</h3>
+                    <div class="teacher-modal-contact">
+                        <div class="modal-contact-item" id="modalTeacherEmailItem">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <a href="#" id="modalTeacherEmail" class="contact-value">-</a>
+                            </div>
                         </div>
-                        <h3>Collaborative Team Approach</h3>
-                        <p>Our teachers work together as a cohesive team, sharing best practices and supporting each other to deliver exceptional education.</p>
-                        <p class="featured-extra">Our collaborative approach includes:</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; color: rgba(255,255,255,0.95);">
-                            <li style="margin-bottom: 8px;">âœ“ Weekly team planning sessions</li>
-                            <li style="margin-bottom: 8px;">âœ“ Peer observation and feedback</li>
-                            <li style="margin-bottom: 8px;">âœ“ Shared resources and materials</li>
-                            <li style="margin-bottom: 8px;">âœ“ Joint parent-teacher conferences</li>
-                            <li>âœ“ Continuous professional development</li>
-                        </ul>
+                        <div class="modal-contact-item" id="modalTeacherPhoneItem">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <a href="#" id="modalTeacherPhone" class="contact-value">-</a>
+                            </div>
+                        </div>
+                        <div class="modal-contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="contact-label">Office Hours</span>
+                                <span class="contact-value">Monday - Friday: 8:00 AM - 5:00 PM</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Join Our Team CTA -->
-    
-            
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -362,8 +765,8 @@
                     <ul>
                         <li><a href="Academics.html">Nursery School</a></li>
                         <li><a href="Academics.html">Primary School</a></li>
-                        <li><a href="Admission-redesign.html">Boarding</a></li>
-                        <li><a href="Admission-redesign.html">Day School</a></li>
+                        <li><a href="Academics.html">Boarding</a></li>
+                        <li><a href="Academics.html">Day School</a></li>
                         <li><a href="Library-redesign.html">Library</a></li>
                     </ul>
                 </div>
@@ -372,21 +775,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank">P.O.BOX 36198, KAMPALA</a>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506">+256 701 420 506</a> / <a href="tel:+256772420506">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -402,26 +809,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 
@@ -553,6 +940,93 @@
         teacherCards.forEach(card => {
             card.classList.add('visible');
         });
+        
+        // Teacher Profile Modal Functions
+        function openTeacherModal(teacherData) {
+            const modal = document.getElementById('teacherModal');
+            
+            // Populate modal with teacher data
+            document.getElementById('modalTeacherName').textContent = teacherData.name || 'Unknown Teacher';
+            document.getElementById('modalTeacherPosition').textContent = teacherData.position || teacherData.department || 'Teacher';
+            document.getElementById('modalTeacherDepartment').textContent = teacherData.department || 'General';
+            
+            // Handle photo
+            const modalPhoto = document.getElementById('modalTeacherPhoto');
+            let photoUrl = '../img/user.jpg';
+            if (teacherData.photo_url && teacherData.photo_url !== 'null' && teacherData.photo_url.trim() !== '') {
+                photoUrl = `../backend/${teacherData.photo_url}`;
+            }
+            modalPhoto.src = photoUrl;
+            modalPhoto.onerror = function() { this.src = '../img/user.jpg'; };
+            
+            // Bio
+            const bioElement = document.getElementById('modalTeacherBio');
+            if (teacherData.bio && teacherData.bio.trim() !== '') {
+                bioElement.textContent = teacherData.bio;
+            } else {
+                bioElement.textContent = `${teacherData.name} is a dedicated educator at St. Lawrence Junior School, committed to providing excellent education and nurturing young minds.`;
+            }
+            
+            // Qualifications and Experience
+            document.getElementById('modalTeacherQualification').textContent = teacherData.qualification || 'Certified Teacher';
+            document.getElementById('modalTeacherExperience').textContent = teacherData.experience_years ? `${teacherData.experience_years}+ Years` : 'Experienced Educator';
+            
+            // Specialties
+            const specialtiesSection = document.getElementById('modalSpecialtiesSection');
+            const specialtiesContainer = document.getElementById('modalTeacherSpecialties');
+            if (teacherData.specialties && teacherData.specialties.trim() !== '') {
+                specialtiesSection.style.display = 'block';
+                const specialties = teacherData.specialties.split(',').map(s => s.trim()).filter(s => s);
+                specialtiesContainer.innerHTML = specialties.map(specialty => 
+                    `<span class="modal-specialty-tag">${specialty}</span>`
+                ).join('');
+            } else {
+                specialtiesSection.style.display = 'none';
+            }
+            
+            // Contact Information
+            const emailItem = document.getElementById('modalTeacherEmailItem');
+            const emailLink = document.getElementById('modalTeacherEmail');
+            const phoneItem = document.getElementById('modalTeacherPhoneItem');
+            const phoneLink = document.getElementById('modalTeacherPhone');
+            
+            if (teacherData.email && teacherData.email.trim() !== '') {
+                emailItem.style.display = 'flex';
+                emailLink.textContent = teacherData.email;
+                emailLink.href = `mailto:${teacherData.email}`;
+            } else {
+                emailItem.style.display = 'none';
+            }
+            
+            if (teacherData.phone && teacherData.phone.trim() !== '') {
+                phoneItem.style.display = 'flex';
+                phoneLink.textContent = teacherData.phone;
+                phoneLink.href = `tel:${teacherData.phone}`;
+            } else {
+                phoneItem.style.display = 'none';
+            }
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeTeacherModal() {
+            const modal = document.getElementById('teacherModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTeacherModal();
+            }
+        });
+        
+        // Make these functions global so they can be called from updated teacher cards
+        window.openTeacherModal = openTeacherModal;
+        window.closeTeacherModal = closeTeacherModal;
     </script>
     
     <!-- Page Loader Script -->

@@ -28,13 +28,82 @@
     <link rel="stylesheet" href="../css/redesign-style.css?v=2.0">
     
     <!-- Mobile Improvements CSS -->
-    <link rel="stylesheet" href="../css/mobile-improvements.css?v=1.0">
+    <link rel="stylesheet" href="../css/mobile-improvements.css?v=2.0">
+
+    <!-- Index page responsive cleanup -->
+    <link rel="stylesheet" href="../css/index-responsive.css?v=1.0">
+
+    <!-- Footer redesign (clean) -->
+    <link rel="stylesheet" href="../css/footer.css?v=1.0">
     
     <!-- Chatbot CSS -->
     <link rel="stylesheet" href="../css/chatbot.css?v=16.0">
     
     <!-- Page Loader CSS -->
     <link rel="stylesheet" href="../css/page-loader.css">
+    
+    <!-- Footer Contact Improvements -->
+    <style>
+        .contact-info .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .contact-info .contact-icon {
+            width: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .contact-info .contact-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info .contact-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .contact-info .phone-separator {
+            margin: 0 8px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .contact-info .contact-text a {
+            white-space: nowrap;
+        }
+        
+        /* Ensure email doesn't break on smaller screens */
+        @media (max-width: 768px) {
+            .contact-info .contact-text {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .phone-separator {
+                display: none;
+            }
+            
+            .contact-info .contact-text a:last-child {
+                margin-top: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
     
@@ -72,21 +141,15 @@
                 <ul class="nav-menu" id="navMenu">
                     <!-- Desktop Menu Items -->
                     <li class="desktop-only"><a href="index-redesign.html" class="nav-link active">Home</a></li>
-                    <li class="desktop-only nav-dropdown">
-                        <a href="About-redesign.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="desktop-only"><a href="About-redesign.html" class="nav-link">About</a></li>
                     <li class="desktop-only"><a href="Teachers-redesign.html" class="nav-link">Teachers</a></li>
                     <li class="desktop-only"><a href="Gallery-redesign.html" class="nav-link">Gallery</a></li>
                     <li class="desktop-only nav-dropdown">
-                        <a href="Admission-redesign.html" class="nav-link">Admission <i class="fas fa-chevron-down"></i></a>
+                        <a href="Academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     <li class="desktop-only"><a href="Contact-redesign.html" class="nav-link">Contact</a></li>
@@ -95,29 +158,20 @@
                     <!-- Mobile Menu Items -->
                     <li class="mobile-only"><a href="index-redesign.html" class="nav-link-mobile">Home</a></li>
                     
-                    <li class="mobile-only mobile-expandable">
-                        <div class="nav-link-mobile">
-                            <span>About Us</span>
-                            <span class="mobile-expand-icon">+</span>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="About-redesign.html">Our Story</a></li>
-                            <li><a href="School-Anthem.html">School Anthem</a></li>
-                            <li><a href="Academics.html">Academics</a></li>
-                        </ul>
-                    </li>
+                    <li class="mobile-only"><a href="About-redesign.html" class="nav-link-mobile">About</a></li>
                     
                     <li class="mobile-only"><a href="Teachers-redesign.html" class="nav-link-mobile">Teachers</a></li>
                     <li class="mobile-only"><a href="Gallery-redesign.html" class="nav-link-mobile">Gallery</a></li>
                     
                     <li class="mobile-only mobile-expandable">
                         <div class="nav-link-mobile">
-                            <span>Admissions</span>
+                            <span>Academics</span>
                             <span class="mobile-expand-icon">+</span>
                         </div>
                         <ul class="mobile-submenu">
-                            <li><a href="Admission-redesign.html">Apply Now</a></li>
                             <li><a href="Fees.html">Fees</a></li>
+                            <li><a href="School-Anthem.html">School Anthem</a></li>
+                            <li><a href="Admission-redesign.html">Admission</a></li>
                         </ul>
                     </li>
                     
@@ -367,90 +421,7 @@
         </div>
     </section>
 
-    <!-- Subjects Taught Section -->
-    <section class="subjects-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Curriculum</span>
-                <h2 class="section-title">Subjects Taught</h2>
-                <p class="section-description">Comprehensive education covering essential subjects for holistic student development</p>
-            </div>
 
-            <div class="subjects-grid">
-                <!-- Left Column -->
-                <div class="subjects-left">
-                    <!-- Top Horizontal Card - Mathematics -->
-                    <div class="subject-card horizontal" data-aos="fade-up" data-aos-delay="100">
-                        <div class="subject-image">
-                            <img src="https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" alt="Mathematics">
-                            <div class="subject-overlay">
-                                <div class="subject-badge">
-                                    <span>Core Subject</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subject-content">
-                            <h3>Mathematics</h3>
-                            <p class="subject-count">15+ Topics Covered</p>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Two Square Cards -->
-                    <div class="subjects-bottom">
-                        <!-- Square Card 1 - English -->
-                        <div class="subject-card square" data-aos="fade-up" data-aos-delay="200">
-                            <div class="subject-image">
-                                <img src="https://images.pexels.com/photos/159844/cellular-education-classroom-159844.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="English">
-                                <div class="subject-overlay">
-                                    <div class="subject-badge">
-                                        <span>Core Subject</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="subject-content">
-                                <h3>English Language</h3>
-                                <p class="subject-count">12+ Topics Covered</p>
-                            </div>
-                        </div>
-
-                        <!-- Square Card 2 - Social Studies -->
-                        <div class="subject-card square" data-aos="fade-up" data-aos-delay="300">
-                            <div class="subject-image">
-                                <img src="https://images.pexels.com/photos/8471906/pexels-photo-8471906.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Social Studies">
-                                <div class="subject-overlay">
-                                    <div class="subject-badge">
-                                        <span>Core Subject</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="subject-content">
-                                <h3>Social Studies</h3>
-                                <p class="subject-count">18+ Topics Covered</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column - Large Tall Card -->
-                <div class="subjects-right">
-                    <div class="subject-card tall" data-aos="fade-up" data-aos-delay="400">
-                        <div class="subject-image">
-                            <img src="https://images.pexels.com/photos/8471831/pexels-photo-8471831.jpeg?auto=compress&cs=tinysrgb&w=600&h=700&fit=crop" alt="Science">
-                            <div class="subject-overlay">
-                                <div class="subject-badge">
-                                    <span>Core Subject</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subject-content">
-                            <h3>Science & Technology</h3>
-                            <p class="subject-count">20+ Topics Covered</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
@@ -542,11 +513,6 @@
                         <h2 class="message-title">Leading with Vision & Purpose</h2>
                     </div>
 
-                    <div class="message-quote">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"At St. Lawrence Junior School, we don't just educate minds – we nurture hearts, build character, and inspire dreams for a brighter tomorrow."</p>
-                    </div>
-
                     <div class="message-body">
                         <p>Welcome to St. Lawrence Junior School Kabowa, where excellence in education has been our hallmark since 2010. As the Director, I am proud to lead an institution that combines academic rigor with moral values, creating well-rounded individuals ready to face the challenges of tomorrow.</p>
                         
@@ -558,11 +524,6 @@
                         <div class="signature-title">School Director & Founder</div>
                     </div>
                     <div class="message-actions">
-                        <a href="About-redesign.html" class="message-btn primary enhanced-btn" data-action="director-our-story">
-                            <span>Our Story</span>
-                            <i class="fas fa-arrow-right"></i>
-                            <span class="btn-ripple"></span>
-                        </a>
                         <button type="button" 
                                 class="message-btn outline enhanced-btn" 
                                 data-action="director-contact" 
@@ -657,213 +618,6 @@
         </div>
     </div>
 
-    <!-- Gallery Preview Section -->
-    <section class="gallery-preview-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Gallery Preview</span>
-                <h2 class="section-title">Capturing Moments of Excellence</h2>
-                <p class="section-description">Explore our vibrant school life through these memorable moments</p>
-            </div>
-
-            <!-- Gallery Masonry Grid -->
-            <div class="gallery-masonry-grid">
-                <!-- Featured Large Image -->
-                <div class="gallery-item featured" data-category="academics" data-aos="fade-up" data-aos-delay="100">
-                    <div class="gallery-card">
-                        <img src="../img/34.jpg" alt="Science Class">
-                        <div class="category-tag academics">
-                            <i class="fas fa-flask"></i>
-                            <span>Academics</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Science Laboratory</h4>
-                                <p>Students conducting experiments</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Medium Image -->
-                <div class="gallery-item medium" data-category="sports" data-aos="fade-up" data-aos-delay="150">
-                    <div class="gallery-card">
-                        <img src="../img/46.jpg" alt="Sports Day">
-                        <div class="category-tag sports">
-                            <i class="fas fa-running"></i>
-                            <span>Sports</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Sports Day</h4>
-                                <p>Annual athletics competition</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Small Image -->
-                <div class="gallery-item small" data-category="events" data-aos="fade-up" data-aos-delay="200">
-                    <div class="gallery-card">
-                        <img src="../img/55.jpg" alt="School Event">
-                        <div class="category-tag events">
-                            <i class="fas fa-calendar"></i>
-                            <span>Events</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Graduation Day</h4>
-                                <p>Celebrating achievements</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tall Image -->
-                <div class="gallery-item tall" data-category="facilities" data-aos="fade-up" data-aos-delay="250">
-                    <div class="gallery-card">
-                        <img src="../img/48.jpg" alt="Library">
-                        <div class="category-tag facilities">
-                            <i class="fas fa-book"></i>
-                            <span>Facilities</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>School Library</h4>
-                                <p>Modern learning resources</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wide Image -->
-                <div class="gallery-item wide" data-category="academics" data-aos="fade-up" data-aos-delay="300">
-                    <div class="gallery-card">
-                        <img src="../img/49.jpg" alt="Classroom">
-                        <div class="category-tag academics">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Academics</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Interactive Learning</h4>
-                                <p>Modern classroom environment</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Medium Image -->
-                <div class="gallery-item medium" data-category="sports" data-aos="fade-up" data-aos-delay="350">
-                    <div class="gallery-card">
-                        <img src="../img/47.jpg" alt="Football Field">
-                        <div class="category-tag sports">
-                            <i class="fas fa-futbol"></i>
-                            <span>Sports</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Sports Field</h4>
-                                <p>Football training session</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Small Image -->
-                <div class="gallery-item small" data-category="events" data-aos="fade-up" data-aos-delay="400">
-                    <div class="gallery-card">
-                        <img src="../img/57.jpg" alt="Prize Giving">
-                        <div class="category-tag events">
-                            <i class="fas fa-trophy"></i>
-                            <span>Events</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Prize Giving</h4>
-                                <p>Recognizing excellence</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Medium Image -->
-                <div class="gallery-item medium" data-category="facilities" data-aos="fade-up" data-aos-delay="450">
-                    <div class="gallery-card">
-                        <img src="../img/new 6.JPG" alt="Computer Lab">
-                        <div class="category-tag facilities">
-                            <i class="fas fa-laptop"></i>
-                            <span>Facilities</span>
-                        </div>
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <h4>Computer Lab</h4>
-                                <p>Digital learning center</p>
-                                <button class="zoom-btn">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Filter Buttons -->
-            <div class="gallery-filters" data-aos="fade-up" data-aos-delay="500">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i>
-                    <span>All</span>
-                </button>
-                <button class="filter-btn" data-filter="academics">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Academics</span>
-                </button>
-                <button class="filter-btn" data-filter="sports">
-                    <i class="fas fa-running"></i>
-                    <span>Sports</span>
-                </button>
-                <button class="filter-btn" data-filter="events">
-                    <i class="fas fa-calendar"></i>
-                    <span>Events</span>
-                </button>
-                <button class="filter-btn" data-filter="facilities">
-                    <i class="fas fa-building"></i>
-                    <span>Facilities</span>
-                </button>
-            </div>
-
-            <!-- View Gallery Button -->
-            <div class="gallery-cta" data-aos="fade-up" data-aos-delay="550">
-                <a href="Gallery-redesign.html" class="view-gallery-btn enhanced-btn" data-action="view-gallery">
-                    <span>View Full Gallery</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <span class="btn-ripple"></span>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="container">
@@ -903,82 +657,7 @@
         </div>
     </section>
 
-    <!-- Meet Our Teachers Section -->
-    <section class="teachers-preview-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Team</span>
-                <h2 class="section-title">Meet Our Dedicated Teachers</h2>
-                <p class="section-description">Qualified, experienced, and passionate educators committed to student success</p>
-            </div>
-            
-            <div class="teachers-preview-grid">
-                <!-- Teacher 1 - Director -->
-                <div class="teacher-preview-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="teacher-preview-image">
-                        <img src="../img/15.jpg" alt="Director">
-                        <div class="teacher-preview-overlay">
-                            <span class="teacher-preview-badge">Director</span>
-                        </div>
-                    </div>
-                    <div class="teacher-preview-info">
-                        <h3>Mr. Kimera Emmanuel</h3>
-                        <p class="teacher-preview-role">School Director & Founder</p>
-                        <p class="teacher-preview-bio">Visionary leader with 20+ years in education, dedicated to providing quality education accessible to all.</p>
-                        <div class="teacher-preview-stats">
-                            <span><i class="fas fa-calendar-alt"></i> 20+ Years</span>
-                            <span><i class="fas fa-award"></i> Excellence Award</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Teacher 2 - Head Teacher -->
-                <div class="teacher-preview-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="teacher-preview-image">
-                        <img src="../img/14.jpg" alt="Head Teacher">
-                        <div class="teacher-preview-overlay">
-                            <span class="teacher-preview-badge">Accountant</span>
-                        </div>
-                    </div>
-                    <div class="teacher-preview-info">
-                        <h3>Mrs. Robinah Nakate</h3>
-                        <p class="teacher-preview-role">School Accountant</p>
-                        <p class="teacher-preview-bio">Experienced educator overseeing curriculum implementation and ensuring academic excellence across all levels.</p>
-                        <div class="teacher-preview-stats">
-                            <span><i class="fas fa-calendar-alt"></i> 15+ Years</span>
-                            <span><i class="fas fa-chalkboard-teacher"></i> Teacher Mentor</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Teacher 3 - Deputy Head -->
-                <div class="teacher-preview-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="teacher-preview-image">
-                        <img src="../img/16.jpg" alt="Deputy Head">
-                        <div class="teacher-preview-overlay">
-                            <span class="teacher-preview-badge">P.7 ClassTeacher</span>
-                        </div>
-                    </div>
-                    <div class="teacher-preview-info">
-                        <h3>Ms.Nandawula Teddy</h3>
-                        <p class="teacher-preview-role">P.7 ClassTeacher</p>
-                        <p class="teacher-preview-bio">Supports academic programs and student welfare, specializing in discipline management and parent relations.</p>
-                        <div class="teacher-preview-stats">
-                            <span><i class="fas fa-calendar-alt"></i> 12+ Years</span>
-                            <span><i class="fas fa-clipboard-check"></i> Management Expert</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="teachers-preview-cta" data-aos="fade-up" data-aos-delay="400">
-                <a href="Teachers-redesign.html" class="btn-view-all-teachers">
-                    <span>View All Teachers</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Academic Calendar Section -->
     <section class="academic-calendar-section">
@@ -986,31 +665,14 @@
             <!-- Section Header -->
             <div class="section-header" data-aos="fade-up">
                 <span class="section-tag">Academic Calendar</span>
-                <h2 class="section-title">Important Dates & Academic Calendar - Term 1-3, 2025</h2>
-                <p class="section-description">Stay updated with key academic dates, events, and important school activities throughout the year</p>
+                <h2 class="section-title">Academic Calendar - Term 1-3, 2025</h2>
+                <p class="section-description">Stay updated with key academic dates and important school activities throughout the year</p>
             </div>
 
             <!-- Calendar Grid -->
             <div class="calendar-grid">
-                <!-- Left Side - Important Days -->
-                <div class="calendar-left" data-aos="fade-right" data-aos-delay="200">
-                    <!-- Important Days Card -->
-                    <div class="calendar-card important-days">
-                        <div class="card-header">
-                            <h3>Important Days</h3>
-                        </div>
-                        <div class="card-content">
-                            <!-- Dynamic content will be loaded here -->
-                            <div style="text-align: center; padding: 40px 20px; color: #666;">
-                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 15px;"></i>
-                                <p>Loading important days...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Side - Interactive Calendar -->
-                <div class="calendar-right" data-aos="fade-left" data-aos-delay="300">
+                <!-- Interactive Calendar - Full Width -->
+                <div class="calendar-full-width" data-aos="fade-up" data-aos-delay="200">
                     <div class="calendar-widget">
                         <!-- Calendar Header -->
                         <div class="calendar-header">
@@ -1049,35 +711,10 @@
                     </div>
                 </div>
             </div>
-    </section>
-
-    <!-- CTA Section - Clean & Advanced -->
-    <section class="cta-section">
-        <div class="cta-pattern-dots"></div>
-        
-        <div class="container">
-            <div class="cta-content-box" data-aos="fade-up">
-                <h2 class="cta-title">
-                    Shape Your Child's Future with
-                    <span class="cta-highlight">St. Lawrence</span>
-                </h2>
-                <p class="cta-subtitle">Join 650+ families who trust us for quality education and holistic development</p>
-                
-                <a href="Admission-redesign.html" class="cta-button enhanced-btn" data-action="cta-apply">
-                    <span class="btn-text">Start Application</span>
-                    <span class="btn-icon-circle">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="btn-ripple"></span>
-                </a>
-                
-                <div class="cta-trust-line">
-                    <i class="fas fa-shield-check"></i>
-                    <span>Trusted by 650+ families • 14 years of excellence</span>
-                </div>
-            </div>
         </div>
     </section>
+
+
 
     
 
@@ -1134,22 +771,25 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>P.O.BOX 36198, KAMPALA</span>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="https://maps.google.com/?q=St.+Lawrence+Junior+School+Kabowa" target="_blank" rel="noopener">P.O.BOX 36198, KAMPALA, UGANDA</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a> / 
-                            <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                        <li class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="tel:+256701420506" class="contact-link">+256 701 420 506</a>
+                                <span class="phone-separator">•</span>
+                                <a href="tel:+256772420506" class="contact-link">+256 772 420 506</a>
+                            </span>
                         </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:st.lawrence.juniorschool@yahoo.com" class="contact-link">st.lawrence.juniorschool@yahoo.com</a>
+                        <li class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">
+                                <a href="mailto:stlawrencejuniorschoolkabowa@gmail.com" class="contact-link">stlawrencejuniorschoolkabowa@gmail.com</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -1165,26 +805,6 @@
                 </div>
             </div>
 
-            <!-- Developer Info Section -->
-            <div class="footer-developer">
-                <div class="container">
-                    <div class="developer-info">
-                        <p class="developer-label">Developed by</p>
-                        <h4 class="developer-name">MUWANGA IBRAHIM SEKIMPI</h4>
-                        <div class="developer-contact">
-                            <a href="tel:0708486440" class="developer-link">
-                                <i class="fas fa-phone"></i>
-                                <span>0708 486 440</span>
-                            </a>
-                            <span class="separator">|</span>
-                            <a href="mailto:cultoonmovic4@gmail.com" class="developer-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>cultoonmovic4@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
 
@@ -1323,43 +943,10 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Load Important Days
-                    const importantDaysContainer = document.querySelector('.important-days .card-content');
-                    if (importantDaysContainer) {
-                        if (data.data.important_days && data.data.important_days.length > 0) {
-                            importantDaysContainer.innerHTML = data.data.important_days.map(day => {
-                                const eventDate = new Date(day.event_date);
-                                const dayNum = eventDate.getDate();
-                                const month = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-                                
-                                return `
-                                    <div class="important-item">
-                                        <div class="date-badge">
-                                            <span class="date-month">${month}</span>
-                                            <span class="date-day">${dayNum}</span>
-                                        </div>
-                                        <div class="event-details">
-                                            <h4>${day.event_title}</h4>
-                                            <p>${day.event_description || ''}</p>
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('');
-                        } else {
-                            importantDaysContainer.innerHTML = `
-                                <div style="text-align: center; padding: 40px 20px; color: #666;">
-                                    <i class="fas fa-calendar-times" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i>
-                                    <p style="font-style: italic;">No important days scheduled yet.</p>
-                                    <p style="font-size: 0.9rem; margin-top: 10px;">Check back later for updates!</p>
-                                </div>
-                            `;
-                        }
-                    }
-                    
                     // Store all calendar events for the calendar widget
                     window.academicEvents = {};
                     
-                    // Add all events (important days + academic calendar)
+                    // Add all events (academic calendar)
                     if (data.data.all_events && data.data.all_events.length > 0) {
                         data.data.all_events.forEach(event => {
                             window.academicEvents[event.event_date] = {
@@ -1449,12 +1036,6 @@
             
             // Initialize Director's Message Buttons
             initDirectorButtons();
-            
-            // Initialize Gallery Buttons
-            initGalleryButtons();
-            
-            // Initialize CTA Button
-            initCTAButton();
             
             // Initialize Footer Links
             initFooterLinks();
@@ -1605,32 +1186,11 @@
 
     <!-- Academic Calendar JavaScript -->
     <script>
-        // Gallery Filter Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter gallery items
-                    galleryItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || category === filterValue) {
-                            item.classList.remove('hidden');
-                        } else {
-                            item.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-        });
+
+
+        
+
+
         
         // Director's Message Buttons Enhanced Functionality
         function initDirectorButtons() {
@@ -1740,155 +1300,7 @@
             
             console.log('=== INIT DIRECTOR BUTTONS END ===');
         }
-        
-        // Gallery Section Buttons Enhanced Functionality
-        function initGalleryButtons() {
-            console.log('=== INIT GALLERY BUTTONS START ===');
-            
-            const viewGalleryBtn = document.querySelector('.view-gallery-btn.enhanced-btn');
-            const zoomButtons = document.querySelectorAll('.zoom-btn');
-            
-            // View Gallery Button - Ripple Effect
-            if (viewGalleryBtn) {
-                viewGalleryBtn.addEventListener('click', function(e) {
-                    const ripple = this.querySelector('.btn-ripple');
-                    if (!ripple) return;
-                    
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x - size / 2 + 'px';
-                    ripple.style.top = y - size / 2 + 'px';
-                    
-                    this.classList.add('ripple-active');
-                    
-                    setTimeout(() => {
-                        this.classList.remove('ripple-active');
-                    }, 600);
-                    
-                    console.log('View Gallery button clicked');
-                });
-            }
-            
-            // Zoom Buttons - Simple Lightbox
-            zoomButtons.forEach((btn, index) => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Get the image from the parent gallery card
-                    const galleryCard = this.closest('.gallery-card');
-                    const img = galleryCard.querySelector('img');
-                    const title = galleryCard.querySelector('h4').textContent;
-                    const description = galleryCard.querySelector('p').textContent;
-                    
-                    if (img) {
-                        openLightbox(img.src, title, description);
-                    }
-                    
-                    console.log(`Zoom button ${index + 1} clicked`);
-                });
-            });
-            
-            console.log(`Gallery buttons initialized: ${zoomButtons.length} zoom buttons`);
-        }
-        
-        // Simple Lightbox Function
-        function openLightbox(imageSrc, title, description) {
-            // Create lightbox if it doesn't exist
-            let lightbox = document.getElementById('galleryLightbox');
-            
-            if (!lightbox) {
-                lightbox = document.createElement('div');
-                lightbox.id = 'galleryLightbox';
-                lightbox.className = 'gallery-lightbox';
-                lightbox.innerHTML = `
-                    <div class="lightbox-overlay" onclick="closeLightbox()"></div>
-                    <div class="lightbox-content">
-                        <button class="lightbox-close" onclick="closeLightbox()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <img class="lightbox-image" src="" alt="">
-                        <div class="lightbox-info">
-                            <h3 class="lightbox-title"></h3>
-                            <p class="lightbox-description"></p>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(lightbox);
-                
-                // Close on Escape key
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                        closeLightbox();
-                    }
-                });
-            }
-            
-            // Update lightbox content
-            lightbox.querySelector('.lightbox-image').src = imageSrc;
-            lightbox.querySelector('.lightbox-title').textContent = title;
-            lightbox.querySelector('.lightbox-description').textContent = description;
-            
-            // Show lightbox
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            const lightbox = document.getElementById('galleryLightbox');
-            if (lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        
-        // CTA Section Button Enhanced Functionality
-        function initCTAButton() {
-            const ctaBtn = document.querySelector('.cta-button.enhanced-btn');
-            if (!ctaBtn) return;
-            
-            // Ripple Effect on Click
-            ctaBtn.addEventListener('click', function(e) {
-                const ripple = this.querySelector('.btn-ripple');
-                if (!ripple) return;
-                
-                // Get click position relative to button
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Set ripple position and size
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x - size / 2 + 'px';
-                ripple.style.top = y - size / 2 + 'px';
-                
-                // Trigger ripple animation
-                this.classList.add('ripple-active');
-                
-                // Remove ripple class after animation
-                setTimeout(() => {
-                    this.classList.remove('ripple-active');
-                }, 600);
-                
-                // Track button click
-                const action = this.getAttribute('data-action');
-                console.log(`CTA button clicked: ${action}`);
-                
-                // Optional: Send analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'cta_click', {
-                        'event_category': 'CTA Section',
-                        'event_label': action,
-                        'value': 1
-                    });
-                }
-            });
-        }
+
         
         // Footer Links Enhanced Functionality
         function initFooterLinks() {
@@ -1898,12 +1310,10 @@
             const footerLinks = document.querySelectorAll('.footer-col ul li a');
             const contactLinks = document.querySelectorAll('.contact-link');
             const socialLinks = document.querySelectorAll('.social-links a');
-            const developerLinks = document.querySelectorAll('.developer-link');
             
             console.log(`Footer links found: ${footerLinks.length}`);
             console.log(`Contact links found: ${contactLinks.length}`);
             console.log(`Social links found: ${socialLinks.length}`);
-            console.log(`Developer links found: ${developerLinks.length}`);
             
             // Add click tracking for footer navigation links
             footerLinks.forEach(link => {
@@ -1952,24 +1362,6 @@
                         gtag('event', 'social_click', {
                             'event_category': 'Footer Social',
                             'event_label': platform,
-                            'value': 1
-                        });
-                    }
-                });
-            });
-            
-            // Add click tracking for developer links
-            developerLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const linkType = this.getAttribute('href').startsWith('tel:') ? 'Phone' : 'Email';
-                    const linkValue = this.textContent.trim();
-                    console.log(`Developer link clicked: ${linkType} - ${linkValue}`);
-                    
-                    // Optional: Send analytics
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'developer_contact_click', {
-                            'event_category': 'Footer Developer',
-                            'event_label': `${linkType}: ${linkValue}`,
                             'value': 1
                         });
                     }

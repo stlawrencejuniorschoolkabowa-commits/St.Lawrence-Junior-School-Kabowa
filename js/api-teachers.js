@@ -28,7 +28,7 @@ function displayTeachers(teachers) {
     const container = document.getElementById('teachersContainer');
     if (!container) return;
 
-    container.innerHTML = teachers.map(teacher => {
+    container.innerHTML = teachers.map((teacher, index) => {
         // Handle photo URL properly - check for null, empty, or invalid values
         let photoUrl = '../img/user.jpg';
         if (teacher.photo_url && teacher.photo_url !== 'null' && teacher.photo_url.trim() !== '') {
@@ -40,36 +40,31 @@ function displayTeachers(teachers) {
         // Get department badge class
         const deptClass = teacher.department ? teacher.department.toLowerCase().replace(/\s+/g, '-') : 'general';
         
+        // Store teacher data in a data attribute (JSON encoded)
+        const teacherDataJson = JSON.stringify(teacher).replace(/"/g, '&quot;');
+        
         return `
-        <div class="teacher-card" data-department="${teacher.department ? teacher.department.toLowerCase() : 'general'}" data-aos="fade-up">
+        <div class="teacher-card" 
+             data-department="${teacher.department ? teacher.department.toLowerCase() : 'general'}" 
+             data-teacher='${teacherDataJson}'
+             onclick="handleTeacherCardClick(this)"
+             data-aos="fade-up">
             <div class="teacher-image">
                 <img src="${photoUrl}" 
                      alt="${teacher.name}" 
                      onerror="this.src='../img/user.jpg'">
                 <div class="teacher-overlay">
-                    <div class="teacher-overlay-title">Connect with ${teacher.name}</div>
+                    <div class="teacher-overlay-title">View ${teacher.name}'s Profile</div>
                     <div class="teacher-social">
-                        ${teacher.facebook ? `<a href="${teacher.facebook}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>` : ''}
-                        ${teacher.twitter ? `<a href="${teacher.twitter}" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>` : ''}
-                        ${teacher.linkedin ? `<a href="${teacher.linkedin}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>` : ''}
-                        ${teacher.email ? `<a href="mailto:${teacher.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
-                        ${teacher.phone ? `<a href="tel:${teacher.phone}" title="Call"><i class="fas fa-phone"></i></a>` : ''}
+                        ${teacher.facebook ? `<a href="${teacher.facebook}" target="_blank" title="Facebook" onclick="event.stopPropagation()"><i class="fab fa-facebook-f"></i></a>` : ''}
+                        ${teacher.twitter ? `<a href="${teacher.twitter}" target="_blank" title="Twitter" onclick="event.stopPropagation()"><i class="fab fa-twitter"></i></a>` : ''}
+                        ${teacher.linkedin ? `<a href="${teacher.linkedin}" target="_blank" title="LinkedIn" onclick="event.stopPropagation()"><i class="fab fa-linkedin-in"></i></a>` : ''}
+                        ${teacher.email ? `<a href="mailto:${teacher.email}" title="Email" onclick="event.stopPropagation()"><i class="fas fa-envelope"></i></a>` : ''}
+                        ${teacher.phone ? `<a href="tel:${teacher.phone}" title="Call" onclick="event.stopPropagation()"><i class="fas fa-phone"></i></a>` : ''}
                     </div>
-                    <div class="teacher-contact-overlay">
-                        ${teacher.phone ? `
-                        <div class="teacher-contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>${teacher.phone}</span>
-                        </div>` : ''}
-                        ${teacher.email ? `
-                        <div class="teacher-contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>${teacher.email}</span>
-                        </div>` : ''}
-                        <div class="teacher-contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
-                        </div>
+                    <div class="teacher-quick-action">
+                        <i class="fas fa-eye"></i>
+                        <span>Click to view full profile</span>
                     </div>
                 </div>
             </div>
@@ -78,11 +73,12 @@ function displayTeachers(teachers) {
                 <h3>${teacher.name}</h3>
                 <p class="teacher-role">${teacher.position || teacher.department}</p>
                 ${teacher.phone ? `<p class="teacher-qualification"><i class="fas fa-phone"></i> ${teacher.phone}</p>` : ''}
-                ${teacher.bio ? `<p class="teacher-bio">${teacher.bio}</p>` : ''}
+                ${teacher.bio ? `<p class="teacher-bio">${teacher.bio.length > 100 ? teacher.bio.substring(0, 100) + '...' : teacher.bio}</p>` : ''}
                 
                 ${teacher.specialties ? `
                 <div class="teacher-specialties">
-                    ${teacher.specialties.split(',').map(s => `<span class="specialty-tag">${s.trim()}</span>`).join('')}
+                    ${teacher.specialties.split(',').slice(0, 3).map(s => `<span class="specialty-tag">${s.trim()}</span>`).join('')}
+                    ${teacher.specialties.split(',').length > 3 ? '<span class="specialty-tag">+more</span>' : ''}
                 </div>` : ''}
                 
                 <div class="teacher-stats">
@@ -106,6 +102,13 @@ function displayTeachers(teachers) {
                         <i class="fas fa-book"></i>
                         <span>${teacher.subjects_taught}</span>
                     </div>` : ''}
+                </div>
+                
+                <div class="teacher-card-footer">
+                    <button class="view-profile-btn">
+                        <i class="fas fa-eye"></i>
+                        View Full Profile
+                    </button>
                 </div>
             </div>
         </div>
@@ -145,6 +148,24 @@ function searchTeachers() {
         }
     });
 }
+
+// Handle teacher card click
+function handleTeacherCardClick(cardElement) {
+    try {
+        const teacherDataJson = cardElement.getAttribute('data-teacher');
+        const teacherData = JSON.parse(teacherDataJson.replace(/&quot;/g, '"'));
+        
+        // Call the modal function (defined in the main page)
+        if (typeof window.openTeacherModal === 'function') {
+            window.openTeacherModal(teacherData);
+        }
+    } catch (error) {
+        console.error('Error opening teacher profile:', error);
+    }
+}
+
+// Make function globally available
+window.handleTeacherCardClick = handleTeacherCardClick;
 
 // Initialize teachers page
 if (window.location.pathname.includes('Teachers-redesign.html')) {

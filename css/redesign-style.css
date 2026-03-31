@@ -603,12 +603,6 @@ img {
 }
 
 .event-btn:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    color: #1e4d9f;
-}
-.event-btn:hover {
     background: #c82333;
     color: var(--white);
     transform: translateY(-2px);
@@ -2018,116 +2012,6 @@ img {
         height: 40px;
         font-size: 16px;
     }
-}
-
-/* ========== FOOTER ========== */
-.footer {
-    background: var(--text-dark);
-    color: var(--white);
-    padding: 60px 0 30px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.footer-logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.footer-logo span {
-    font-size: 24px;
-    font-weight: 800;
-    font-family: 'Poppins', sans-serif;
-}
-
-.footer-description {
-    color: #ccc;
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
-.social-links {
-    display: flex;
-    gap: 12px;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background: var(--accent-red);
-    transform: translateY(-3px);
-}
-
-.footer-col h3 {
-    color: var(--accent-red);
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.footer-col ul {
-    list-style: none;
-}
-
-.footer-col ul li {
-    margin-bottom: 12px;
-}
-
-.footer-col ul li a {
-    color: #ccc;
-    font-size: 14px;
-    transition: var(--transition);
-}
-
-.footer-col ul li a:hover {
-    color: var(--white);
-    padding-left: 5px;
-}
-
-.contact-info li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: #ccc;
-    font-size: 14px;
-}
-
-.contact-info i {
-    color: var(--accent-red);
-    margin-top: 3px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-    color: #ccc;
-    font-size: 14px;
 }
 
 /* ========== BACK TO TOP BUTTON ========== */
@@ -19532,6 +19416,193 @@ button.message-btn.outline {
         flex-direction: column;
         gap: 5px;
         font-size: 12px;
+    }
+}
+
+/* ========================================
+   RESPONSIVENESS FIX REPORT IMPLEMENTATION
+   Authoritative override block (kept last)
+   ======================================== */
+
+/* 3) Header overlap fix */
+body {
+    padding-top: 85px;
+}
+
+.hero {
+    margin-top: 0;
+}
+
+/* 7) Button overflow fix */
+.hero-buttons {
+    flex-wrap: wrap;
+}
+
+/* 9) Gallery fixed-height resiliency */
+.gallery-card {
+    aspect-ratio: 4 / 3;
+    height: auto;
+}
+
+/* 11) Tablet breakpoint */
+@media (max-width: 1024px) {
+    /* 2) Hero section grid */
+    .hero-grid {
+        gap: 60px;
+    }
+
+    /* 4) Events grid */
+    .events-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* 5) Stats grid */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 6) About section */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .about-content {
+        padding-right: 0;
+    }
+}
+
+/* 1,2,4,10,11) Mobile breakpoint */
+@media (max-width: 768px) {
+    /* 1) Mobile navigation */
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #1a1a1a;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 40px;
+        gap: 25px;
+        transition: 0.3s;
+        z-index: 9999;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    /* 2) Hero section grid */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* 4) Events grid */
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 10) Typography */
+    .hero-title,
+    .about-title {
+        font-size: 32px;
+    }
+}
+
+/* 5,11) Small mobile breakpoint */
+@media (max-width: 500px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   FOOTER ORGANIZATION + RESPONSIVENESS (FINAL)
+   - Keep same visual design
+   - Prevent overflow on mobile
+   - Ensure predictable column stacking
+   ======================================== */
+
+.footer,
+.footer * {
+    min-width: 0;
+}
+
+.footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+}
+
+/* Allow long emails/addresses to wrap instead of overflowing */
+.footer a,
+.footer .footer-description,
+.footer .contact-info a,
+.footer .contact-info span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Contact rows should be allowed to wrap on smaller widths */
+.footer .contact-info li {
+    flex-wrap: wrap;
+    row-gap: 6px;
+}
+
+.footer .contact-info li > span,
+.footer .contact-info li > a {
+    white-space: normal;
+}
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 0 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-brand-col {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 40px 0 0;
+    }
+
+    .footer-logo {
+        gap: 12px;
+    }
+
+    .footer-logo img {
+        width: 54px;
+        height: 54px;
     }
 }
 
