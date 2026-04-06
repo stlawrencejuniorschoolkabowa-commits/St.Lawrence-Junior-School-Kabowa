@@ -4954,75 +4954,113 @@
             Swal.fire({
                 title: '',
                 html: `
-                    <div class="enhanced-welcome-popup">
-                        <!-- Success Check Animation -->
-                        <div class="welcome-check-container">
-                            <div class="welcome-check-circle">
-                                <div class="welcome-check-mark">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
+                    <div class="enhanced-welcome-popup horizontal">
+                        <!-- Left Side - Visual Elements -->
+                        <div class="welcome-left-section">
+                            <!-- Success Check Animation -->
+                            <div class="welcome-check-container">
+                                <div class="welcome-check-circle">
+                                    <div class="welcome-check-mark">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <!-- Role Icon -->
+                            <div class="welcome-role-icon-large">${roleIcon}</div>
+                            
+                            <!-- Greeting Icon -->
+                            <div class="welcome-greeting-icon-small">${greetingIcon}</div>
                         </div>
                         
-                        <!-- Greeting Section -->
-                        <div class="welcome-greeting-section">
-                            <div class="welcome-greeting-icon">${greetingIcon}</div>
-                            <h2 class="welcome-greeting-title">${greeting}, ${fullName}!</h2>
-                        </div>
-                        
-                        <!-- Role Section -->
-                        <div class="welcome-role-section">
-                            <div class="welcome-role-icon">${roleIcon}</div>
-                            <h3 class="welcome-role-title">${roleName}</h3>
-                            <p class="welcome-role-description">${roleMessage}</p>
-                        </div>
-                        
-                        <!-- Date Info -->
-                        <div class="welcome-date-section">
-                            <div class="welcome-date-icon">
-                                <i class="fas fa-calendar-day"></i>
+                        <!-- Right Side - Content -->
+                        <div class="welcome-right-section">
+                            <!-- Greeting -->
+                            <div class="welcome-greeting-section">
+                                <h2 class="welcome-greeting-title">${greeting}, ${fullName}!</h2>
                             </div>
-                            <p class="welcome-date-text">
-                                ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                            </p>
-                        </div>
-                        
-                        <!-- Action Button -->
-                        <div class="welcome-action-section">
-                            <button class="welcome-action-btn" onclick="Swal.close()">
-                                <span class="welcome-btn-text">Let's Get Started!</span>
-                                <span class="welcome-btn-icon">🚀</span>
-                            </button>
+                            
+                            <!-- Role Info -->
+                            <div class="welcome-role-section">
+                                <h3 class="welcome-role-title">${roleName}</h3>
+                                <p class="welcome-role-description">${roleMessage}</p>
+                            </div>
+                            
+                            <!-- Date and Action Row -->
+                            <div class="welcome-bottom-row">
+                                <div class="welcome-date-section">
+                                    <div class="welcome-date-icon">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                    <p class="welcome-date-text">
+                                        ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                                    </p>
+                                </div>
+                                
+                                <div class="welcome-action-section">
+                                    <button class="welcome-action-btn" onclick="Swal.close()">
+                                        <span class="welcome-btn-text">Let's Get Started!</span>
+                                        <span class="welcome-btn-icon">🚀</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <style>
-                        .enhanced-welcome-popup {
-                            text-align: center;
-                            padding: 30px 20px;
-                            max-width: 400px;
+                        .enhanced-welcome-popup.horizontal {
+                            display: flex;
+                            align-items: center;
+                            gap: 40px;
+                            padding: 40px;
+                            max-width: 700px;
+                            min-height: 300px;
                             margin: 0 auto;
+                        }
+                        
+                        /* Left Section - Visual Elements */
+                        .welcome-left-section {
+                            flex: 0 0 200px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                            border-radius: 20px;
+                            padding: 30px 20px;
+                            border: 1px solid rgba(0, 102, 204, 0.1);
+                        }
+                        
+                        /* Right Section - Content */
+                        .welcome-right-section {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            gap: 20px;
                         }
                         
                         /* Success Check Animation */
                         .welcome-check-container {
-                            margin-bottom: 25px;
-                            display: flex;
-                            justify-content: center;
+                            position: absolute;
+                            top: 15px;
+                            right: 15px;
+                            z-index: 10;
                         }
                         
                         .welcome-check-circle {
-                            width: 80px;
-                            height: 80px;
+                            width: 50px;
+                            height: 50px;
                             border-radius: 50%;
-                            background: linear-gradient(135deg, #0066cc, #0052a3);
+                            background: linear-gradient(135deg, #10b981, #059669);
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             animation: checkBounce 0.6s ease-out;
-                            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
+                            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
                         }
                         
                         .welcome-check-mark {
@@ -5041,56 +5079,17 @@
                             100% { opacity: 1; transform: scale(1); }
                         }
                         
-                        /* Greeting Section */
-                        .welcome-greeting-section {
-                            margin-bottom: 30px;
-                            animation: slideInUp 0.6s ease-out 0.4s both;
-                        }
-                        
-                        .welcome-greeting-icon {
-                            font-size: 48px;
-                            margin-bottom: 15px;
-                            animation: bounce 2s ease-in-out infinite;
-                        }
-                        
-                        .welcome-greeting-title {
-                            font-size: 28px;
-                            font-weight: 700;
-                            color: #1e293b;
-                            margin: 0;
-                            font-family: 'Poppins', sans-serif;
-                        }
-                        
-                        @keyframes bounce {
-                            0%, 100% { transform: translateY(0); }
-                            50% { transform: translateY(-5px); }
-                        }
-                        
-                        /* Role Section */
-                        .welcome-role-section {
-                            margin-bottom: 25px;
-                            animation: slideInUp 0.6s ease-out 0.6s both;
-                        }
-                        
-                        .welcome-role-icon {
-                            font-size: 64px;
+                        /* Role Icon Large */
+                        .welcome-role-icon-large {
+                            font-size: 80px;
                             margin-bottom: 15px;
                             animation: pulse 2s ease-in-out infinite;
+                            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
                         }
                         
-                        .welcome-role-title {
-                            font-size: 22px;
-                            font-weight: 600;
-                            color: #0066cc;
-                            margin: 0 0 12px 0;
-                            font-family: 'Poppins', sans-serif;
-                        }
-                        
-                        .welcome-role-description {
-                            font-size: 16px;
-                            color: #475569;
-                            line-height: 1.6;
-                            margin: 0;
+                        .welcome-greeting-icon-small {
+                            font-size: 32px;
+                            animation: bounce 2s ease-in-out infinite;
                         }
                         
                         @keyframes pulse {
@@ -5098,55 +5097,101 @@
                             50% { transform: scale(1.05); }
                         }
                         
-                        /* Date Section */
-                        .welcome-date-section {
-                            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-                            padding: 16px 20px;
-                            border-radius: 12px;
-                            border-left: 4px solid #0066cc;
-                            margin-bottom: 30px;
+                        @keyframes bounce {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-3px); }
+                        }
+                        
+                        /* Greeting Section */
+                        .welcome-greeting-section {
+                            animation: slideInRight 0.6s ease-out 0.4s both;
+                        }
+                        
+                        .welcome-greeting-title {
+                            font-size: 32px;
+                            font-weight: 700;
+                            color: #1e293b;
+                            margin: 0;
+                            font-family: 'Poppins', sans-serif;
+                            line-height: 1.2;
+                        }
+                        
+                        /* Role Section */
+                        .welcome-role-section {
+                            animation: slideInRight 0.6s ease-out 0.6s both;
+                        }
+                        
+                        .welcome-role-title {
+                            font-size: 24px;
+                            font-weight: 600;
+                            color: #0066cc;
+                            margin: 0 0 8px 0;
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        
+                        .welcome-role-description {
+                            font-size: 16px;
+                            color: #475569;
+                            line-height: 1.5;
+                            margin: 0;
+                        }
+                        
+                        /* Bottom Row */
+                        .welcome-bottom-row {
                             display: flex;
                             align-items: center;
-                            justify-content: center;
-                            gap: 10px;
-                            animation: slideInUp 0.6s ease-out 0.8s both;
+                            justify-content: space-between;
+                            gap: 20px;
+                            animation: slideInRight 0.6s ease-out 0.8s both;
+                        }
+                        
+                        /* Date Section */
+                        .welcome-date-section {
+                            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(16, 185, 129, 0.1));
+                            padding: 12px 16px;
+                            border-radius: 10px;
+                            border-left: 3px solid #0066cc;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            flex: 1;
                         }
                         
                         .welcome-date-icon {
                             color: #0066cc;
-                            font-size: 18px;
+                            font-size: 16px;
                         }
                         
                         .welcome-date-text {
                             margin: 0;
                             color: #0369a1;
-                            font-size: 15px;
+                            font-size: 14px;
                             font-weight: 600;
                         }
                         
                         /* Action Button */
                         .welcome-action-section {
-                            animation: slideInUp 0.6s ease-out 1s both;
+                            flex-shrink: 0;
                         }
                         
                         .welcome-action-btn {
                             background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
                             color: white;
                             border: none;
-                            padding: 16px 32px;
-                            border-radius: 12px;
-                            font-size: 16px;
+                            padding: 14px 24px;
+                            border-radius: 10px;
+                            font-size: 15px;
                             font-weight: 600;
                             cursor: pointer;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            gap: 10px;
-                            margin: 0 auto;
+                            gap: 8px;
                             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+                            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
                             position: relative;
                             overflow: hidden;
+                            white-space: nowrap;
                         }
                         
                         .welcome-action-btn::before {
@@ -5166,7 +5211,7 @@
                         
                         .welcome-action-btn:hover {
                             transform: translateY(-2px);
-                            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4);
+                            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
                         }
                         
                         .welcome-btn-text {
@@ -5174,47 +5219,102 @@
                         }
                         
                         .welcome-btn-icon {
-                            font-size: 18px;
+                            font-size: 16px;
                             animation: rocket 1s ease-in-out infinite alternate;
                         }
                         
                         @keyframes rocket {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(3px); }
+                            100% { transform: translateX(2px); }
                         }
                         
-                        @keyframes slideInUp {
+                        @keyframes slideInRight {
                             0% {
                                 opacity: 0;
-                                transform: translateY(30px);
+                                transform: translateX(30px);
                             }
                             100% {
                                 opacity: 1;
-                                transform: translateY(0);
+                                transform: translateX(0);
                             }
                         }
                         
-                        /* Mobile Responsive */
-                        @media (max-width: 480px) {
-                            .enhanced-welcome-popup {
-                                padding: 20px 15px;
+                        /* Mobile Responsive - Stack Vertically */
+                        @media (max-width: 768px) {
+                            .enhanced-welcome-popup.horizontal {
+                                flex-direction: column;
+                                gap: 25px;
+                                padding: 30px 20px;
+                                max-width: 400px;
+                            }
+                            
+                            .welcome-left-section {
+                                flex: none;
+                                width: 100%;
+                                padding: 20px;
+                                flex-direction: row;
+                                justify-content: space-around;
+                            }
+                            
+                            .welcome-role-icon-large {
+                                font-size: 60px;
+                                margin-bottom: 0;
+                            }
+                            
+                            .welcome-greeting-icon-small {
+                                font-size: 28px;
+                            }
+                            
+                            .welcome-check-container {
+                                position: static;
+                                margin-bottom: 0;
                             }
                             
                             .welcome-greeting-title {
-                                font-size: 24px;
+                                font-size: 26px;
+                                text-align: center;
                             }
                             
                             .welcome-role-title {
                                 font-size: 20px;
+                                text-align: center;
                             }
                             
                             .welcome-role-description {
                                 font-size: 14px;
+                                text-align: center;
+                            }
+                            
+                            .welcome-bottom-row {
+                                flex-direction: column;
+                                gap: 15px;
+                            }
+                            
+                            .welcome-date-section {
+                                justify-content: center;
                             }
                             
                             .welcome-action-btn {
-                                padding: 14px 28px;
-                                font-size: 15px;
+                                padding: 12px 20px;
+                                font-size: 14px;
+                            }
+                        }
+                        
+                        @media (max-width: 480px) {
+                            .enhanced-welcome-popup.horizontal {
+                                padding: 20px 15px;
+                            }
+                            
+                            .welcome-greeting-title {
+                                font-size: 22px;
+                            }
+                            
+                            .welcome-role-title {
+                                font-size: 18px;
+                            }
+                            
+                            .welcome-date-text {
+                                font-size: 12px;
                             }
                         }
                     </style>
@@ -5238,7 +5338,7 @@
                 timer: 12000,
                 timerProgressBar: true,
                 customClass: {
-                    popup: 'enhanced-welcome-modal',
+                    popup: 'enhanced-welcome-modal-horizontal',
                     closeButton: 'enhanced-welcome-close'
                 },
                 didOpen: (popup) => {
@@ -5247,6 +5347,8 @@
                     popup.style.padding = '0';
                     popup.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
                     popup.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    popup.style.maxWidth = '750px';
+                    popup.style.width = '90%';
                     
                     // Style the close button
                     const closeBtn = popup.querySelector('.swal2-close');
@@ -5262,6 +5364,7 @@
                         closeBtn.style.display = 'flex';
                         closeBtn.style.alignItems = 'center';
                         closeBtn.style.justifyContent = 'center';
+                        closeBtn.style.zIndex = '20';
                         
                         closeBtn.addEventListener('mouseenter', () => {
                             closeBtn.style.background = 'rgba(100, 116, 139, 0.2)';
