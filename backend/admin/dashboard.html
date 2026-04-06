@@ -1362,18 +1362,13 @@
             }
         }
 
-        /* Dashboard Content Area */
-        .dashboard-content {
-            padding: 30px;
-        }
-
-        /* Welcome Section - Enhanced Header */
+        /* Enhanced Welcome Section */
         .welcome-section {
             margin-bottom: 35px;
-            background: white;
-            padding: 35px 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-left: 5px solid var(--primary-blue);
             position: relative;
             overflow: hidden;
@@ -1384,9 +1379,9 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 300px;
+            width: 400px;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(0, 82, 163, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(0, 82, 163, 0.08) 100%);
             border-radius: 0 20px 20px 0;
         }
 
@@ -1395,51 +1390,121 @@
             z-index: 1;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 30px;
+            align-items: flex-start;
+            gap: 40px;
         }
 
         .welcome-section .header-left {
             flex: 1;
         }
 
+        .welcome-main {
+            margin-bottom: 30px;
+        }
+
         .welcome-section h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: 32px;
+            margin-bottom: 12px;
             color: #0f172a;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+            line-height: 1.2;
         }
 
-        .welcome-section h2 i {
-            font-size: 26px;
+        .welcome-icon {
+            font-size: 28px;
             color: var(--primary-blue);
+            animation: welcomeIconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes welcomeIconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .welcome-section p {
             color: #475569;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
             line-height: 1.6;
+            margin: 0;
+        }
+
+        .welcome-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .welcome-stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,102,204,0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .welcome-stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .welcome-stat-content {
+            flex: 1;
+        }
+
+        .welcome-stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .welcome-stat-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .welcome-section .header-right {
             display: flex;
             gap: 12px;
             flex-shrink: 0;
+            align-items: flex-start;
         }
 
         .header-action-btn {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 20px;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
@@ -1447,6 +1512,7 @@
             gap: 8px;
             box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
             white-space: nowrap;
+            position: relative;
         }
 
         .header-action-btn:hover {
@@ -1470,8 +1536,26 @@
             box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
         }
 
-        /* Responsive header */
-        @media (max-width: 1024px) {
+        .notification-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            border: 2px solid white;
+            animation: pulse-notification 2s infinite;
+        }
+
+        /* Responsive welcome section */
+        @media (max-width: 1200px) {
             .welcome-section .header-content {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1480,6 +1564,34 @@
             .welcome-section .header-right {
                 width: 100%;
                 justify-content: flex-start;
+            }
+
+            .welcome-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                padding: 25px 20px;
+            }
+
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+
+            .welcome-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .welcome-stat-item {
+                padding: 15px;
+            }
+
+            .header-action-btn {
+                padding: 12px 16px;
+                font-size: 13px;
             }
         }
 
@@ -2819,6 +2931,271 @@
         .messages-list {
             max-width: 100%;
         }
+
+        /* Real-time Notification System */
+        .notification-toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: white;
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid #10b981;
+            min-width: 350px;
+            max-width: 400px;
+            z-index: 10000;
+            transform: translateX(450px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification-toast.admission {
+            border-left-color: #0066cc;
+        }
+
+        .notification-toast.message {
+            border-left-color: #f59e0b;
+        }
+
+        .notification-toast.error {
+            border-left-color: #dc3545;
+        }
+
+        .notification-toast-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .notification-toast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .notification-toast-icon.admission {
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+        }
+
+        .notification-toast-icon.message {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .notification-toast-icon.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .notification-toast-icon.error {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        .notification-toast-content {
+            flex: 1;
+        }
+
+        .notification-toast-title {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 16px;
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .notification-toast-message {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .notification-toast-time {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .notification-toast-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 4px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .notification-toast-close:hover {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .notification-toast-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .notification-toast-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .notification-toast-btn.primary {
+            background: #0066cc;
+            color: white;
+        }
+
+        .notification-toast-btn.primary:hover {
+            background: #0052a3;
+        }
+
+        .notification-toast-btn.secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .notification-toast-btn.secondary:hover {
+            background: #e2e8f0;
+        }
+
+        /* Notification Center Modal */
+        .notification-center {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-center.active {
+            display: flex;
+        }
+
+        .notification-center-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .notification-center-header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-center-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-center-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .notification-center-item {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+
+        .notification-center-item:hover {
+            background: #f1f5f9;
+            transform: translateX(5px);
+        }
+
+        .notification-center-item.unread {
+            background: rgba(0, 102, 204, 0.05);
+            border-left-color: #0066cc;
+        }
+
+        .notification-center-item.admission {
+            border-left-color: #0066cc;
+        }
+
+        .notification-center-item.message {
+            border-left-color: #f59e0b;
+        }
+
+        /* Sound notification indicator */
+        .sound-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s;
+        }
+
+        .sound-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for notification badges */
+        @keyframes pulse-notification {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3059,21 +3436,57 @@
 
         <!-- Dashboard Content -->
         <div class="dashboard-content">
-            <!-- Welcome Section -->
+            <!-- Enhanced Welcome Section -->
             <div class="welcome-section">
                 <div class="header-content">
                     <div class="header-left">
-                        <h2><i class="fas fa-chart-line"></i> Dashboard Overview</h2>
-                        <p>Monitor your school's performance and activities in real-time</p>
+                        <div class="welcome-main">
+                            <h2><i class="fas fa-sun welcome-icon"></i> <span id="welcomeGreeting">Good Morning</span>, <span id="welcomeUserName">Administrator</span>!</h2>
+                            <p id="welcomeMessage">Welcome back to St. Lawrence Junior School Dashboard. Here's what's happening today.</p>
+                        </div>
+                        <div class="welcome-stats">
+                            <div class="welcome-stat-item">
+                                <div class="welcome-stat-icon">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <div class="welcome-stat-content">
+                                    <div class="welcome-stat-value" id="todayDate">Loading...</div>
+                                    <div class="welcome-stat-label">Today's Date</div>
+                                </div>
+                            </div>
+                            <div class="welcome-stat-item">
+                                <div class="welcome-stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="welcome-stat-content">
+                                    <div class="welcome-stat-value" id="currentTimeWelcome">00:00</div>
+                                    <div class="welcome-stat-label">Current Time</div>
+                                </div>
+                            </div>
+                            <div class="welcome-stat-item">
+                                <div class="welcome-stat-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="welcome-stat-content">
+                                    <div class="welcome-stat-value" id="lastLoginTime">--</div>
+                                    <div class="welcome-stat-label">Last Login</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="header-right">
                         <button class="header-action-btn secondary" onclick="manualRefreshStats()">
                             <i class="fas fa-sync-alt"></i>
                             Refresh Stats
                         </button>
-                        <button class="header-action-btn secondary">
+                        <button class="header-action-btn secondary" onclick="exportDashboardReport()">
                             <i class="fas fa-download"></i>
                             Export Report
+                        </button>
+                        <button class="header-action-btn" onclick="showNotificationCenter()">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                            <span class="notification-count" id="headerNotificationCount" style="display: none;">0</span>
                         </button>
                     </div>
                 </div>
@@ -3562,6 +3975,48 @@
         <div class="modal-loading-content">
             <div id="modalLoader"></div>
             <div class="modal-loading-title" id="modalLoadingTitle">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="notificationToast" class="notification-toast">
+        <div class="notification-toast-header">
+            <div class="notification-toast-icon" id="notificationIcon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="notification-toast-content">
+                <div class="notification-toast-title" id="notificationTitle">New Notification</div>
+                <div class="notification-toast-message" id="notificationMessage">You have a new notification</div>
+                <div class="notification-toast-time" id="notificationTime">Just now</div>
+            </div>
+            <button class="notification-toast-close" onclick="hideNotificationToast()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-toast-actions" id="notificationActions" style="display: none;">
+            <button class="notification-toast-btn primary" id="notificationPrimaryBtn">View</button>
+            <button class="notification-toast-btn secondary" onclick="hideNotificationToast()">Dismiss</button>
+        </div>
+    </div>
+
+    <!-- Sound Indicator -->
+    <div id="soundIndicator" class="sound-indicator">
+        <i class="fas fa-volume-up"></i> Notification Sound
+    </div>
+
+    <!-- Notification Center Modal -->
+    <div class="notification-center" id="notificationCenter">
+        <div class="notification-center-content">
+            <div class="notification-center-header">
+                <h3><i class="fas fa-bell"></i> Notification Center</h3>
+                <button class="modal-close" onclick="hideNotificationCenter()" style="color: white; font-size: 28px; opacity: 0.9;">&times;</button>
+            </div>
+            <div class="notification-center-body" id="notificationCenterBody">
+                <div style="text-align: center; padding: 40px; color: #64748b;">
+                    <i class="fas fa-bell-slash" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <p>No notifications yet</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -4851,9 +5306,18 @@
                 // Load dynamic stats and start real-time updates
                 startRealTimeUpdates();
 
+                // Initialize enhanced welcome and notification system
+                updateUserInfo();
+                initNotificationSound();
+                updateNotificationBadges();
+                
                 // Start clock
                 updateDateTime();
                 setInterval(updateDateTime, 1000);
+                
+                // Check for notifications every 30 seconds
+                checkForNewNotifications();
+                setInterval(checkForNewNotifications, 30000);
 
                 // Initialize calendar
                 // Start background color rotation (moved to end of script)
@@ -5003,29 +5467,432 @@
             }
         }
 
-        // Update date and time
+        // Enhanced Update date and time with welcome message
         function updateDateTime() {
             const now = new Date();
             
-            // Update time
+            // Update time in top bar
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
             
-            // Update date
+            // Update time in welcome section
+            document.getElementById('currentTimeWelcome').textContent = `${hours}:${minutes}`;
+            
+            // Update date in top bar
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
             
-            // Update greeting
+            // Update date in welcome section
+            const dateOptions = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById('todayDate').textContent = now.toLocaleDateString('en-US', dateOptions);
+            
+            // Update greeting with enhanced messages
             const hour = now.getHours();
             let greeting = 'Good Evening';
+            let welcomeMessage = 'Hope you had a productive day managing the school.';
+            let iconClass = 'fas fa-moon';
+            
             if (hour < 12) {
                 greeting = 'Good Morning';
-            } else if (hour < 18) {
+                welcomeMessage = 'Ready to start another great day at St. Lawrence Junior School!';
+                iconClass = 'fas fa-sun';
+            } else if (hour < 17) {
                 greeting = 'Good Afternoon';
+                welcomeMessage = 'Keep up the excellent work managing our school community.';
+                iconClass = 'fas fa-sun';
+            } else if (hour < 20) {
+                greeting = 'Good Evening';
+                welcomeMessage = 'Wrapping up another successful day at the school.';
+                iconClass = 'fas fa-sunset';
+            } else {
+                greeting = 'Good Night';
+                welcomeMessage = 'Working late? Don\'t forget to take care of yourself too.';
+                iconClass = 'fas fa-moon';
             }
+            
+            // Update greeting elements
             document.getElementById('greetingText').textContent = greeting;
+            document.getElementById('welcomeGreeting').textContent = greeting;
+            document.getElementById('welcomeMessage').textContent = welcomeMessage;
+            
+            // Update welcome icon
+            const welcomeIcon = document.querySelector('.welcome-icon');
+            if (welcomeIcon) {
+                welcomeIcon.className = `welcome-icon ${iconClass}`;
+            }
+            
+            // Update last login time (simulate for demo)
+            const lastLogin = localStorage.getItem('lastLoginTime');
+            if (lastLogin) {
+                const lastLoginDate = new Date(lastLogin);
+                const timeDiff = Math.floor((now - lastLoginDate) / (1000 * 60)); // minutes
+                let lastLoginText = '';
+                
+                if (timeDiff < 1) {
+                    lastLoginText = 'Just now';
+                } else if (timeDiff < 60) {
+                    lastLoginText = `${timeDiff}m ago`;
+                } else if (timeDiff < 1440) {
+                    lastLoginText = `${Math.floor(timeDiff / 60)}h ago`;
+                } else {
+                    lastLoginText = lastLoginDate.toLocaleDateString();
+                }
+                
+                document.getElementById('lastLoginTime').textContent = lastLoginText;
+            } else {
+                // Set current time as last login for first time users
+                localStorage.setItem('lastLoginTime', now.toISOString());
+                document.getElementById('lastLoginTime').textContent = 'First login';
+            }
+        }
+
+        // Enhanced user info update
+        function updateUserInfo() {
+            // Get user info from session or API
+            const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
+            const userName = userInfo.name || 'Administrator';
+            const userRole = userInfo.role || 'System Administrator';
+            const userEmail = userInfo.email || 'admin@stlawrence.edu';
+            
+            // Update all user name elements
+            document.getElementById('userName').textContent = userName;
+            document.getElementById('welcomeUserName').textContent = userName;
+            document.getElementById('userNameDropdown').textContent = userName;
+            document.getElementById('userEmailDropdown').textContent = userEmail;
+            document.getElementById('userRole').textContent = userRole;
+            
+            // Update avatars with first letter of name
+            const firstLetter = userName.charAt(0).toUpperCase();
+            document.getElementById('userAvatar').textContent = firstLetter;
+            document.getElementById('userAvatarLarge').textContent = firstLetter;
+        }
+
+        // Notification System
+        let notificationQueue = [];
+        let currentNotification = null;
+        let notificationSound = null;
+        let notificationHistory = JSON.parse(localStorage.getItem('notificationHistory') || '[]');
+
+        // Initialize notification sound
+        function initNotificationSound() {
+            // Create a simple notification sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                window.playNotificationSound = function() {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                    
+                    // Show sound indicator
+                    showSoundIndicator();
+                };
+            } catch (error) {
+                console.log('Audio context not supported');
+                window.playNotificationSound = function() {
+                    showSoundIndicator();
+                };
+            }
+        }
+
+        // Show sound indicator
+        function showSoundIndicator() {
+            const indicator = document.getElementById('soundIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Show notification toast
+        function showNotificationToast(type, title, message, actions = null) {
+            const toast = document.getElementById('notificationToast');
+            const icon = document.getElementById('notificationIcon');
+            const titleEl = document.getElementById('notificationTitle');
+            const messageEl = document.getElementById('notificationMessage');
+            const timeEl = document.getElementById('notificationTime');
+            const actionsEl = document.getElementById('notificationActions');
+            
+            // Set content
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            timeEl.textContent = 'Just now';
+            
+            // Set type-specific styling
+            toast.className = `notification-toast ${type}`;
+            icon.className = `notification-toast-icon ${type}`;
+            
+            // Set icon based on type
+            const iconMap = {
+                admission: 'fas fa-user-graduate',
+                message: 'fas fa-envelope',
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle'
+            };
+            icon.querySelector('i').className = iconMap[type] || 'fas fa-bell';
+            
+            // Handle actions
+            if (actions) {
+                actionsEl.style.display = 'flex';
+                const primaryBtn = document.getElementById('notificationPrimaryBtn');
+                primaryBtn.textContent = actions.primaryText || 'View';
+                primaryBtn.onclick = actions.primaryAction || (() => {});
+            } else {
+                actionsEl.style.display = 'none';
+            }
+            
+            // Show toast
+            toast.classList.add('show');
+            
+            // Play sound
+            if (window.playNotificationSound) {
+                window.playNotificationSound();
+            }
+            
+            // Auto hide after 8 seconds
+            setTimeout(() => {
+                hideNotificationToast();
+            }, 8000);
+            
+            // Add to history
+            const notification = {
+                id: Date.now(),
+                type,
+                title,
+                message,
+                timestamp: new Date().toISOString(),
+                read: false
+            };
+            
+            notificationHistory.unshift(notification);
+            localStorage.setItem('notificationHistory', JSON.stringify(notificationHistory.slice(0, 50))); // Keep last 50
+            
+            // Update notification badges
+            updateNotificationBadges();
+        }
+
+        // Hide notification toast
+        function hideNotificationToast() {
+            const toast = document.getElementById('notificationToast');
+            toast.classList.remove('show');
+        }
+
+        // Show notification center
+        function showNotificationCenter() {
+            const center = document.getElementById('notificationCenter');
+            const body = document.getElementById('notificationCenterBody');
+            
+            // Clear existing content
+            body.innerHTML = '';
+            
+            if (notificationHistory.length === 0) {
+                body.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #64748b;">
+                        <i class="fas fa-bell-slash" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                        <p>No notifications yet</p>
+                    </div>
+                `;
+            } else {
+                notificationHistory.forEach(notification => {
+                    const item = document.createElement('div');
+                    item.className = `notification-center-item ${notification.type} ${!notification.read ? 'unread' : ''}`;
+                    
+                    const iconMap = {
+                        admission: 'fas fa-user-graduate',
+                        message: 'fas fa-envelope',
+                        success: 'fas fa-check-circle',
+                        error: 'fas fa-exclamation-circle'
+                    };
+                    
+                    const timeAgo = getTimeAgo(new Date(notification.timestamp));
+                    
+                    item.innerHTML = `
+                        <div class="notification-toast-icon ${notification.type}">
+                            <i class="${iconMap[notification.type] || 'fas fa-bell'}"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;">${notification.title}</div>
+                            <div style="color: #475569; font-size: 14px; margin-bottom: 8px;">${notification.message}</div>
+                            <div style="color: #64748b; font-size: 12px;">${timeAgo}</div>
+                        </div>
+                    `;
+                    
+                    item.onclick = () => {
+                        notification.read = true;
+                        localStorage.setItem('notificationHistory', JSON.stringify(notificationHistory));
+                        updateNotificationBadges();
+                        item.classList.remove('unread');
+                    };
+                    
+                    body.appendChild(item);
+                });
+            }
+            
+            center.classList.add('active');
+        }
+
+        // Hide notification center
+        function hideNotificationCenter() {
+            const center = document.getElementById('notificationCenter');
+            center.classList.remove('active');
+        }
+
+        // Update notification badges
+        function updateNotificationBadges() {
+            const unreadCount = notificationHistory.filter(n => !n.read).length;
+            const badges = [
+                'headerNotificationCount',
+                'railNotificationsBadge'
+            ];
+            
+            badges.forEach(badgeId => {
+                const badge = document.getElementById(badgeId);
+                if (badge) {
+                    if (unreadCount > 0) {
+                        badge.textContent = unreadCount;
+                        badge.style.display = 'flex';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Get time ago string
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            return date.toLocaleDateString();
+        }
+
+        // Check for new admissions and messages
+        let lastAdmissionCheck = 0;
+        let lastMessageCheck = 0;
+
+        async function checkForNewNotifications() {
+            try {
+                // Check for new admissions
+                const admissionsResponse = await fetch('../api/admissions/list.php');
+                const admissionsData = await admissionsResponse.json();
+                
+                if (admissionsData.success && admissionsData.data) {
+                    const newAdmissions = admissionsData.data.filter(admission => 
+                        new Date(admission.created_at).getTime() > lastAdmissionCheck
+                    );
+                    
+                    newAdmissions.forEach(admission => {
+                        showNotificationToast(
+                            'admission',
+                            'New Admission Application',
+                            `${admission.student_name} has submitted an admission application`,
+                            {
+                                primaryText: 'View Application',
+                                primaryAction: () => {
+                                    hideNotificationToast();
+                                    openModal('admissionsModal');
+                                    loadAdmissions();
+                                }
+                            }
+                        );
+                    });
+                    
+                    lastAdmissionCheck = Date.now();
+                }
+
+                // Check for new messages
+                const messagesResponse = await fetch('../api/messages/get_all.php');
+                const messagesData = await messagesResponse.json();
+                
+                if (messagesData.success && messagesData.data) {
+                    const newMessages = messagesData.data.filter(message => 
+                        new Date(message.created_at).getTime() > lastMessageCheck
+                    );
+                    
+                    newMessages.forEach(message => {
+                        showNotificationToast(
+                            'message',
+                            'New Contact Message',
+                            `${message.name} sent a message: "${message.subject}"`,
+                            {
+                                primaryText: 'View Message',
+                                primaryAction: () => {
+                                    hideNotificationToast();
+                                    showMessagesSection();
+                                }
+                            }
+                        );
+                    });
+                    
+                    lastMessageCheck = Date.now();
+                }
+                
+            } catch (error) {
+                console.log('Error checking notifications:', error);
+            }
+        }
+
+        // Export dashboard report function
+        function exportDashboardReport() {
+            showNotificationToast(
+                'success',
+                'Report Export Started',
+                'Your dashboard report is being generated and will be downloaded shortly.'
+            );
+            
+            // Simulate report generation
+            setTimeout(() => {
+                showNotificationToast(
+                    'success',
+                    'Report Ready',
+                    'Dashboard report has been generated successfully.',
+                    {
+                        primaryText: 'Download',
+                        primaryAction: () => {
+                            // Create a simple CSV report
+                            const csvContent = `St. Lawrence Junior School - Dashboard Report
+Generated: ${new Date().toLocaleString()}
+
+Statistics:
+Teachers: ${document.getElementById('teachersCount').textContent}
+Messages: ${document.getElementById('messagesCount').textContent}
+Admissions: ${document.getElementById('admissionsCount').textContent}
+Events: ${document.getElementById('eventsCount').textContent}
+`;
+                            
+                            const blob = new Blob([csvContent], { type: 'text/csv' });
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `dashboard-report-${new Date().toISOString().split('T')[0]}.csv`;
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                            
+                            hideNotificationToast();
+                        }
+                    }
+                );
+            }, 2000);
         }
 
         async function logout() {
@@ -8835,6 +9702,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadDashboardSettings(); // Load saved UI settings
             loadActivities();
+            
+            // Show welcome notification for new sessions
+            const hasShownWelcome = sessionStorage.getItem('welcomeShown');
+            if (!hasShownWelcome) {
+                setTimeout(() => {
+                    const hour = new Date().getHours();
+                    let welcomeTitle = 'Welcome Back!';
+                    let welcomeMsg = 'Dashboard loaded successfully. All systems are ready.';
+                    
+                    if (hour < 12) {
+                        welcomeTitle = 'Good Morning!';
+                        welcomeMsg = 'Ready to start a productive day at St. Lawrence Junior School.';
+                    } else if (hour < 17) {
+                        welcomeTitle = 'Good Afternoon!';
+                        welcomeMsg = 'Hope your day is going well. Dashboard is ready for use.';
+                    } else {
+                        welcomeTitle = 'Good Evening!';
+                        welcomeMsg = 'Working late? Dashboard is here to help you stay organized.';
+                    }
+                    
+                    showNotificationToast('success', welcomeTitle, welcomeMsg);
+                    sessionStorage.setItem('welcomeShown', 'true');
+                }, 2000);
+            }
             loadNotifications();
             loadUserProfile();
             loadUpcomingEvents();
@@ -10203,4 +11094,5 @@
     <script src="js/dashboard-settings.js"></script>
 </body>
 </html>
+
 
