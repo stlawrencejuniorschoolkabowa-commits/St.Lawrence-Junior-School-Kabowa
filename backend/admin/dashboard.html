@@ -4950,49 +4950,329 @@
                     roleIcon = '🏫';
             }
             
-            // Show welcome popup
+            // Show enhanced welcome popup
             Swal.fire({
-                title: `${greetingIcon} ${greeting}, ${fullName}!`,
+                title: '',
                 html: `
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 60px; margin-bottom: 20px;">${roleIcon}</div>
-                        <h3 style="color: #0066cc; margin-bottom: 15px; font-size: 20px; font-weight: 600;">
-                            ${roleName}
-                        </h3>
-                        <p style="color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
-                            ${roleMessage}
-                        </p>
-                        <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #0066cc;">
-                            <p style="margin: 0; color: #0369a1; font-size: 14px; font-weight: 500;">
-                                <i class="fas fa-info-circle"></i> 
+                    <div class="enhanced-welcome-popup">
+                        <!-- Success Check Animation -->
+                        <div class="welcome-check-container">
+                            <div class="welcome-check-circle">
+                                <div class="welcome-check-mark">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Greeting Section -->
+                        <div class="welcome-greeting-section">
+                            <div class="welcome-greeting-icon">${greetingIcon}</div>
+                            <h2 class="welcome-greeting-title">${greeting}, ${fullName}!</h2>
+                        </div>
+                        
+                        <!-- Role Section -->
+                        <div class="welcome-role-section">
+                            <div class="welcome-role-icon">${roleIcon}</div>
+                            <h3 class="welcome-role-title">${roleName}</h3>
+                            <p class="welcome-role-description">${roleMessage}</p>
+                        </div>
+                        
+                        <!-- Date Info -->
+                        <div class="welcome-date-section">
+                            <div class="welcome-date-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <p class="welcome-date-text">
                                 ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                             </p>
                         </div>
+                        
+                        <!-- Action Button -->
+                        <div class="welcome-action-section">
+                            <button class="welcome-action-btn" onclick="Swal.close()">
+                                <span class="welcome-btn-text">Let's Get Started!</span>
+                                <span class="welcome-btn-icon">🚀</span>
+                            </button>
+                        </div>
                     </div>
+                    
+                    <style>
+                        .enhanced-welcome-popup {
+                            text-align: center;
+                            padding: 30px 20px;
+                            max-width: 400px;
+                            margin: 0 auto;
+                        }
+                        
+                        /* Success Check Animation */
+                        .welcome-check-container {
+                            margin-bottom: 25px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        
+                        .welcome-check-circle {
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #0066cc, #0052a3);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            animation: checkBounce 0.6s ease-out;
+                            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
+                        }
+                        
+                        .welcome-check-mark {
+                            color: white;
+                            animation: checkDraw 0.8s ease-out 0.3s both;
+                        }
+                        
+                        @keyframes checkBounce {
+                            0% { transform: scale(0); opacity: 0; }
+                            50% { transform: scale(1.1); }
+                            100% { transform: scale(1); opacity: 1; }
+                        }
+                        
+                        @keyframes checkDraw {
+                            0% { opacity: 0; transform: scale(0.5); }
+                            100% { opacity: 1; transform: scale(1); }
+                        }
+                        
+                        /* Greeting Section */
+                        .welcome-greeting-section {
+                            margin-bottom: 30px;
+                            animation: slideInUp 0.6s ease-out 0.4s both;
+                        }
+                        
+                        .welcome-greeting-icon {
+                            font-size: 48px;
+                            margin-bottom: 15px;
+                            animation: bounce 2s ease-in-out infinite;
+                        }
+                        
+                        .welcome-greeting-title {
+                            font-size: 28px;
+                            font-weight: 700;
+                            color: #1e293b;
+                            margin: 0;
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        
+                        @keyframes bounce {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-5px); }
+                        }
+                        
+                        /* Role Section */
+                        .welcome-role-section {
+                            margin-bottom: 25px;
+                            animation: slideInUp 0.6s ease-out 0.6s both;
+                        }
+                        
+                        .welcome-role-icon {
+                            font-size: 64px;
+                            margin-bottom: 15px;
+                            animation: pulse 2s ease-in-out infinite;
+                        }
+                        
+                        .welcome-role-title {
+                            font-size: 22px;
+                            font-weight: 600;
+                            color: #0066cc;
+                            margin: 0 0 12px 0;
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        
+                        .welcome-role-description {
+                            font-size: 16px;
+                            color: #475569;
+                            line-height: 1.6;
+                            margin: 0;
+                        }
+                        
+                        @keyframes pulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.05); }
+                        }
+                        
+                        /* Date Section */
+                        .welcome-date-section {
+                            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                            padding: 16px 20px;
+                            border-radius: 12px;
+                            border-left: 4px solid #0066cc;
+                            margin-bottom: 30px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                            animation: slideInUp 0.6s ease-out 0.8s both;
+                        }
+                        
+                        .welcome-date-icon {
+                            color: #0066cc;
+                            font-size: 18px;
+                        }
+                        
+                        .welcome-date-text {
+                            margin: 0;
+                            color: #0369a1;
+                            font-size: 15px;
+                            font-weight: 600;
+                        }
+                        
+                        /* Action Button */
+                        .welcome-action-section {
+                            animation: slideInUp 0.6s ease-out 1s both;
+                        }
+                        
+                        .welcome-action-btn {
+                            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+                            color: white;
+                            border: none;
+                            padding: 16px 32px;
+                            border-radius: 12px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                            margin: 0 auto;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        
+                        .welcome-action-btn::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: -100%;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                            transition: left 0.5s;
+                        }
+                        
+                        .welcome-action-btn:hover::before {
+                            left: 100%;
+                        }
+                        
+                        .welcome-action-btn:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4);
+                        }
+                        
+                        .welcome-btn-text {
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        
+                        .welcome-btn-icon {
+                            font-size: 18px;
+                            animation: rocket 1s ease-in-out infinite alternate;
+                        }
+                        
+                        @keyframes rocket {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(3px); }
+                        }
+                        
+                        @keyframes slideInUp {
+                            0% {
+                                opacity: 0;
+                                transform: translateY(30px);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        /* Mobile Responsive */
+                        @media (max-width: 480px) {
+                            .enhanced-welcome-popup {
+                                padding: 20px 15px;
+                            }
+                            
+                            .welcome-greeting-title {
+                                font-size: 24px;
+                            }
+                            
+                            .welcome-role-title {
+                                font-size: 20px;
+                            }
+                            
+                            .welcome-role-description {
+                                font-size: 14px;
+                            }
+                            
+                            .welcome-action-btn {
+                                padding: 14px 28px;
+                                font-size: 15px;
+                            }
+                        }
+                    </style>
                 `,
-                icon: 'success',
-                iconColor: '#0066cc',
-                confirmButtonText: 'Let\'s Get Started! 🚀',
-                confirmButtonColor: '#0066cc',
+                showConfirmButton: false,
+                showCloseButton: true,
+                closeButtonHtml: '<i class="fas fa-times" style="color: #64748b;"></i>',
                 showClass: {
-                    popup: 'animate__animated animate__fadeInDown animate__faster'
+                    popup: 'animate__animated animate__zoomIn animate__faster'
                 },
                 hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp animate__faster'
+                    popup: 'animate__animated animate__zoomOut animate__faster'
                 },
                 backdrop: `
-                    rgba(0, 0, 0, 0.4)
+                    rgba(0, 0, 0, 0.6)
                     left top
                     no-repeat
                 `,
-                allowOutsideClick: false,
+                allowOutsideClick: true,
                 allowEscapeKey: true,
-                timer: 8000,
+                timer: 12000,
                 timerProgressBar: true,
+                customClass: {
+                    popup: 'enhanced-welcome-modal',
+                    closeButton: 'enhanced-welcome-close'
+                },
                 didOpen: (popup) => {
-                    // Add custom styling
-                    popup.style.borderRadius = '20px';
-                    popup.style.padding = '10px';
+                    // Add custom styling to the modal
+                    popup.style.borderRadius = '24px';
+                    popup.style.padding = '0';
+                    popup.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+                    popup.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    
+                    // Style the close button
+                    const closeBtn = popup.querySelector('.swal2-close');
+                    if (closeBtn) {
+                        closeBtn.style.position = 'absolute';
+                        closeBtn.style.top = '15px';
+                        closeBtn.style.right = '15px';
+                        closeBtn.style.width = '35px';
+                        closeBtn.style.height = '35px';
+                        closeBtn.style.borderRadius = '50%';
+                        closeBtn.style.background = 'rgba(100, 116, 139, 0.1)';
+                        closeBtn.style.transition = 'all 0.2s';
+                        closeBtn.style.display = 'flex';
+                        closeBtn.style.alignItems = 'center';
+                        closeBtn.style.justifyContent = 'center';
+                        
+                        closeBtn.addEventListener('mouseenter', () => {
+                            closeBtn.style.background = 'rgba(100, 116, 139, 0.2)';
+                            closeBtn.style.transform = 'scale(1.1)';
+                        });
+                        
+                        closeBtn.addEventListener('mouseleave', () => {
+                            closeBtn.style.background = 'rgba(100, 116, 139, 0.1)';
+                            closeBtn.style.transform = 'scale(1)';
+                        });
+                    }
                 }
             });
         }
